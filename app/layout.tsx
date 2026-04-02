@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Pulsa Creatives — Agence Digitale",
   description:
     "Agence digitale premium. Sites web, landing pages, e-commerce, SEO et Ads.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   other: {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
