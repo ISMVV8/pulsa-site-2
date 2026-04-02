@@ -161,13 +161,10 @@ export default function Portfolio() {
 
           return (
             <div key={project.name}>
-              {/* Separator */}
-              {i > 0 && <hr className="border-t border-[#eee] my-0" />}
-
               <div
                 className={`flex flex-col ${
                   isOdd ? "md:flex-row" : "md:flex-row-reverse"
-                } gap-8 md:gap-12 py-14 md:py-20`}
+                } gap-8 md:gap-12 p-6 md:p-10 my-8 md:my-12 bg-[#f5f5f5] rounded-3xl`}
               >
                 {/* Image side */}
                 <div className="md:w-[55%] flex-shrink-0">
@@ -203,7 +200,7 @@ export default function Portfolio() {
                     onClick={() => setSelected(project)}
                     className="text-left cursor-pointer"
                   >
-                    <h2 className="font-serif font-bold text-[28px] md:text-[32px] text-black leading-tight hover:opacity-70 transition-opacity">
+                    <h2 className="font-serif font-black text-[36px] md:text-[48px] text-black leading-[1.05] tracking-tight hover:opacity-70 transition-opacity">
                       {project.name}
                     </h2>
                   </button>
@@ -229,10 +226,10 @@ export default function Portfolio() {
                   <div className="mt-6">
                     <button
                       onClick={() => setSelected(project)}
-                      className="inline-flex items-center gap-2 bg-black text-white text-[13px] font-medium px-6 py-3 rounded-full hover:bg-black/80 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-3 bg-[#1a1a1a] text-white text-[14px] font-medium px-8 py-4 rounded-full hover:bg-black transition-colors cursor-pointer shadow-sm"
                     >
                       Visiter le site
-                      <span>→</span>
+                      <span className="text-[16px]">↗</span>
                     </button>
                   </div>
                 </div>
