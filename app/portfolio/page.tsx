@@ -234,7 +234,7 @@ export default function Portfolio() {
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     loading={i < 3 ? "eager" : "lazy"}
                     sizes="100vw"
-                    quality={90}
+                    unoptimized
                   />
                 </div>
 
