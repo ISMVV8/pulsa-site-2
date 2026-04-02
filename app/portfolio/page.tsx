@@ -233,15 +233,13 @@ export default function Portfolio() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     loading={i < 3 ? "eager" : "lazy"}
-                    sizes="(max-width: 768px) 90vw, 800px"
+                    sizes="100vw"
+                    quality={90}
                   />
                 </div>
 
-                {/* Gradient — left side only for glass */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent z-10" />
-
-                {/* Hover */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 z-10" />
+                {/* Subtle gradient — left bottom corner only for glass text readability */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent z-10" />
 
                 {/* Number watermark */}
                 <span className="absolute top-8 right-10 text-white/8 text-[6rem] sm:text-[8rem] md:text-[10rem] font-bold leading-none z-10 select-none pointer-events-none">
