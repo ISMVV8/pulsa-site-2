@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/app/lib/projects";
@@ -14,18 +14,67 @@ export default function Portfolio() {
   const heroRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorTextRef = useRef<HTMLSpanElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
-    if (!section || !track) return;
+    const cursor = cursorRef.current;
+    const cursorText = cursorTextRef.current;
+    const titleEl = titleRef.current;
+    if (!section || !track || !cursor || !cursorText || !titleEl) return;
+
+    // ── Custom cursor ──
+    const moveCursor = (e: MouseEvent) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    };
+    window.addEventListener("mousemove", moveCursor);
+
+    // Cursor grow on card hover
+    const cards = document.querySelectorAll("[data-card]");
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(cursor, { width: 80, height: 80, duration: 0.3, ease: "power2.out" });
+        gsap.to(cursorText, { opacity: 1, duration: 0.3 });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(cursor, { width: 16, height: 16, duration: 0.3, ease: "power2.out" });
+        gsap.to(cursorText, { opacity: 0, duration: 0.2 });
+      });
+    });
 
     const ctx = gsap.context(() => {
-      // Hero entrance
-      gsap.from("[data-hero-title]", { y: 50, opacity: 0, duration: 1, ease: "power3.out" });
-      gsap.from("[data-hero-sub]", { y: 25, opacity: 0, duration: 0.8, delay: 0.25, ease: "power3.out" });
+      // Hero entrance — staggered
+      const tl = gsap.timeline();
+      tl.from("[data-hero-title] span", {
+        y: 120,
+        rotateX: -80,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.08,
+        ease: "power4.out",
+      })
+      .from("[data-hero-sub]", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      }, "-=0.5")
+      .from("[data-hero-scroll]", {
+        y: 15,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      }, "-=0.3");
 
       // Calculate horizontal scroll distance
       const getScrollDistance = () => -(track.scrollWidth - window.innerWidth);
@@ -37,7 +86,7 @@ export default function Portfolio() {
         scrollTrigger: {
           trigger: section,
           pin: true,
-          scrub: 0.8,
+          scrub: 1,
           end: () => "+=" + track.scrollWidth,
           invalidateOnRefresh: true,
           anticipatePin: 1,
@@ -52,42 +101,59 @@ export default function Portfolio() {
         },
       });
 
-      // Animate each card as it comes into view
-      const cards = gsap.utils.toArray<HTMLElement>("[data-card]");
-      cards.forEach((card, i) => {
-        // Card fade in
-        gsap.fromTo(
-          card,
-          { opacity: 0.3 },
-          {
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
+      // ── Per-card animations ──
+      const cardEls = gsap.utils.toArray<HTMLElement>("[data-card]");
+      cardEls.forEach((card) => {
+        const glass = card.querySelector("[data-glass]");
+        const pills = card.querySelectorAll("[data-pill]");
+        const tags = card.querySelectorAll("[data-tag]");
+        const number = card.querySelector("[data-number]");
+        const imgEl = card.querySelector("[data-img]");
+
+        // Image subtle parallax via translate (no scale)
+        if (imgEl) {
+          gsap.fromTo(imgEl, { xPercent: 3 }, {
+            xPercent: -3,
+            ease: "none",
             scrollTrigger: {
               trigger: card,
               containerAnimation: tween,
-              start: "left 90%",
-              end: "left 40%",
-              scrub: 0.5,
+              start: "left right",
+              end: "right left",
+              scrub: true,
             },
-          }
-        );
+          });
+        }
 
-        // Glass overlay slides up
-        const glass = card.querySelector("[data-glass]");
-        if (glass) {
-          gsap.fromTo(
-            glass,
-            { y: 30, opacity: 0 },
+        // Number slides in from right
+        if (number) {
+          gsap.fromTo(number,
+            { x: 80, opacity: 0 },
             {
-              y: 0,
-              opacity: 1,
-              duration: 1,
-              ease: "power2.out",
+              x: 0, opacity: 1,
+              ease: "power3.out",
               scrollTrigger: {
                 trigger: card,
                 containerAnimation: tween,
-                start: "left 75%",
+                start: "left 80%",
+                end: "left 50%",
+                scrub: 0.5,
+              },
+            }
+          );
+        }
+
+        // Glass overlay — staggered reveal
+        if (glass) {
+          gsap.fromTo(glass,
+            { y: 50, opacity: 0 },
+            {
+              y: 0, opacity: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: tween,
+                start: "left 70%",
                 end: "left 35%",
                 scrub: 0.5,
               },
@@ -95,15 +161,81 @@ export default function Portfolio() {
           );
         }
 
-        // No parallax/scale on images — keep crisp
+        // Pills cascade in
+        if (pills.length) {
+          gsap.fromTo(pills,
+            { y: 20, opacity: 0, scale: 0.8 },
+            {
+              y: 0, opacity: 1, scale: 1,
+              stagger: 0.1,
+              ease: "back.out(1.5)",
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: tween,
+                start: "left 65%",
+                end: "left 30%",
+                scrub: 0.5,
+              },
+            }
+          );
+        }
+
+        // Tags slide in from left
+        if (tags.length) {
+          gsap.fromTo(tags,
+            { x: -20, opacity: 0 },
+            {
+              x: 0, opacity: 1,
+              stagger: 0.06,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: tween,
+                start: "left 60%",
+                end: "left 25%",
+                scrub: 0.5,
+              },
+            }
+          );
+        }
       });
     });
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      window.removeEventListener("mousemove", moveCursor);
+    };
   }, []);
+
+  // Update floating title
+  useEffect(() => {
+    const titleEl = titleRef.current;
+    if (!titleEl) return;
+    gsap.to(titleEl, {
+      opacity: 0,
+      duration: 0.15,
+      onComplete: () => {
+        if (titleRef.current) {
+          titleRef.current.textContent = projects[activeIndex]?.name || "";
+        }
+        gsap.to(titleEl, { opacity: 1, duration: 0.3, y: 0 });
+      },
+      y: -10,
+    });
+  }, [activeIndex]);
 
   return (
     <div className="bg-white text-black">
+      {/* ── Custom cursor (hidden on mobile) ── */}
+      <div
+        ref={cursorRef}
+        className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:flex items-center justify-center"
+      >
+        <span ref={cursorTextRef} className="text-[9px] uppercase tracking-[0.1em] text-black font-medium opacity-0">
+          View
+        </span>
+      </div>
+
       {/* ═══ HEADER ═══ */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-4 sm:py-5">
         <Link href="/">
@@ -131,31 +263,26 @@ export default function Portfolio() {
         </div>
       </header>
 
-      {/* ═══ HERO — Fullscreen with sakura bg like landing ═══ */}
-      <section ref={heroRef} className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6">
-        {/* Background image — same as landing page */}
+      {/* ═══ HERO — Fullscreen with sakura bg ═══ */}
+      <section ref={heroRef} className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/bg-sakura.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            priority
-          />
+          <Image src="/bg-sakura.jpg" alt="" fill className="object-cover" priority />
         </div>
 
-        <h1 data-hero-title className="relative z-10 text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05]">
-          Nos réalisations<span className="text-black/20">.</span>
+        <h1 data-hero-title className="relative z-10 text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] overflow-hidden">
+          {"Nos réalisations.".split("").map((char, i) => (
+            <span key={i} className="inline-block" style={{ perspective: "600px" }}>
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
         </h1>
         <p data-hero-sub className="relative z-10 mt-4 text-black/40 text-[12px] sm:text-[13px] tracking-[0.04em] max-w-md">
           Scrollez pour explorer nos projets
         </p>
 
-        {/* Scroll hint */}
-        <div className="relative z-10 absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-black/25">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
+        <div data-hero-scroll className="relative z-10 mt-12 flex flex-col items-center gap-2">
+          <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-black/20 to-black/40 animate-pulse" />
+          <span className="text-[9px] uppercase tracking-[0.25em] text-black/25">Scroll</span>
         </div>
       </section>
 
@@ -164,28 +291,52 @@ export default function Portfolio() {
         {/* Progress bar */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/10 z-30">
           <div
-            className="h-full bg-white/60 transition-[width] duration-100 ease-linear"
-            style={{ width: `${progress * 100}%` }}
+            className="h-full bg-white/70 ease-linear"
+            style={{ width: `${progress * 100}%`, transition: "width 0.1s linear" }}
           />
         </div>
 
-        {/* Counter */}
-        <div className="absolute top-6 right-10 z-30">
-          <span className="bg-black/30 backdrop-blur-xl text-white/80 text-[12px] px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-          </span>
+        {/* Floating project title — top center */}
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 hidden md:block">
+          <div
+            ref={titleRef}
+            className="text-white/50 text-[13px] font-medium tracking-[0.15em] uppercase"
+          >
+            {projects[0]?.name}
+          </div>
         </div>
 
-        {/* Dot indicators */}
+        {/* Counter — top right */}
+        <div className="absolute top-6 right-8 z-30">
+          <div className="flex items-center gap-3">
+            <span className="text-white/30 text-[11px] tracking-[0.15em] uppercase">
+              {String(activeIndex + 1).padStart(2, "0")}
+            </span>
+            <div className="w-12 h-[1px] bg-white/15 relative">
+              <div
+                className="absolute top-0 left-0 h-full bg-white/60"
+                style={{
+                  width: `${((activeIndex + 1) / projects.length) * 100}%`,
+                  transition: "width 0.4s ease-out",
+                }}
+              />
+            </div>
+            <span className="text-white/20 text-[11px] tracking-[0.15em] uppercase">
+              {String(projects.length).padStart(2, "0")}
+            </span>
+          </div>
+        </div>
+
+        {/* Dot indicators — bottom center */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
           {projects.map((_, i) => (
             <div
               key={i}
-              className="rounded-full transition-all duration-400 ease-out"
+              className="rounded-full transition-all duration-500 ease-out"
               style={{
-                width: activeIndex === i ? "24px" : "8px",
-                height: "8px",
-                backgroundColor: activeIndex === i ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.2)",
+                width: activeIndex === i ? "28px" : "6px",
+                height: "6px",
+                backgroundColor: activeIndex === i ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.15)",
               }}
             />
           ))}
@@ -194,7 +345,7 @@ export default function Portfolio() {
         {/* Track */}
         <div
           ref={trackRef}
-          className="flex items-center gap-0 h-full"
+          className="flex items-center gap-0 h-full will-change-transform"
           style={{ width: "fit-content" }}
         >
           {projects.map((project, i) => (
@@ -202,69 +353,70 @@ export default function Portfolio() {
               key={project.slug}
               href={`/portfolio/${project.slug}`}
               data-card
-              className="group flex-shrink-0 block h-screen w-screen"
+              className="group flex-shrink-0 block h-screen w-screen relative"
             >
-              <div className="relative w-full h-full overflow-hidden bg-black">
-                {/* Image — cover, HD sources now */}
-                <div data-img className="absolute inset-0">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    className="object-cover object-top"
-                    loading={i < 3 ? "eager" : "lazy"}
-                    sizes="100vw"
-                    unoptimized
-                  />
+              {/* Image */}
+              <div data-img className="absolute inset-0">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover object-top"
+                  loading={i < 3 ? "eager" : "lazy"}
+                  sizes="100vw"
+                  unoptimized
+                />
+              </div>
+
+              {/* Gradient — bottom-left corner */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/5 to-transparent z-10" />
+
+              {/* Number watermark */}
+              <span
+                data-number
+                className="absolute top-[15%] right-[5%] text-white/[0.04] text-[12rem] sm:text-[16rem] md:text-[20rem] font-black leading-none z-10 select-none pointer-events-none"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              {/* ── Glass — bottom-left ── */}
+              <div data-glass className="absolute bottom-8 sm:bottom-12 left-6 sm:left-12 z-20 max-w-[85%] sm:max-w-[42%] md:max-w-[32%] flex flex-col gap-3">
+                {/* Year + Type pills */}
+                <div className="flex items-center gap-2">
+                  <span data-pill className="bg-white/12 backdrop-blur-2xl border border-white/15 text-white/70 px-4 py-2 text-[11px] uppercase tracking-[0.1em] rounded-full">
+                    {project.year}
+                  </span>
+                  <span data-pill className="bg-white/12 backdrop-blur-2xl border border-white/15 text-white/70 px-4 py-2 text-[11px] uppercase tracking-[0.1em] rounded-full">
+                    {project.type}
+                  </span>
                 </div>
 
-                {/* Subtle gradient — left bottom corner only for glass text readability */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent z-10" />
-
-                {/* Number watermark */}
-                <span className="absolute top-8 right-10 text-white/8 text-[6rem] sm:text-[8rem] md:text-[10rem] font-bold leading-none z-10 select-none pointer-events-none">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {/* ── Glass — bottom-left, sized for fullscreen ── */}
-                <div data-glass className="absolute bottom-8 sm:bottom-10 left-6 sm:left-10 z-20 max-w-[85%] sm:max-w-[45%] md:max-w-[35%] flex flex-col gap-2.5">
-                  {/* Pills row */}
-                  <div className="flex items-center gap-2">
-                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/75 px-4 py-1.5 text-[11px] sm:text-[12px] uppercase tracking-[0.1em] rounded-full">
-                      {project.year}
-                    </span>
-                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/75 px-4 py-1.5 text-[11px] sm:text-[12px] uppercase tracking-[0.1em] rounded-full">
-                      {project.type}
-                    </span>
-                  </div>
-
-                  {/* Info card */}
-                  <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-2xl px-6 py-5 sm:px-7 sm:py-6">
-                    <h2 className="text-white text-[22px] sm:text-[28px] md:text-[32px] font-semibold tracking-[-0.02em] leading-tight">
-                      {project.name}
-                    </h2>
-                    <p className="text-white/55 text-[13px] sm:text-[14px] mt-2 leading-relaxed line-clamp-2">
-                      {project.longDescription}
-                    </p>
-                  </div>
-
-                  {/* Service tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.services.map((s) => (
-                      <span key={s} className="bg-white/10 backdrop-blur-xl border border-white/15 text-white/70 px-3.5 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.06em] rounded-full">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
+                {/* Info card */}
+                <div className="bg-white/8 backdrop-blur-2xl border border-white/12 rounded-2xl px-6 py-5 sm:px-8 sm:py-7">
+                  <h2 className="text-white text-[24px] sm:text-[30px] md:text-[36px] font-semibold tracking-[-0.03em] leading-[1.1]">
+                    {project.name}
+                  </h2>
+                  <p className="text-white/50 text-[13px] sm:text-[14px] mt-3 leading-relaxed line-clamp-2">
+                    {project.longDescription}
+                  </p>
                 </div>
 
-                {/* Arrow CTA — bottom right */}
-                <div className="absolute bottom-8 sm:bottom-10 right-6 sm:right-10 z-20 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                  <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                {/* Service tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  {project.services.map((s) => (
+                    <span data-tag key={s} className="bg-white/8 backdrop-blur-xl border border-white/10 text-white/60 px-3.5 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.06em] rounded-full">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Arrow CTA — bottom right */}
+              <div className="absolute bottom-8 sm:bottom-12 right-6 sm:right-12 z-20 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400">
+                <div className="bg-white/12 backdrop-blur-2xl border border-white/15 rounded-full w-14 h-14 flex items-center justify-center group-hover:bg-white/20 transition-colors duration-300">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </div>
               </div>
             </Link>
@@ -273,7 +425,7 @@ export default function Portfolio() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <footer data-cta className="flex flex-col items-center gap-4 sm:gap-6 py-16 sm:py-20 px-5 sm:px-6">
+      <footer className="flex flex-col items-center gap-4 sm:gap-6 py-16 sm:py-20 px-5 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
           <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
             <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
@@ -287,7 +439,7 @@ export default function Portfolio() {
         </p>
       </footer>
 
-      {/* ═══ FIXED — Messages (right) ═══ */}
+      {/* ═══ FIXED — Messages ═══ */}
       <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50" aria-label="Nous contacter">
         <div className="w-11 h-11 sm:w-12 sm:h-12 bg-black/85 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg hover:bg-black hover:scale-105 transition-all duration-300">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
