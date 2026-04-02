@@ -151,43 +151,61 @@ export default function Portfolio() {
         </div>
       </header>
 
-      {/* ═══ HERO ═══ */}
-      <section ref={heroRef} className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6">
-        <h1 data-hero-title className="text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05]">
+      {/* ═══ HERO — Fullscreen with sakura bg like landing ═══ */}
+      <section ref={heroRef} className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-6">
+        {/* Background image — same as landing page */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/bg-sakura.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <h1 data-hero-title className="relative z-10 text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05]">
           Nos réalisations<span className="text-black/20">.</span>
         </h1>
-        <p data-hero-sub className="mt-4 text-black/35 text-[13px] sm:text-[14px] tracking-[0.03em] max-w-md">
+        <p data-hero-sub className="relative z-10 mt-4 text-black/40 text-[12px] sm:text-[13px] tracking-[0.04em] max-w-md">
           Scrollez pour explorer nos projets
         </p>
+
+        {/* Scroll hint */}
+        <div className="relative z-10 absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-black/25">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+        </div>
       </section>
 
       {/* ═══ HORIZONTAL SCROLL SECTION ═══ */}
       <section ref={sectionRef} className="relative h-screen overflow-hidden">
         {/* Progress bar */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-black/5 z-30">
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/10 z-30">
           <div
-            className="h-full bg-black/40 transition-[width] duration-100 ease-linear"
+            className="h-full bg-white/60 transition-[width] duration-100 ease-linear"
             style={{ width: `${progress * 100}%` }}
           />
         </div>
 
         {/* Counter */}
-        <div className="absolute top-5 right-8 z-30 flex items-center gap-3">
-          <span className="text-[11px] text-black/30 uppercase tracking-[0.15em]">
-            {String(activeIndex + 1).padStart(2, "0")} — {String(projects.length).padStart(2, "0")}
+        <div className="absolute top-6 right-10 z-30">
+          <span className="bg-black/30 backdrop-blur-xl text-white/80 text-[12px] px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
         </div>
 
         {/* Dot indicators */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
           {projects.map((_, i) => (
             <div
               key={i}
               className="rounded-full transition-all duration-400 ease-out"
               style={{
-                width: activeIndex === i ? "20px" : "6px",
-                height: "6px",
-                backgroundColor: activeIndex === i ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0.08)",
+                width: activeIndex === i ? "24px" : "8px",
+                height: "8px",
+                backgroundColor: activeIndex === i ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.2)",
               }}
             />
           ))}
@@ -225,47 +243,47 @@ export default function Portfolio() {
                 {/* Hover */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 z-10" />
 
-                {/* Number */}
-                <span className="absolute top-4 right-5 text-white/8 text-[4.5rem] sm:text-[5.5rem] font-bold leading-none z-10 select-none pointer-events-none">
+                {/* Number watermark */}
+                <span className="absolute top-8 right-10 text-white/8 text-[6rem] sm:text-[8rem] md:text-[10rem] font-bold leading-none z-10 select-none pointer-events-none">
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
-                {/* ── Glass — bottom-left, compact ── */}
-                <div data-glass className="absolute bottom-4 left-4 z-20 max-w-[50%] sm:max-w-[45%] flex flex-col gap-1.5">
+                {/* ── Glass — bottom-left, sized for fullscreen ── */}
+                <div data-glass className="absolute bottom-8 sm:bottom-10 left-6 sm:left-10 z-20 max-w-[85%] sm:max-w-[45%] md:max-w-[35%] flex flex-col gap-2.5">
                   {/* Pills row */}
-                  <div className="flex items-center gap-1">
-                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/70 px-2.5 py-1 text-[9px] uppercase tracking-[0.08em] rounded-full">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/75 px-4 py-1.5 text-[11px] sm:text-[12px] uppercase tracking-[0.1em] rounded-full">
                       {project.year}
                     </span>
-                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/70 px-2.5 py-1 text-[9px] uppercase tracking-[0.08em] rounded-full">
+                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/75 px-4 py-1.5 text-[11px] sm:text-[12px] uppercase tracking-[0.1em] rounded-full">
                       {project.type}
                     </span>
                   </div>
 
                   {/* Info card */}
-                  <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-xl px-3.5 py-2.5">
-                    <h2 className="text-white text-[16px] sm:text-[19px] font-semibold tracking-[-0.02em] leading-tight">
+                  <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-2xl px-6 py-5 sm:px-7 sm:py-6">
+                    <h2 className="text-white text-[22px] sm:text-[28px] md:text-[32px] font-semibold tracking-[-0.02em] leading-tight">
                       {project.name}
                     </h2>
-                    <p className="text-white/55 text-[10px] sm:text-[11px] mt-1 leading-relaxed line-clamp-2">
-                      {project.description}
+                    <p className="text-white/55 text-[13px] sm:text-[14px] mt-2 leading-relaxed line-clamp-2">
+                      {project.longDescription}
                     </p>
                   </div>
 
                   {/* Service tags */}
-                  <div className="flex flex-wrap gap-1">
-                    {project.services.slice(0, 2).map((s) => (
-                      <span key={s} className="bg-white/8 backdrop-blur-xl border border-white/12 text-white/65 px-2 py-0.5 text-[8px] uppercase tracking-[0.05em] rounded-full">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.services.map((s) => (
+                      <span key={s} className="bg-white/10 backdrop-blur-xl border border-white/15 text-white/70 px-3.5 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.06em] rounded-full">
                         {s}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Arrow — bottom right on hover */}
-                <div className="absolute bottom-4 right-4 z-20 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                  <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full w-9 h-9 flex items-center justify-center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {/* Arrow CTA — bottom right */}
+                <div className="absolute bottom-8 sm:bottom-10 right-6 sm:right-10 z-20 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="bg-white/15 backdrop-blur-2xl border border-white/20 rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </div>
