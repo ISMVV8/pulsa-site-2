@@ -55,14 +55,12 @@ export default function Portfolio() {
       // Animate each card as it comes into view
       const cards = gsap.utils.toArray<HTMLElement>("[data-card]");
       cards.forEach((card, i) => {
-        // Card scale + fade
+        // Card fade in
         gsap.fromTo(
           card,
-          { opacity: 0.3, scale: 0.88, rotateY: 4 },
+          { opacity: 0.3 },
           {
             opacity: 1,
-            scale: 1,
-            rotateY: 0,
             duration: 1,
             ease: "power2.out",
             scrollTrigger: {
@@ -97,25 +95,7 @@ export default function Portfolio() {
           );
         }
 
-        // Subtle parallax on image (scale-based, no crop needed)
-        const img = card.querySelector("[data-img]");
-        if (img) {
-          gsap.fromTo(
-            img,
-            { scale: 1.03 },
-            {
-              scale: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: tween,
-                start: "left right",
-                end: "right left",
-                scrub: true,
-              },
-            }
-          );
-        }
+        // No parallax/scale on images — keep crisp
       });
     });
 
@@ -231,7 +211,7 @@ export default function Portfolio() {
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="object-cover"
                     loading={i < 3 ? "eager" : "lazy"}
                     sizes="100vw"
                     unoptimized
