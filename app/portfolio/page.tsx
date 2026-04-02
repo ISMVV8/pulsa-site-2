@@ -143,11 +143,11 @@ export default function Portfolio() {
     rows.push([i, i + 1]);
   }
 
-  // Alternating patterns per row
+  // Alternating patterns per row — fixed proportions
   const getRowLayout = (rowIndex: number): [string, string] => {
     return rowIndex % 2 === 0
-      ? ["md:w-[58%]", "md:w-[40%]"]   // large left, small right
-      : ["md:w-[40%]", "md:w-[58%]"];   // small left, large right
+      ? ["md:flex-[7]", "md:flex-[5]"]
+      : ["md:flex-[5]", "md:flex-[7]"];
   };
 
   return (
@@ -222,9 +222,9 @@ export default function Portfolio() {
               <Link
                 href={`/portfolio/${project.slug}`}
                 data-project-card
-                className={`group block w-full ${size}`}
+                className={`group block ${size} flex-shrink-0`}
               >
-                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
+                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-2xl overflow-hidden">
                   {/* Full background image */}
                   <div data-project-image className="absolute inset-[-20px]">
                     <Image
@@ -236,8 +236,8 @@ export default function Portfolio() {
                     />
                   </div>
 
-                  {/* Subtle gradient at bottom for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+                  {/* Gradient for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent z-10" />
 
                   {/* Hover darken */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 z-10" />
@@ -247,15 +247,27 @@ export default function Portfolio() {
                     {String(idx + 1).padStart(2, "0")}
                   </span>
 
+                  {/* Year badge top-left */}
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="bg-white/15 backdrop-blur-xl border border-white/20 text-white/80 px-3 py-1.5 text-[10px] uppercase tracking-[0.1em] rounded-full">
+                      {project.year}
+                    </span>
+                  </div>
+
                   {/* ── Glass overlay bottom-left ── */}
-                  <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col gap-2.5">
+                  <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col gap-2">
                     {/* Info glass card */}
-                    <div className="bg-white/15 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-4 max-w-[85%]">
-                      <h2 className="text-white text-[17px] sm:text-[20px] font-semibold tracking-[-0.01em] leading-tight">
+                    <div className="bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-5 py-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-white/50 text-[11px] uppercase tracking-[0.1em]">
+                          {project.type}
+                        </span>
+                      </div>
+                      <h2 className="text-white text-[18px] sm:text-[22px] font-semibold tracking-[-0.02em] leading-tight">
                         {project.name}
                       </h2>
-                      <p className="text-white/70 text-[12px] sm:text-[13px] mt-1.5 leading-relaxed line-clamp-2">
-                        {project.description}
+                      <p className="text-white/65 text-[12px] sm:text-[13px] mt-2 leading-relaxed line-clamp-2">
+                        {project.longDescription}
                       </p>
                     </div>
 
@@ -264,11 +276,14 @@ export default function Portfolio() {
                       {project.services.map((service) => (
                         <span
                           key={service}
-                          className="bg-white/15 backdrop-blur-xl border border-white/20 text-white/90 px-3 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.06em] rounded-full"
+                          className="bg-white/12 backdrop-blur-2xl border border-white/20 text-white/85 px-3 py-1.5 text-[10px] uppercase tracking-[0.06em] rounded-full"
                         >
                           {service}
                         </span>
                       ))}
+                      <span className="bg-white/25 backdrop-blur-2xl border border-white/30 text-white font-medium px-3.5 py-1.5 text-[10px] uppercase tracking-[0.06em] rounded-full group-hover:bg-white/35 transition-colors duration-300">
+                        Voir →
+                      </span>
                     </div>
                   </div>
                 </div>
