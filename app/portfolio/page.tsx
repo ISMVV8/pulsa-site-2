@@ -241,7 +241,7 @@ export default function Portfolio() {
               className="group block flex-shrink-0"
               style={{ width: "clamp(320px, 75vw, 700px)" }}
             >
-              <div className="relative w-full h-[65vh] min-h-[400px] max-h-[600px] rounded-2xl overflow-hidden">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden">
                 {/* Full image */}
                 <Image
                   src={project.image}
