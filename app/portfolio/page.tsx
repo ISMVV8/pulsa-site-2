@@ -2,15 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef, useCallback } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GlassButton, GlassCircle } from "../components/glass-button";
+import { useState } from "react";
 import { ProjectModal, type Project } from "../components/project-modal";
-import { SmoothScroll } from "../components/smooth-scroll";
 import "./portfolio.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const projects: Project[] = [
   {
@@ -81,800 +75,233 @@ const projects: Project[] = [
   },
 ];
 
-const horizontalProjects = projects.slice(0, 3);
-const featuredProject = projects[4]; // 8lab
-const gridProjects = [projects[3], projects[5], projects[0]]; // Sweety, Podium, City Smile
-
-// ─── Marquee Component ───
-function Marquee() {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!trackRef.current) return;
-
-    const tl = gsap.to(trackRef.current, {
-      xPercent: -50,
-      duration: 20,
-      ease: "none",
-      repeat: -1,
-    });
-
-    // Speed up/slow down based on scroll velocity
-    ScrollTrigger.create({
-      trigger: trackRef.current,
-      start: "top bottom",
-      end: "bottom top",
-      onUpdate: (self) => {
-        const velocity = Math.abs(self.getVelocity());
-        const speed = gsap.utils.clamp(0.5, 3, velocity / 500);
-        gsap.to(tl, { timeScale: speed, duration: 0.3 });
-      },
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
-
-  const items = [
-    { text: "PULSA CREATIVES", stroke: false },
-    { text: "DESIGN", stroke: true },
-    { text: "DEVELOP", stroke: false },
-    { text: "DEPLOY", stroke: true },
-    { text: "BRANDING", stroke: false },
-    { text: "STRATEGY", stroke: true },
-  ];
-
-  const renderItems = () =>
-    items.map((item, i) => (
-      <span key={i} className="flex items-center gap-8">
-        <span
-          className={`text-[clamp(2rem,6vw,5rem)] font-bold tracking-tight whitespace-nowrap ${
-            item.stroke ? "marquee-stroke" : ""
-          }`}
-        >
-          {item.text}
-        </span>
-        <span className="text-[clamp(1rem,3vw,2rem)] opacity-20">·</span>
-      </span>
-    ));
-
-  return (
-    <div className="overflow-hidden py-12 md:py-20 border-y border-black/[0.06]">
-      <div ref={trackRef} className="marquee-track flex items-center gap-8 w-max">
-        {renderItems()}
-        {renderItems()}
-      </div>
-    </div>
-  );
-}
-
-// ─── Main Portfolio Page ───
 export default function Portfolio() {
   const [selected, setSelected] = useState<Project | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const horizontalRef = useRef<HTMLDivElement>(null);
-  const cardsWrapperRef = useRef<HTMLDivElement>(null);
-  const featuredRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLSpanElement>(null);
-  const scrollArrowRef = useRef<HTMLDivElement>(null);
-
-  const [mounted, setMounted] = useState(false);
-
-  // Detect mobile
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    setMounted(true);
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  // ─── GSAP Animations ───
-  const initAnimations = useCallback(() => {
-    const ctx = gsap.context(() => {
-      // ── Hero letter animation ──
-      const letters = gsap.utils.toArray<HTMLElement>(".hero-letter");
-      gsap.from(letters, {
-        y: 80,
-        opacity: 0,
-        rotateX: -90,
-        stagger: 0.04,
-        duration: 1,
-        ease: "back.out(1.7)",
-        delay: 0.3,
-      });
-
-      // ── Hero counter fade in ──
-      gsap.from(".hero-counter", {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        delay: 1,
-        ease: "power2.out",
-      });
-
-      // ── Scroll arrow fade out ──
-      if (scrollArrowRef.current) {
-        gsap.to(scrollArrowRef.current, {
-          scrollTrigger: {
-            trigger: scrollArrowRef.current,
-            start: "top 80%",
-            end: "top 20%",
-            scrub: true,
-          },
-          opacity: 0,
-          y: -20,
-        });
-      }
-
-      // ── Progress line ──
-      if (progressRef.current) {
-        gsap.to(progressRef.current, {
-          scrollTrigger: {
-            trigger: document.body,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.3,
-          },
-          scaleX: 1,
-        });
-      }
-
-      // ── Horizontal scroll (desktop only) ──
-      if (!isMobile && horizontalRef.current && cardsWrapperRef.current) {
-        const cards = gsap.utils.toArray<HTMLElement>(".horizontal-card");
-        const totalWidth = cards.length * window.innerWidth * 0.82;
-
-        gsap.to(cardsWrapperRef.current, {
-          x: -(totalWidth - window.innerWidth + 100),
-          ease: "none",
-          scrollTrigger: {
-            trigger: horizontalRef.current,
-            pin: true,
-            scrub: 1,
-            end: `+=${totalWidth}`,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        // Individual card animations
-        cards.forEach((card) => {
-          const img = card.querySelector(".horizontal-card-image");
-          const title = card.querySelector(".card-title");
-          const meta = card.querySelector(".card-meta");
-
-          if (img) {
-            gsap.from(img, {
-              scale: 1.3,
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: gsap.getById("horizontalScroll") || undefined,
-                start: "left 80%",
-                end: "left 20%",
-                scrub: true,
-                horizontal: true,
-              },
-            });
-          }
-
-          if (title) {
-            gsap.from(title, {
-              y: 60,
-              opacity: 0,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 70%",
-                end: "top 40%",
-                scrub: 1,
-              },
-            });
-          }
-
-          if (meta) {
-            gsap.from(meta, {
-              y: 30,
-              opacity: 0,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 65%",
-                end: "top 35%",
-                scrub: 1,
-              },
-            });
-          }
-        });
-      }
-
-      // ── Mobile: vertical card reveals ──
-      if (isMobile) {
-        const mobileCards = gsap.utils.toArray<HTMLElement>(".mobile-project-card");
-        mobileCards.forEach((card) => {
-          gsap.from(card, {
-            y: 60,
-            opacity: 0,
-            scale: 0.95,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              end: "top 60%",
-              scrub: 1,
-            },
-          });
-        });
-      }
-
-      // ── Featured section ──
-      if (featuredRef.current) {
-        // Pin the featured section
-        ScrollTrigger.create({
-          trigger: featuredRef.current,
-          pin: true,
-          start: "top top",
-          end: "+=150%",
-          scrub: true,
-        });
-
-        // Grayscale to color
-        const featuredImg = featuredRef.current.querySelector(".featured-image");
-        if (featuredImg) {
-          gsap.fromTo(
-            featuredImg,
-            { filter: "grayscale(100%) brightness(0.7)" },
-            {
-              filter: "grayscale(0%) brightness(1)",
-              scrollTrigger: {
-                trigger: featuredRef.current,
-                start: "top top",
-                end: "+=100%",
-                scrub: true,
-              },
-            }
-          );
-        }
-
-        // Word-by-word reveal
-        const words = gsap.utils.toArray<HTMLElement>(
-          featuredRef.current.querySelectorAll(".reveal-word")
-        );
-        words.forEach((word, i) => {
-          gsap.from(word, {
-            opacity: 0.1,
-            y: 20,
-            scrollTrigger: {
-              trigger: featuredRef.current,
-              start: `top+=${i * 8}% top`,
-              end: `top+=${i * 8 + 12}% top`,
-              scrub: true,
-            },
-          });
-        });
-
-        // Counter animation
-        if (counterRef.current) {
-          const counter = { val: 0 };
-          gsap.to(counter, {
-            val: 2400,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: counterRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-            onUpdate: () => {
-              if (counterRef.current) {
-                counterRef.current.textContent = `+${Math.round(counter.val).toLocaleString("fr-FR")}`;
-              }
-            },
-          });
-        }
-      }
-
-      // ── Staggered grid ──
-      if (gridRef.current) {
-        const gridCards = gsap.utils.toArray<HTMLElement>(".stagger-card");
-        const animations = [
-          { x: -100, y: 40, rotation: -3 },
-          { x: 100, y: 40, rotation: 3 },
-          { scale: 0.8, y: 80, rotation: 0 },
-        ];
-
-        gridCards.forEach((card, i) => {
-          const anim = animations[i] || animations[0];
-          gsap.from(card, {
-            ...anim,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              end: "top 50%",
-              scrub: 1,
-            },
-          });
-
-          // Parallax on image
-          const img = card.querySelector(".stagger-card-image");
-          if (img) {
-            gsap.to(img, {
-              y: isMobile ? -30 : -80,
-              scrollTrigger: {
-                trigger: card,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true,
-              },
-            });
-          }
-        });
-      }
-
-      // ── CTA section ──
-      if (ctaRef.current) {
-        // Background color transition
-        gsap.fromTo(
-          ctaRef.current,
-          { backgroundColor: "#ffffff" },
-          {
-            backgroundColor: "#0a0a0a",
-            scrollTrigger: {
-              trigger: ctaRef.current,
-              start: "top 80%",
-              end: "top 30%",
-              scrub: true,
-            },
-          }
-        );
-
-        // Word fade-in
-        const ctaWords = gsap.utils.toArray<HTMLElement>(
-          ctaRef.current.querySelectorAll(".cta-word")
-        );
-        ctaWords.forEach((word, i) => {
-          gsap.from(word, {
-            opacity: 0,
-            y: 40,
-            scrollTrigger: {
-              trigger: ctaRef.current,
-              start: `top+=${60 + i * 5}% bottom`,
-              end: `top+=${70 + i * 5}% bottom`,
-              scrub: true,
-            },
-          });
-        });
-
-        // CTA button glow
-        const ctaButton = ctaRef.current.querySelector(".cta-button");
-        if (ctaButton) {
-          gsap.from(ctaButton, {
-            opacity: 0,
-            scale: 0.9,
-            scrollTrigger: {
-              trigger: ctaRef.current,
-              start: "top 20%",
-              end: "top 0%",
-              scrub: true,
-            },
-          });
-        }
-      }
-    }, containerRef);
-
-    return ctx;
-  }, [isMobile]);
-
-  useEffect(() => {
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      const ctx = initAnimations();
-      return () => ctx.revert();
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [initAnimations]);
-
-  // Split text helper
-  const splitLetters = (text: string, italic = false) =>
-    text.split("").map((letter, i) => (
-      <span
-        key={i}
-        className={`hero-letter ${italic ? "hero-italic" : ""}`}
-        style={{ perspective: "600px" }}
-      >
-        {letter === " " ? "\u00A0" : letter}
-      </span>
-    ));
-
-  const splitWords = (text: string, className: string) =>
-    text.split(" ").map((word, i) => (
-      <span key={i} className={`${className} mr-[0.3em]`}>
-        {word}
-      </span>
-    ));
 
   return (
-    <SmoothScroll>
-      <div ref={containerRef} className="bg-white text-black overflow-hidden">
-        {/* Noise texture overlay */}
-        <div className="noise-overlay" />
-
-        {/* Fixed progress bar */}
-        <div className="fixed top-0 left-0 right-0 z-50 h-[2px] bg-black/5">
-          <div
-            ref={progressRef}
-            className="progress-line h-full bg-black/40"
-            style={{ transform: "scaleX(0)" }}
+    <div className="bg-white text-black min-h-screen">
+      {/* ═══ HEADER ═══ */}
+      <header className="flex items-center justify-between px-6 md:px-12 py-5">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/logo-pulsa.jpg"
+            alt="Pulsa"
+            width={36}
+            height={36}
+            className="rounded-full"
           />
-        </div>
-
-        {/* Fixed header */}
-        <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-5 md:px-10 py-4 md:py-6 mix-blend-difference">
-          <Link href="/">
-            <GlassCircle className="w-10 h-10 p-0.5">
-              <Image
-                src="/logo-pulsa.jpg"
-                alt="Pulsa"
-                width={32}
-                height={32}
-                className="object-contain mix-blend-multiply"
-              />
-            </GlassCircle>
-          </Link>
-          <Link href="/">
-            <GlassButton className="!text-[11px] !px-5 !py-2.5">Retour</GlassButton>
-          </Link>
-        </header>
-
-        {/* ═══ A) HERO ═══ */}
-        <section
-          ref={heroRef}
-          className="relative h-[100dvh] flex flex-col items-center justify-center overflow-hidden"
+        </Link>
+        <nav className="hidden md:flex items-center gap-8 text-[13px] text-gray-500">
+          <Link href="/" className="hover:text-black transition-colors">Services</Link>
+          <Link href="/portfolio" className="text-black font-medium">Réalisations</Link>
+          <Link href="/" className="hover:text-black transition-colors">Blog</Link>
+          <Link href="/" className="hover:text-black transition-colors">Contact</Link>
+        </nav>
+        <a
+          href="https://wa.me/32473236759"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-black text-white text-[12px] font-medium px-5 py-2.5 rounded-full hover:bg-black/80 transition-colors"
         >
-          {/* Background */}
-          <div className="absolute inset-0">
-            <Image
-              src="/bg-sakura.jpg"
-              alt=""
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />
-          </div>
+          Réserver ↗
+        </a>
+      </header>
 
-          {/* Content */}
-          <div className="relative z-10 text-center px-6">
-            <p className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-black/40 mb-6 hero-counter">
-              Portfolio · 2024 — 2025
-            </p>
+      {/* ═══ HERO ═══ */}
+      <section className="px-6 md:px-12 lg:px-24 pt-12 pb-16 md:pt-20 md:pb-24 max-w-[1400px] mx-auto">
+        {/* Breadcrumb */}
+        <p className="text-[12px] text-gray-400 mb-8">
+          🏠 Accueil &gt; Réalisations
+        </p>
 
-            <h1 className="text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.9] tracking-[-0.04em]">
-              <span className="block">{splitLetters("Selected")}</span>
-              <span className="block mt-1">{splitLetters("Work", true)}</span>
-            </h1>
+        {/* Label */}
+        <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 mb-4">
+          ✦ PORTFOLIO PULSA CREATIVES
+        </p>
 
-            <div className="hero-counter mt-8 flex items-center justify-center gap-4 text-[12px] md:text-[14px] text-black/40 font-medium tracking-wide">
-              <span>01</span>
-              <span className="w-12 h-[1px] bg-black/20" />
-              <span>06</span>
-            </div>
-          </div>
+        {/* Title */}
+        <h1
+          className="font-serif leading-[1.05] tracking-tight"
+          style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
+        >
+          <span className="font-black text-black">Nos dernières</span>
+          <br />
+          <span className="font-light text-[#d1d1d1]">réalisations.</span>
+        </h1>
 
-          {/* Scroll arrow */}
-          <div
-            ref={scrollArrowRef}
-            className="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          >
-            <span className="text-[10px] uppercase tracking-[0.2em] text-black/30">
-              Scroll
+        {/* Sub section: description + counter */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mt-10 gap-8">
+          <p className="text-[14px] text-gray-500 max-w-md leading-relaxed">
+            Découvrez comment nous aidons nos clients à capturer l&apos;attention
+            et dominer leur marché.
+          </p>
+          <div className="flex items-end gap-3">
+            <span
+              className="font-serif font-light leading-none"
+              style={{
+                fontSize: "clamp(3rem, 6vw, 5rem)",
+                color: "transparent",
+                WebkitTextStroke: "1.5px #d1d1d1",
+              }}
+            >
+              20+
             </span>
-            <svg
-              className="scroll-arrow w-5 h-5 text-black/30"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7" />
-            </svg>
+            <span className="text-[11px] uppercase tracking-[0.15em] text-gray-400 pb-2">
+              Projets<br />livrés
+            </span>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ═══ B) HORIZONTAL SCROLL GALLERY (Desktop) / STACKED (Mobile) ═══ */}
-        {!mounted ? null : !isMobile ? (
-          <section ref={horizontalRef} className="horizontal-section relative h-screen">
-            <div
-              ref={cardsWrapperRef}
-              className="flex items-center h-full gap-8 pl-[10vw]"
-            >
-              {horizontalProjects.map((project, i) => (
-                <button
-                  key={project.name}
-                  onClick={() => setSelected(project)}
-                  className="horizontal-card relative flex-shrink-0 rounded-3xl overflow-hidden cursor-pointer group text-left"
-                  style={{ width: "78vw", height: "75vh" }}
-                >
-                  <div className="absolute inset-0 overflow-hidden rounded-3xl">
+      {/* ═══ PROJECTS ═══ */}
+      <section className="px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
+        {projects.map((project, i) => {
+          const num = String(i + 1).padStart(2, "0");
+          const isOdd = i % 2 === 0; // 0-indexed: 0,2,4 = image left
+
+          return (
+            <div key={project.name}>
+              {/* Separator */}
+              {i > 0 && <hr className="border-t border-[#eee] my-0" />}
+
+              <div
+                className={`flex flex-col ${
+                  isOdd ? "md:flex-row" : "md:flex-row-reverse"
+                } gap-8 md:gap-12 py-14 md:py-20`}
+              >
+                {/* Image side */}
+                <div className="md:w-[55%] flex-shrink-0">
+                  <button
+                    onClick={() => setSelected(project)}
+                    className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-lg cursor-pointer group block"
+                  >
                     <Image
                       src={project.image}
                       alt={project.name}
                       fill
-                      className="horizontal-card-image object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      loading={i < 2 ? "eager" : "lazy"}
                     />
+                  </button>
+                </div>
+
+                {/* Text side */}
+                <div className="md:w-[45%] flex flex-col justify-center">
+                  {/* Number + Year */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[13px] text-gray-400 font-medium">{num}</span>
+                    <span className="text-[13px] text-gray-400">{project.year}</span>
                   </div>
-                  <div className="card-glass-overlay absolute inset-0" />
 
-                  {/* Card number */}
-                  <span className="absolute top-6 left-8 text-white/30 text-[clamp(4rem,8vw,7rem)] font-bold leading-none">
-                    0{i + 1}
-                  </span>
+                  {/* Category */}
+                  <p className="text-[11px] uppercase tracking-[0.2em] text-[#888] mb-3">
+                    {project.type}
+                  </p>
 
-                  {/* Card info */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-                    <span className="card-meta text-[10px] md:text-[12px] uppercase tracking-[0.2em] text-white/50 font-medium">
-                      {project.type} · {project.year}
-                    </span>
-                    <h2 className="card-title text-[clamp(2rem,4vw,4rem)] font-bold text-white mt-2 tracking-tight">
+                  {/* Project name */}
+                  <button
+                    onClick={() => setSelected(project)}
+                    className="text-left cursor-pointer"
+                  >
+                    <h2 className="font-serif font-bold text-[28px] md:text-[32px] text-black leading-tight hover:opacity-70 transition-opacity">
                       {project.name}
                     </h2>
-                    <p className="text-white/50 text-[14px] mt-2 max-w-md">
-                      {project.description}
-                    </p>
+                  </button>
 
-                    {/* Tags */}
-                    <div className="flex gap-2 mt-4">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 text-[10px] rounded-full bg-white/10 text-white/60 backdrop-blur-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Description */}
+                  <p className="text-[14px] text-gray-500 leading-relaxed mt-3">
+                    {project.longDescription}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1.5 text-[11px] uppercase tracking-[0.05em] rounded-full border border-[#ddd] text-gray-500"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
 
-                  {/* Hover arrow */}
-                  <div className="absolute top-6 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                    </svg>
+                  {/* CTA */}
+                  <div className="mt-6">
+                    <button
+                      onClick={() => setSelected(project)}
+                      className="inline-flex items-center gap-2 bg-black text-white text-[13px] font-medium px-6 py-3 rounded-full hover:bg-black/80 transition-colors cursor-pointer"
+                    >
+                      Visiter le site
+                      <span>→</span>
+                    </button>
                   </div>
-                </button>
-              ))}
-            </div>
-          </section>
-        ) : (
-          <section className="px-5 py-12 space-y-6">
-            {horizontalProjects.map((project, i) => (
-              <button
-                key={project.name}
-                onClick={() => setSelected(project)}
-                className="mobile-project-card relative w-full rounded-2xl overflow-hidden cursor-pointer group text-left"
-                style={{ height: "55vh" }}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="card-glass-overlay absolute inset-0" />
-
-                <span className="absolute top-4 left-5 text-white/20 text-5xl font-bold">
-                  0{i + 1}
-                </span>
-
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
-                    {project.type} · {project.year}
-                  </span>
-                  <h2 className="text-2xl font-bold text-white mt-1">{project.name}</h2>
-                  <p className="text-white/50 text-[13px] mt-1">{project.description}</p>
                 </div>
-              </button>
-            ))}
-          </section>
-        )}
-
-        {/* ═══ E) MARQUEE ═══ */}
-        <Marquee />
-
-        {/* ═══ C) FEATURED PROJECT — 8lab ═══ */}
-        <section
-          ref={featuredRef}
-          className="featured-section relative h-screen overflow-hidden"
-        >
-          {/* Background image */}
-          <div className="absolute inset-0">
-            <Image
-              src={featuredProject.image}
-              alt={featuredProject.name}
-              fill
-              className="featured-image object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
-
-          {/* Content overlay */}
-          <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-6xl">
-            <span className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-white/40 mb-4">
-              Projet vedette
-            </span>
-
-            <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold text-white leading-[1.1] tracking-tight">
-              {splitWords(
-                "Un écosystème complet pour entrepreneurs ambitieux",
-                "reveal-word"
-              )}
-            </h2>
-
-            <div className="mt-10 flex flex-wrap items-end gap-10 md:gap-16">
-              <div>
-                <span
-                  ref={counterRef}
-                  className="stat-counter text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-white"
-                >
-                  +0
-                </span>
-                <p className="text-white/40 text-[12px] md:text-[14px] tracking-wide mt-1">
-                  membres actifs
-                </p>
-              </div>
-              <div>
-                <span className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-white">
-                  4
-                </span>
-                <p className="text-white/40 text-[12px] md:text-[14px] tracking-wide mt-1">
-                  modules intégrés
-                </p>
-              </div>
-              <div>
-                <span className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-white">
-                  ∞
-                </span>
-                <p className="text-white/40 text-[12px] md:text-[14px] tracking-wide mt-1">
-                  potentiel de croissance
-                </p>
               </div>
             </div>
+          );
+        })}
+      </section>
 
-            <button
-              onClick={() => setSelected(featuredProject)}
-              className="mt-10 self-start"
+      {/* ═══ END CTA — DASHED CARD ═══ */}
+      <section className="px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1400px] mx-auto">
+        <div className="border border-dashed border-gray-200 rounded-3xl py-16 md:py-20 px-6 text-center">
+          <p className="text-[18px] text-gray-300 mb-4">✦</p>
+          <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 mb-4">
+            Et bien d&apos;autres
+          </p>
+          <h2
+            className="font-serif leading-tight tracking-tight"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
+          >
+            <span className="font-bold text-black">Chaque client a</span>
+            <br />
+            <span className="font-light text-[#d1d1d1]">une histoire.</span>
+          </h2>
+          <p className="text-[14px] text-gray-500 mt-4 max-w-md mx-auto leading-relaxed">
+            Restaurants, e-commerces, startups... Discutons de votre projet.
+          </p>
+          <a
+            href="https://wa.me/32473236759"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-black text-black text-[13px] font-medium px-6 py-3 rounded-full mt-8 hover:bg-black hover:text-white transition-colors"
+          >
+            Nous contacter
+            <span>→</span>
+          </a>
+        </div>
+      </section>
+
+      {/* ═══ FINAL CTA BANNER ═══ */}
+      <section className="px-6 md:px-12 lg:px-24 pb-12 max-w-[1400px] mx-auto">
+        <div className="bg-[#1a1a1a] rounded-3xl px-8 md:px-16 py-14 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.25em] text-white/50 mb-4">
+              Votre projet
+            </p>
+            <h2
+              className="font-serif leading-tight tracking-tight"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
             >
-              <GlassButton className="!text-white !text-[12px] md:!text-[13px]">
-                Découvrir le projet
-              </GlassButton>
-            </button>
-          </div>
-
-          {/* Project name watermark */}
-          <span className="absolute bottom-6 right-6 md:bottom-10 md:right-16 text-white/[0.06] text-[clamp(4rem,12vw,10rem)] font-bold tracking-tight pointer-events-none">
-            8lab
-          </span>
-        </section>
-
-        {/* ═══ Second MARQUEE ═══ */}
-        <Marquee />
-
-        {/* ═══ D) STAGGERED GRID ═══ */}
-        <section ref={gridRef} className="px-5 md:px-16 lg:px-24 py-20 md:py-32">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-black/30 mb-4">
-              Plus de projets
-            </p>
-            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-tight mb-12 md:mb-20">
-              Chaque projet,<br />
-              <span className="text-black/30">une histoire unique.</span>
+              <span className="font-bold text-white">Votre site,</span>
+              <br />
+              <span className="font-light text-white/40">le prochain.</span>
             </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {gridProjects.map((project, i) => (
-                <button
-                  key={project.name}
-                  onClick={() => setSelected(project)}
-                  className={`stagger-card relative rounded-3xl overflow-hidden cursor-pointer group text-left ${
-                    i === 2 ? "md:col-span-2 md:max-w-[60%] md:mx-auto" : ""
-                  }`}
-                  style={{ height: i === 2 ? "50vh" : "60vh" }}
-                >
-                  <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="stagger-card-image object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      style={{ transform: "translateY(40px)" }}
-                    />
-                  </div>
-
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500" />
-                  <div className="card-glass-overlay absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
-                      {project.type} · {project.year}
-                    </span>
-                    <h3 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-white mt-1 tracking-tight">
-                      {project.name}
-                    </h3>
-                    <p className="text-white/0 group-hover:text-white/60 transition-colors duration-500 text-[13px] md:text-[14px] mt-2 max-w-sm">
-                      {project.longDescription}
-                    </p>
-
-                    <div className="flex gap-2 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 text-[10px] rounded-full bg-white/10 text-white/60"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Arrow icon */}
-                  <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-0 rotate-45">
-                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                    </svg>
-                  </div>
-                </button>
-              ))}
-            </div>
           </div>
-        </section>
+          <a
+            href="https://wa.me/32473236759"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/90 transition-colors flex-shrink-0"
+          >
+            Démarrer un projet
+            <span>→</span>
+          </a>
+        </div>
+      </section>
 
-        {/* ═══ F) CTA SECTION ═══ */}
-        <section
-          ref={ctaRef}
-          className="relative min-h-screen flex flex-col items-center justify-center px-6 transition-colors"
-        >
-          <div className="text-center max-w-4xl">
-            <h2 className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1] tracking-tight text-white">
-              {splitWords("Votre projet est le prochain", "cta-word")}
-            </h2>
-
-            <p className="cta-word mt-6 text-white/40 text-[14px] md:text-[16px] max-w-lg mx-auto leading-relaxed">
-              Chaque marque mérite une présence digitale qui inspire. Parlons de votre vision.
-            </p>
-
-            <div className="cta-button mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://wa.me/32473236759"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GlassButton className="!text-white !text-[13px] md:!text-[14px] !px-10 !py-4 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-                  Lancer votre projet
-                </GlassButton>
-              </a>
-            </div>
-
-            <div className="cta-word mt-16 flex flex-col items-center gap-2 text-white/20 text-[12px] tracking-wide">
-              <span>contact@pulsacreatives.com</span>
-              <span>© Pulsa Creatives 2025</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Modal */}
-        <ProjectModal project={selected} onClose={() => setSelected(null)} />
-      </div>
-    </SmoothScroll>
+      {/* Modal */}
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+    </div>
   );
 }
