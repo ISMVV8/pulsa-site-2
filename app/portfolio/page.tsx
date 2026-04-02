@@ -204,14 +204,14 @@ export default function Portfolio() {
               data-card
               className="group flex-shrink-0 block h-screen w-screen"
             >
-              <div className="relative w-full h-full overflow-hidden">
-                {/* Image with parallax container */}
+              <div className="relative w-full h-full overflow-hidden bg-neutral-100">
+                {/* Image — contain to avoid zoom/pixelisation */}
                 <div data-img className="absolute inset-0">
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     loading={i < 3 ? "eager" : "lazy"}
                     sizes="100vw"
                     unoptimized
@@ -287,15 +287,7 @@ export default function Portfolio() {
         </p>
       </footer>
 
-      {/* ═══ FIXED — Vision (left) + Messages (right) ═══ */}
-      <Link href="/vision" className="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-50" aria-label="Notre vision">
-        <div className="w-11 h-11 sm:w-12 sm:h-12 bg-black/85 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg hover:bg-black hover:scale-105 transition-all duration-300">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
-          </svg>
-        </div>
-      </Link>
-
+      {/* ═══ FIXED — Messages (right) ═══ */}
       <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50" aria-label="Nous contacter">
         <div className="w-11 h-11 sm:w-12 sm:h-12 bg-black/85 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg hover:bg-black hover:scale-105 transition-all duration-300">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none">
