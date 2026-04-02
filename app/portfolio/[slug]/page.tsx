@@ -92,7 +92,7 @@ export default function CaseStudyPage({
               {project.type} — {project.year}
             </p>
             <h1
-              className="font-serif font-black leading-[1.05] tracking-tight"
+              className="font-sans font-black leading-[1.05] tracking-tight"
               style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}
             >
               {project.name}
@@ -129,7 +129,7 @@ export default function CaseStudyPage({
               Brief client
             </p>
             <h2
-              className="font-serif font-bold leading-tight tracking-tight"
+              className="font-sans font-bold leading-tight tracking-tight"
               style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)" }}
             >
               Le contexte
@@ -168,7 +168,7 @@ export default function CaseStudyPage({
             Le défi
           </p>
           <h2
-            className="font-serif font-bold leading-tight tracking-tight mb-6"
+            className="font-sans font-bold leading-tight tracking-tight mb-6"
             style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)" }}
           >
             Problématique
@@ -185,7 +185,7 @@ export default function CaseStudyPage({
           Notre approche
         </p>
         <h2
-          className="font-serif font-bold leading-tight tracking-tight mb-12"
+          className="font-sans font-bold leading-tight tracking-tight mb-12"
           style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)" }}
         >
           Méthodologie
@@ -194,7 +194,7 @@ export default function CaseStudyPage({
         <div className="grid md:grid-cols-3 gap-8">
           {project.approche.map((step, i) => (
             <div key={i} className="flex flex-col gap-4">
-              <span className="text-[48px] font-serif font-light text-gray-200 leading-none">
+              <span className="text-[48px] font-sans font-light text-gray-200 leading-none">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="text-[18px] font-semibold text-black">
@@ -214,7 +214,7 @@ export default function CaseStudyPage({
           Les résultats
         </p>
         <h2
-          className="font-serif font-bold leading-tight tracking-tight mb-12"
+          className="font-sans font-bold leading-tight tracking-tight mb-12"
           style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)" }}
         >
           Impact mesurable
@@ -226,7 +226,7 @@ export default function CaseStudyPage({
               key={i}
               className="bg-[#f5f5f5] rounded-2xl p-6 md:p-8 text-center"
             >
-              <p className="font-serif font-black text-[32px] md:text-[40px] text-black leading-none mb-2">
+              <p className="font-sans font-black text-[32px] md:text-[40px] text-black leading-none mb-2">
                 {stat.value}
               </p>
               <p className="text-[12px] uppercase tracking-[0.1em] text-gray-500">
@@ -248,7 +248,7 @@ export default function CaseStudyPage({
             className="group flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
             <h2
-              className="font-serif font-black leading-tight tracking-tight group-hover:opacity-60 transition-opacity"
+              className="font-sans font-black leading-tight tracking-tight group-hover:opacity-60 transition-opacity"
               style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
             >
               {next.name}
@@ -269,7 +269,7 @@ export default function CaseStudyPage({
               Votre projet
             </p>
             <h2
-              className="font-serif leading-tight tracking-tight"
+              className="font-sans leading-tight tracking-tight"
               style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
             >
               <span className="font-bold text-white">Votre site,</span>
