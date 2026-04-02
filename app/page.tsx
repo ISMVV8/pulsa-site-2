@@ -109,21 +109,19 @@ export default function Home() {
       {/* Footer */}
       <footer className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 pb-6 sm:pb-10 px-5 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <a
+            href="https://wa.me/32473236759"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto bg-black text-white text-[12px] sm:text-[13px] font-medium px-5 py-3 sm:px-8 sm:py-3.5 rounded-full text-center hover:bg-black/85 transition-colors"
+          >
+            Créer votre projet
+          </a>
           <Link href="/portfolio" className="w-full sm:w-auto">
             <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
               Voir notre portfolio
             </GlassButton>
           </Link>
-          <a
-            href="https://wa.me/32473236759"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto"
-          >
-            <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
-              Créer votre projet
-            </GlassButton>
-          </a>
           <Link href="/vision" className="w-full sm:w-auto">
             <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
               Notre vision

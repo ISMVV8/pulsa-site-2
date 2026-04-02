@@ -8,9 +8,9 @@ import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 
 const glassConfig = {
   tintColor: "#ffffff",
-  tintOpacity: 0.35,
-  frostBlur: "24",
-  shadow: "0px 4px 20px rgba(0,0,0,0.12)",
+  tintOpacity: 0.55,
+  frostBlur: "28",
+  shadow: "0px 4px 24px rgba(0,0,0,0.15)",
 };
 
 export function GlassButton({
