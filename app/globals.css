@@ -5,9 +5,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
   height: 100%;
   height: -webkit-fill-available;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
 }
 
 /* Full-screen mobile */

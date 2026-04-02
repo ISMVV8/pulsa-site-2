@@ -1,0 +1,125 @@
+/* ── Portfolio Cinematic Styles ── */
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* Hero letter animation */
+.hero-letter {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.hero-italic {
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  will-change: opacity;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.scroll-arrow {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* Horizontal scroll section */
+.horizontal-section {
+  will-change: transform;
+}
+
+.horizontal-card {
+  will-change: transform, opacity;
+}
+
+.horizontal-card-image {
+  will-change: transform;
+}
+
+/* Featured section */
+.featured-section {
+  will-change: auto;
+}
+
+.featured-image {
+  will-change: filter;
+}
+
+.reveal-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Marquee */
+.marquee-track {
+  will-change: transform;
+}
+
+.marquee-stroke {
+  -webkit-text-stroke: 1.5px currentColor;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .marquee-stroke {
+    -webkit-text-stroke: 1px currentColor;
+  }
+}
+
+/* Staggered grid cards */
+.stagger-card {
+  will-change: transform, opacity;
+}
+
+.stagger-card-image {
+  will-change: transform;
+}
+
+/* CTA section */
+.cta-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Counter */
+.stat-counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Progress line */
+.progress-line {
+  will-change: transform;
+  transform-origin: left;
+}
+
+/* Glass overlay for cards */
+.card-glass-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    transparent 100%
+  );
+}
+
+/* Mobile stacked cards */
+@media (max-width: 768px) {
+  .horizontal-section {
+    position: relative !important;
+    height: auto !important;
+  }
+}
