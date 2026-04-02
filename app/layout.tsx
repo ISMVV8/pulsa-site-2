@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -43,7 +44,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        {children}
+        <Script
+          src="https://taap.it/scripts/tracker.js"
+          data-project="pk_2a09838aada7a56cb6b6d66e3e4f91a5"
+          data-track-outbound="true"
+          data-track-forms="true"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
