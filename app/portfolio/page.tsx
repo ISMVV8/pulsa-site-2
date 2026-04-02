@@ -196,7 +196,7 @@ export default function Portfolio() {
         {/* Track */}
         <div
           ref={trackRef}
-          className="flex items-center gap-8 h-full pl-[8vw] pr-[15vw]"
+          className="flex items-center gap-0 h-full"
           style={{ width: "fit-content" }}
         >
           {projects.map((project, i) => (
@@ -204,10 +204,9 @@ export default function Portfolio() {
               key={project.slug}
               href={`/portfolio/${project.slug}`}
               data-card
-              className="group flex-shrink-0 block perspective-[1200px]"
-              style={{ width: "clamp(340px, 70vw, 800px)" }}
+              className="group flex-shrink-0 block h-screen w-screen"
             >
-              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-black/10">
+              <div className="relative w-full h-full overflow-hidden">
                 {/* Image with parallax container */}
                 <div data-img className="absolute inset-[-40px]">
                   <Image
