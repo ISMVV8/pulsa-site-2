@@ -97,14 +97,14 @@ export default function Portfolio() {
           );
         }
 
-        // Parallax on image
+        // Subtle parallax on image (scale-based, no crop needed)
         const img = card.querySelector("[data-img]");
         if (img) {
           gsap.fromTo(
             img,
-            { x: 40 },
+            { scale: 1.03 },
             {
-              x: -40,
+              scale: 1,
               ease: "none",
               scrollTrigger: {
                 trigger: card,
@@ -226,7 +226,7 @@ export default function Portfolio() {
             >
               <div className="relative w-full h-full overflow-hidden">
                 {/* Image with parallax container */}
-                <div data-img className="absolute inset-[-40px]">
+                <div data-img className="absolute inset-0">
                   <Image
                     src={project.image}
                     alt={project.name}
