@@ -210,7 +210,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ═══ PROJECTS — Creative asymmetric grid ═══ */}
+      {/* ═══ PROJECTS — Full-image cards with glass overlay ═══ */}
       <section ref={projectsRef} className="px-5 sm:px-8 md:px-12 lg:px-16 pb-24 max-w-[1500px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-8">
           {rows.map(([leftIdx, rightIdx], rowIndex) => {
@@ -218,109 +218,67 @@ export default function Portfolio() {
             const leftProject = projects[leftIdx];
             const rightProject = projects[rightIdx];
 
+            const renderCard = (project: typeof projects[0], idx: number, size: string) => (
+              <Link
+                href={`/portfolio/${project.slug}`}
+                data-project-card
+                className={`group block w-full ${size}`}
+              >
+                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
+                  {/* Full background image */}
+                  <div data-project-image className="absolute inset-[-20px]">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                      loading={idx < 2 ? "eager" : "lazy"}
+                    />
+                  </div>
+
+                  {/* Subtle gradient at bottom for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+
+                  {/* Hover darken */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 z-10" />
+
+                  {/* Number watermark */}
+                  <span className="absolute top-4 right-5 text-white/15 text-[clamp(3rem,5vw,5rem)] font-bold leading-none z-10 select-none pointer-events-none">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* ── Glass overlay bottom-left ── */}
+                  <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col gap-2.5">
+                    {/* Info glass card */}
+                    <div className="bg-white/15 backdrop-blur-xl border border-white/20 rounded-2xl px-5 py-4 max-w-[85%]">
+                      <h2 className="text-white text-[17px] sm:text-[20px] font-semibold tracking-[-0.01em] leading-tight">
+                        {project.name}
+                      </h2>
+                      <p className="text-white/70 text-[12px] sm:text-[13px] mt-1.5 leading-relaxed line-clamp-2">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {/* Tags as glass pills */}
+                    <div data-project-tags className="flex flex-wrap gap-1.5">
+                      {project.services.map((service) => (
+                        <span
+                          key={service}
+                          className="bg-white/15 backdrop-blur-xl border border-white/20 text-white/90 px-3 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.06em] rounded-full"
+                        >
+                          {service}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+
             return (
               <div key={rowIndex} className="flex flex-col md:flex-row gap-5 md:gap-6">
-                {/* Left card */}
-                {leftProject && (
-                  <Link
-                    href={`/portfolio/${leftProject.slug}`}
-                    data-project-card
-                    className={`group block w-full ${leftSize}`}
-                  >
-                    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
-                      <div data-project-image className="absolute inset-[-20px]">
-                        <Image
-                          src={leftProject.image}
-                          alt={leftProject.name}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                          loading={leftIdx < 2 ? "eager" : "lazy"}
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 z-10" />
-                      <div className="absolute bottom-4 left-4 right-4 z-20 flex items-end justify-between opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                        <span className="bg-white/90 backdrop-blur-sm text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full">
-                          Voir l&apos;étude de cas →
-                        </span>
-                        <span className="text-white/70 text-[11px] font-light">{leftProject.year}</span>
-                      </div>
-                      <span className="absolute top-4 right-5 text-white/10 text-[clamp(3rem,5vw,5rem)] font-bold leading-none z-10 select-none pointer-events-none">
-                        {String(leftIdx + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <div data-project-info className="mt-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <h2 className="text-[17px] sm:text-[19px] font-semibold tracking-[-0.01em] group-hover:opacity-60 transition-opacity duration-300">
-                          {leftProject.name}
-                        </h2>
-                        <span className="text-[11px] text-black/25 mt-1.5 flex-shrink-0 uppercase tracking-[0.1em]">
-                          {leftProject.type}
-                        </span>
-                      </div>
-                      <p className="text-[13px] text-black/35 mt-1.5 leading-relaxed line-clamp-2">
-                        {leftProject.description}
-                      </p>
-                      <div data-project-tags className="flex flex-wrap gap-1.5 mt-3">
-                        {leftProject.services.map((service) => (
-                          <span key={service} className="px-2.5 py-1 text-[9px] uppercase tracking-[0.08em] rounded-full border border-black/8 text-black/30">
-                            {service}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </Link>
-                )}
-
-                {/* Right card */}
-                {rightProject && (
-                  <Link
-                    href={`/portfolio/${rightProject.slug}`}
-                    data-project-card
-                    className={`group block w-full ${rightSize}`}
-                  >
-                    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden">
-                      <div data-project-image className="absolute inset-[-20px]">
-                        <Image
-                          src={rightProject.image}
-                          alt={rightProject.name}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                          loading={rightIdx < 2 ? "eager" : "lazy"}
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 z-10" />
-                      <div className="absolute bottom-4 left-4 right-4 z-20 flex items-end justify-between opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                        <span className="bg-white/90 backdrop-blur-sm text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full">
-                          Voir l&apos;étude de cas →
-                        </span>
-                        <span className="text-white/70 text-[11px] font-light">{rightProject.year}</span>
-                      </div>
-                      <span className="absolute top-4 right-5 text-white/10 text-[clamp(3rem,5vw,5rem)] font-bold leading-none z-10 select-none pointer-events-none">
-                        {String(rightIdx + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <div data-project-info className="mt-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <h2 className="text-[17px] sm:text-[19px] font-semibold tracking-[-0.01em] group-hover:opacity-60 transition-opacity duration-300">
-                          {rightProject.name}
-                        </h2>
-                        <span className="text-[11px] text-black/25 mt-1.5 flex-shrink-0 uppercase tracking-[0.1em]">
-                          {rightProject.type}
-                        </span>
-                      </div>
-                      <p className="text-[13px] text-black/35 mt-1.5 leading-relaxed line-clamp-2">
-                        {rightProject.description}
-                      </p>
-                      <div data-project-tags className="flex flex-wrap gap-1.5 mt-3">
-                        {rightProject.services.map((service) => (
-                          <span key={service} className="px-2.5 py-1 text-[9px] uppercase tracking-[0.08em] rounded-full border border-black/8 text-black/30">
-                            {service}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </Link>
-                )}
+                {leftProject && renderCard(leftProject, leftIdx, leftSize)}
+                {rightProject && renderCard(rightProject, rightIdx, rightSize)}
               </div>
             );
           })}
