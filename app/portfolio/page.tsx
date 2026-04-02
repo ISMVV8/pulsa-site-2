@@ -1,92 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { ProjectModal, type Project } from "../components/project-modal";
+import { projects } from "@/app/lib/projects";
 import "./portfolio.css";
 
-const servicesByProject: Record<string, string[]> = {
-  "City Smile": ["Site vitrine", "SEO", "Design UI/UX"],
-  "Success Talent": ["Plateforme web", "Dashboard", "Base de données"],
-  "Terra Sky": ["Site vitrine", "SEO", "Immobilier"],
-  "Sweety Délice": ["E-commerce", "Paiement en ligne", "Design"],
-  "8lab Ecosystem": ["Plateforme SaaS", "Stripe", "Dashboard"],
-  "Podium": ["E-commerce", "Shopify", "Performance"],
-};
-
-const projects: Project[] = [
-  {
-    name: "City Smile",
-    type: "Site vitrine",
-    year: "2025",
-    description: "Cabinet dentaire haut de gamme",
-    longDescription:
-      "Refonte complète du site vitrine pour un cabinet dentaire premium à Bruxelles. Design épuré, prise de rendez-vous en ligne, et optimisation SEO locale pour maximiser la visibilité.",
-    image: "/projects/city-smile.jpg",
-    color: "#4A90D9",
-    tags: ["Next.js", "SEO", "Design UI/UX", "Responsive"],
-  },
-  {
-    name: "Success Talent",
-    type: "Plateforme RH",
-    year: "2025",
-    description: "Mise en relation talents & entreprises",
-    longDescription:
-      "Plateforme de recrutement connectant les meilleurs talents aux entreprises. Dashboard candidat, système de matching intelligent, et interface administration complète.",
-    image: "/projects/success-talent.jpg",
-    color: "#6C5CE7",
-    tags: ["React", "Node.js", "Base de données", "Dashboard"],
-  },
-  {
-    name: "Terra Sky",
-    type: "Immobilier",
-    year: "2024",
-    description: "Agence immobilière premium",
-    longDescription:
-      "Site immobilier haut de gamme avec recherche avancée de biens, visites virtuelles 360°, estimation en ligne et espace propriétaire dédié.",
-    image: "/projects/terra-sky.jpg",
-    color: "#2D3436",
-    tags: ["Next.js", "API Maps", "Filtres avancés", "CMS"],
-  },
-  {
-    name: "Sweety Délice",
-    type: "E-commerce",
-    year: "2024",
-    description: "Pâtisserie artisanale en ligne",
-    longDescription:
-      "Boutique en ligne pour une pâtisserie artisanale. Catalogue produits avec photos HD, commandes personnalisées, click & collect et livraison à domicile.",
-    image: "/projects/sweety-delice.jpg",
-    color: "#E17055",
-    tags: ["Shopify", "E-commerce", "Paiement", "Design"],
-  },
-  {
-    name: "8lab Ecosystem",
-    type: "Plateforme",
-    year: "2025",
-    description: "Écosystème e-commerce & formation",
-    longDescription:
-      "Écosystème complet pour entrepreneurs e-commerce : formation, coaching, networking, sourcing et outils. +2 400 membres actifs sur la plateforme.",
-    image: "/projects/8lab.jpg",
-    color: "#0A0A0A",
-    tags: ["Next.js", "Supabase", "Stripe", "Dashboard"],
-  },
-  {
-    name: "Podium",
-    type: "E-commerce",
-    year: "2025",
-    description: "Thème Shopify sur-mesure",
-    longDescription:
-      "Thème Shopify premium entièrement custom avec des performances optimisées, animations fluides, et un design conversion-oriented pour maximiser les ventes.",
-    image: "/projects/podium.jpg",
-    color: "#636E72",
-    tags: ["Shopify", "Liquid", "Performance", "Conversion"],
-  },
-];
-
 export default function Portfolio() {
-  const [selected, setSelected] = useState<Project | null>(null);
-
   return (
     <div className="bg-white text-black min-h-screen">
       {/* ═══ HEADER ═══ */}
@@ -166,10 +83,10 @@ export default function Portfolio() {
       <section className="px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
         {projects.map((project, i) => {
           const num = String(i + 1).padStart(2, "0");
-          const isOdd = i % 2 === 0; // 0-indexed: 0,2,4 = image left
+          const isOdd = i % 2 === 0;
 
           return (
-            <div key={project.name}>
+            <div key={project.slug}>
               <div
                 className={`flex flex-col ${
                   isOdd ? "md:flex-row" : "md:flex-row-reverse"
@@ -177,9 +94,9 @@ export default function Portfolio() {
               >
                 {/* Image side */}
                 <div className="md:w-[55%] flex-shrink-0">
-                  <button
-                    onClick={() => setSelected(project)}
-                    className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-lg cursor-pointer group block"
+                  <Link
+                    href={`/portfolio/${project.slug}`}
+                    className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-lg block group"
                   >
                     <Image
                       src={project.image}
@@ -188,7 +105,7 @@ export default function Portfolio() {
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       loading={i < 2 ? "eager" : "lazy"}
                     />
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Text side */}
@@ -205,14 +122,11 @@ export default function Portfolio() {
                   </p>
 
                   {/* Project name */}
-                  <button
-                    onClick={() => setSelected(project)}
-                    className="text-left cursor-pointer"
-                  >
+                  <Link href={`/portfolio/${project.slug}`}>
                     <h2 className="font-serif font-black text-[36px] md:text-[48px] text-black leading-[1.05] tracking-tight hover:opacity-70 transition-opacity">
                       {project.name}
                     </h2>
-                  </button>
+                  </Link>
 
                   {/* Description */}
                   <p className="text-[14px] text-gray-500 leading-relaxed mt-3">
@@ -221,7 +135,7 @@ export default function Portfolio() {
 
                   {/* Services */}
                   <div className="flex flex-wrap gap-2 mt-5">
-                    {(servicesByProject[project.name] || []).map((service) => (
+                    {project.services.map((service) => (
                       <span
                         key={service}
                         className="px-3 py-1.5 text-[11px] uppercase tracking-[0.05em] rounded-full border border-[#ddd] text-gray-500"
@@ -233,13 +147,13 @@ export default function Portfolio() {
 
                   {/* CTA */}
                   <div className="mt-6">
-                    <button
-                      onClick={() => setSelected(project)}
-                      className="inline-flex items-center gap-3 bg-[#1a1a1a] text-white text-[14px] font-medium px-8 py-4 rounded-full hover:bg-black transition-colors cursor-pointer shadow-sm"
+                    <Link
+                      href={`/portfolio/${project.slug}`}
+                      className="inline-flex items-center gap-3 bg-[#1a1a1a] text-white text-[14px] font-medium px-8 py-4 rounded-full hover:bg-black transition-colors shadow-sm"
                     >
-                      Visiter le site
-                      <span className="text-[16px]">↗</span>
-                    </button>
+                      Voir l&apos;étude de cas
+                      <span className="text-[16px]">→</span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -305,9 +219,6 @@ export default function Portfolio() {
           </a>
         </div>
       </section>
-
-      {/* Modal */}
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }
