@@ -438,15 +438,19 @@ export default function Portfolio() {
             Discutons de votre vision et créons quelque chose d&apos;exceptionnel ensemble.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 mt-8">
-            <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer">
-              <GlassButton className="!px-8 !py-3.5 !text-[13px]">
-                Démarrer un projet →
-              </GlassButton>
+            <a
+              href="https://wa.me/32473236759"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black text-white text-[13px] font-medium px-8 py-4 rounded-full hover:bg-black/85 transition-colors"
+            >
+              Démarrer un projet →
             </a>
-            <Link href="/">
-              <GlassButton className="!px-8 !py-3.5 !text-[13px]">
-                Retour à l&apos;accueil
-              </GlassButton>
+            <Link
+              href="/"
+              className="bg-white/60 backdrop-blur-xl border border-black/10 text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/80 transition-colors"
+            >
+              Retour à l&apos;accueil
             </Link>
           </div>
         </div>
