@@ -204,14 +204,14 @@ export default function Portfolio() {
               data-card
               className="group flex-shrink-0 block h-screen w-screen"
             >
-              <div className="relative w-full h-full overflow-hidden bg-neutral-100">
-                {/* Image — contain to avoid zoom/pixelisation */}
+              <div className="relative w-full h-full overflow-hidden bg-black">
+                {/* Image — cover, HD sources now */}
                 <div data-img className="absolute inset-0">
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="object-contain"
+                    className="object-cover object-top"
                     loading={i < 3 ? "eager" : "lazy"}
                     sizes="100vw"
                     unoptimized
