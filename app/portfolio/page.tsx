@@ -6,6 +6,15 @@ import { useState } from "react";
 import { ProjectModal, type Project } from "../components/project-modal";
 import "./portfolio.css";
 
+const servicesByProject: Record<string, string[]> = {
+  "City Smile": ["Site vitrine", "SEO", "Design UI/UX"],
+  "Success Talent": ["Plateforme web", "Dashboard", "Base de données"],
+  "Terra Sky": ["Site vitrine", "SEO", "Immobilier"],
+  "Sweety Délice": ["E-commerce", "Paiement en ligne", "Design"],
+  "8lab Ecosystem": ["Plateforme SaaS", "Stripe", "Dashboard"],
+  "Podium": ["E-commerce", "Shopify", "Performance"],
+};
+
 const projects: Project[] = [
   {
     name: "City Smile",
@@ -210,14 +219,14 @@ export default function Portfolio() {
                     {project.longDescription}
                   </p>
 
-                  {/* Tags */}
+                  {/* Services */}
                   <div className="flex flex-wrap gap-2 mt-5">
-                    {project.tags.map((tag) => (
+                    {(servicesByProject[project.name] || []).map((service) => (
                       <span
-                        key={tag}
+                        key={service}
                         className="px-3 py-1.5 text-[11px] uppercase tracking-[0.05em] rounded-full border border-[#ddd] text-gray-500"
                       >
-                        {tag}
+                        {service}
                       </span>
                     ))}
                   </div>
