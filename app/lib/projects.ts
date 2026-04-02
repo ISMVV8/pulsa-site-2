@@ -161,7 +161,7 @@ export const projects: Project[] = [
     description: "Pâtisserie artisanale en ligne",
     longDescription:
       "Boutique en ligne pour une pâtisserie artisanale. Catalogue produits avec photos HD, commandes personnalisées, click & collect et livraison à domicile.",
-    image: "/projects/sweety-delice.jpg",
+    image: "/projects/sweety-delice.png",
     color: "#E17055",
     tags: ["Shopify", "E-commerce", "Paiement", "Design"],
     services: ["E-commerce", "Paiement en ligne", "Design"],
