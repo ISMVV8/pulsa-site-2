@@ -3,201 +3,149 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/app/lib/projects";
-import GlassHeader from "@/app/components/glass-header";
-import "./portfolio.css";
+import { GlassButton, GlassCircle } from "@/app/components/glass-button";
 
 export default function Portfolio() {
   return (
-    <div className="bg-white text-black min-h-screen">
-      {/* ═══ HEADER ═══ */}
-      <GlassHeader />
-
-      {/* ═══ HERO ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pt-12 pb-16 md:pt-20 md:pb-24 max-w-[1400px] mx-auto">
-        {/* Breadcrumb */}
-        <p className="text-[12px] text-gray-400 mb-8">
-          🏠 Accueil &gt; Réalisations
-        </p>
-
-        {/* Label */}
-        <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 mb-4">
-          ✦ PORTFOLIO PULSA CREATIVES
-        </p>
-
-        {/* Title */}
-        <h1
-          className="font-sans leading-[1.05] tracking-tight"
-          style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
-        >
-          <span className="font-black text-black">Nos dernières</span>
-          <br />
-          <span className="font-light text-[#d1d1d1]">réalisations.</span>
-        </h1>
-
-        {/* Sub section: description + counter */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mt-10 gap-8">
-          <p className="text-[14px] text-gray-500 max-w-md leading-relaxed">
-            Découvrez comment nous aidons nos clients à capturer l&apos;attention
-            et dominer leur marché.
-          </p>
-          <div className="flex items-end gap-3">
-            <span
-              className="font-sans font-light leading-none"
-              style={{
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "transparent",
-                WebkitTextStroke: "1.5px #d1d1d1",
-              }}
-            >
-              20+
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.15em] text-gray-400 pb-2">
-              Projets<br />livrés
-            </span>
-          </div>
+    <div className="relative min-h-[100dvh] bg-white text-black">
+      {/* ═══ HEADER — Same as landing page ═══ */}
+      <header className="flex items-center justify-between px-5 sm:px-8 py-4 sm:py-6">
+        <Link href="/">
+          <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10 p-0.5">
+            <Image
+              src="/logo-pulsa.jpg"
+              alt="Pulsa"
+              width={32}
+              height={32}
+              className="object-contain mix-blend-multiply"
+            />
+          </GlassCircle>
+        </Link>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a href="https://instagram.com/pulsacreatives" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </GlassCircle>
+          </a>
+          <a href="https://tiktok.com/@pulsacreatives" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="black">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.72a8.19 8.19 0 0 0 4.76 1.52V6.79a4.83 4.83 0 0 1-1-.1z" />
+              </svg>
+            </GlassCircle>
+          </a>
         </div>
+      </header>
+
+      {/* ═══ HERO — Centered, clean, landing page vibe ═══ */}
+      <section className="flex flex-col items-center justify-center text-center px-6 pt-16 pb-12 sm:pt-24 sm:pb-16">
+        <h1 className="text-[clamp(2rem,7vw,4.5rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
+          Nos réalisations.
+        </h1>
+        <p className="mt-3 sm:mt-4 text-black/40 text-[12px] sm:text-[13px] tracking-[0.04em]">
+          Chaque projet raconte une histoire
+        </p>
       </section>
 
-      {/* ═══ PROJECTS ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
-        {projects.map((project, i) => {
-          const num = String(i + 1).padStart(2, "0");
-          const isOdd = i % 2 === 0;
+      {/* ═══ PROJECTS GRID ═══ */}
+      <section className="px-5 sm:px-8 md:px-12 lg:px-20 pb-24 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {projects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/portfolio/${project.slug}`}
+              className="group block"
+            >
+              {/* Image */}
+              <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mb-4">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
 
-          return (
-            <div key={project.slug}>
-              <div
-                className={`flex flex-col ${
-                  isOdd ? "md:flex-row" : "md:flex-row-reverse"
-                } gap-8 md:gap-12 p-6 md:p-10 my-8 md:my-12 bg-[#f5f5f5] rounded-3xl`}
-              >
-                {/* Image side */}
-                <div className="md:w-[55%] flex-shrink-0">
-                  <Link
-                    href={`/portfolio/${project.slug}`}
-                    className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-lg block group"
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      loading={i < 2 ? "eager" : "lazy"}
-                    />
-                  </Link>
-                </div>
-
-                {/* Text side */}
-                <div className="md:w-[45%] flex flex-col justify-center">
-                  {/* Number + Year */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[13px] text-gray-400 font-medium">{num}</span>
-                    <span className="text-[13px] text-gray-400">{project.year}</span>
-                  </div>
-
-                  {/* Category */}
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-[#888] mb-3">
+              {/* Info */}
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h2 className="text-[18px] sm:text-[20px] font-semibold tracking-[-0.01em] group-hover:opacity-60 transition-opacity">
+                    {project.name}
+                  </h2>
+                  <p className="text-[13px] text-black/40 mt-1">
                     {project.type}
                   </p>
-
-                  {/* Project name */}
-                  <Link href={`/portfolio/${project.slug}`}>
-                    <h2 className="font-sans font-black text-[36px] md:text-[48px] text-black leading-[1.05] tracking-tight hover:opacity-70 transition-opacity">
-                      {project.name}
-                    </h2>
-                  </Link>
-
-                  {/* Description */}
-                  <p className="text-[14px] text-gray-500 leading-relaxed mt-3">
-                    {project.longDescription}
-                  </p>
-
-                  {/* Services */}
-                  <div className="flex flex-wrap gap-2 mt-5">
-                    {project.services.map((service) => (
-                      <span
-                        key={service}
-                        className="px-3 py-1.5 text-[11px] uppercase tracking-[0.05em] rounded-full border border-[#ddd] text-gray-500"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* CTA */}
-                  <div className="mt-6">
-                    <Link
-                      href={`/portfolio/${project.slug}`}
-                      className="inline-flex items-center gap-3 bg-[#1a1a1a] text-white text-[14px] font-medium px-8 py-4 rounded-full hover:bg-black transition-colors shadow-sm"
-                    >
-                      Voir l&apos;étude de cas
-                      <span className="text-[16px]">→</span>
-                    </Link>
-                  </div>
                 </div>
+                <span className="text-[12px] text-black/30 mt-1 flex-shrink-0">
+                  {project.year}
+                </span>
               </div>
-            </div>
-          );
-        })}
-      </section>
 
-      {/* ═══ END CTA — DASHED CARD ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 py-16 md:py-24 max-w-[1400px] mx-auto">
-        <div className="border border-dashed border-gray-200 rounded-3xl py-16 md:py-20 px-6 text-center">
-          <p className="text-[18px] text-gray-300 mb-4">✦</p>
-          <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 mb-4">
-            Et bien d&apos;autres
-          </p>
-          <h2
-            className="font-sans leading-tight tracking-tight"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
-          >
-            <span className="font-bold text-black">Chaque client a</span>
-            <br />
-            <span className="font-light text-[#d1d1d1]">une histoire.</span>
-          </h2>
-          <p className="text-[14px] text-gray-500 mt-4 max-w-md mx-auto leading-relaxed">
-            Restaurants, e-commerces, startups... Discutons de votre projet.
-          </p>
-          <a
-            href="https://wa.me/32473236759"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-black text-black text-[13px] font-medium px-6 py-3 rounded-full mt-8 hover:bg-black hover:text-white transition-colors"
-          >
-            Nous contacter
-            <span>→</span>
-          </a>
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5 mt-3">
+                {project.services.map((service) => (
+                  <span
+                    key={service}
+                    className="px-3 py-1 text-[10px] uppercase tracking-[0.05em] rounded-full border border-black/10 text-black/40"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* ═══ FINAL CTA BANNER ═══ */}
-      <section className="px-6 md:px-12 lg:px-24 pb-12 max-w-[1400px] mx-auto">
-        <div className="bg-[#1a1a1a] rounded-3xl px-8 md:px-16 py-14 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-white/50 mb-4">
-              Votre projet
-            </p>
-            <h2
-              className="font-sans leading-tight tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-            >
-              <span className="font-bold text-white">Votre site,</span>
-              <br />
-              <span className="font-light text-white/40">le prochain.</span>
-            </h2>
-          </div>
-          <a
-            href="https://wa.me/32473236759"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/90 transition-colors flex-shrink-0"
-          >
-            Démarrer un projet
-            <span>→</span>
+      {/* ═══ BOTTOM CTA — Centered like landing page ═══ */}
+      <footer className="flex flex-col items-center gap-4 sm:gap-6 pb-6 sm:pb-10 px-5 sm:px-6">
+        <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+            <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
+              Créer votre projet
+            </GlassButton>
           </a>
         </div>
-      </section>
+        <p className="text-[10px] sm:text-[11px] text-black/30 tracking-wide text-center">
+          contact@pulsacreatives.com · © Pulsa ·{" "}
+          <Link href="/legal" className="hover:text-black/50 transition-colors duration-300">
+            Legal
+          </Link>
+        </p>
+      </footer>
+
+      {/* ═══ FIXED BUTTONS — Vision (left) + Messages (right) ═══ */}
+      <Link
+        href="/vision"
+        className="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-50"
+        aria-label="Notre vision"
+      >
+        <GlassCircle className="w-11 h-11 sm:w-12 sm:h-12">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="6" />
+            <circle cx="12" cy="12" r="2" />
+          </svg>
+        </GlassCircle>
+      </Link>
+
+      <a
+        href="https://wa.me/32473236759"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50"
+        aria-label="Nous contacter"
+      >
+        <GlassCircle className="w-11 h-11 sm:w-12 sm:h-12">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="black" stroke="none">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+        </GlassCircle>
+      </a>
     </div>
   );
 }
