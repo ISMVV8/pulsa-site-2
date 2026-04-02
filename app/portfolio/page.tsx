@@ -424,18 +424,39 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <footer className="flex flex-col items-center gap-4 sm:gap-6 py-16 sm:py-20 px-5 sm:px-6">
-        <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
-          <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-            <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
-              Créer votre projet
-            </GlassButton>
-          </a>
+      {/* ═══ CTA — Sakura background like landing ═══ */}
+      <section className="relative py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/bg-sakura.jpg" alt="" fill className="object-cover" />
         </div>
-        <p className="text-[10px] sm:text-[11px] text-black/25 tracking-wide text-center">
-          contact@pulsacreatives.com · © Pulsa ·{" "}
-          <Link href="/legal" className="hover:text-black/50 transition-colors duration-300">Legal</Link>
+        <div className="relative z-10 flex flex-col items-center text-center px-6">
+          <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 mb-4">Prêt à transformer votre présence digitale ?</span>
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
+            Votre projet, le prochain<span className="text-black/15">.</span>
+          </h2>
+          <p className="mt-4 text-black/35 text-[13px] sm:text-[14px] max-w-md leading-relaxed">
+            Discutons de votre vision et créons quelque chose d&apos;exceptionnel ensemble.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-3 mt-8">
+            <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer">
+              <GlassButton className="!px-8 !py-3.5 !text-[13px]">
+                Démarrer un projet →
+              </GlassButton>
+            </a>
+            <Link href="/">
+              <GlassButton className="!px-8 !py-3.5 !text-[13px]">
+                Retour à l&apos;accueil
+              </GlassButton>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="flex flex-col items-center gap-2 py-6 px-5">
+        <p className="text-[10px] sm:text-[11px] text-black/20 tracking-wide text-center">
+          © Pulsa Creatives ·{" "}
+          <Link href="/legal" className="hover:text-black/40 transition-colors duration-300">Legal</Link>
         </p>
       </footer>
 
