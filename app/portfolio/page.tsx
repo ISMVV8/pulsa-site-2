@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/app/lib/projects";
@@ -11,8 +11,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Portfolio() {
-  const projectsRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const scrollSectionRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -38,89 +40,88 @@ export default function Portfolio() {
         ease: "power3.out",
       });
 
-      // Project cards — staggered reveal on scroll
+      // Horizontal scroll section
+      const container = scrollContainerRef.current;
+      const section = scrollSectionRef.current;
+      if (!container || !section) return;
+
       const cards = gsap.utils.toArray<HTMLElement>("[data-project-card]");
-      cards.forEach((card, i) => {
-        const image = card.querySelector("[data-project-image]");
-        const info = card.querySelector("[data-project-info]");
+      const totalScroll = container.scrollWidth - window.innerWidth;
+
+      // Pin + horizontal scroll
+      const scrollTween = gsap.to(container, {
+        x: () => -totalScroll,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 1,
+          end: () => `+=${totalScroll}`,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const idx = Math.min(
+              Math.floor(progress * projects.length),
+              projects.length - 1
+            );
+            setActiveIndex(idx);
+          },
+        },
+      });
+
+      // Each card animates in as it enters viewport
+      cards.forEach((card) => {
+        const glass = card.querySelector("[data-glass]");
         const tags = card.querySelector("[data-project-tags]");
 
         gsap.from(card, {
+          opacity: 0,
+          scale: 0.92,
+          duration: 0.6,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none none",
+            containerAnimation: scrollTween,
+            start: "left 85%",
+            toggleActions: "play none none reverse",
           },
-          y: 80,
-          opacity: 0,
-          duration: 0.9,
-          delay: i % 2 === 1 ? 0.15 : 0,
-          ease: "power3.out",
         });
 
-        if (image) {
-          gsap.from(image, {
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-            scale: 1.15,
-            duration: 1.2,
-            ease: "power2.out",
-          });
-        }
-
-        if (info) {
-          gsap.from(info, {
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-            y: 20,
+        if (glass) {
+          gsap.from(glass, {
+            x: -30,
             opacity: 0,
-            duration: 0.7,
-            delay: 0.3,
+            duration: 0.5,
+            delay: 0.2,
             ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: scrollTween,
+              start: "left 70%",
+              toggleActions: "play none none reverse",
+            },
           });
         }
 
         if (tags) {
           gsap.from(tags.children, {
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
             y: 10,
             opacity: 0,
-            duration: 0.5,
-            stagger: 0.08,
-            delay: 0.5,
+            stagger: 0.06,
+            duration: 0.4,
+            delay: 0.35,
             ease: "power2.out",
-          });
-        }
-      });
-
-      // Parallax on project images
-      cards.forEach((card) => {
-        const image = card.querySelector("[data-project-image]");
-        if (image) {
-          gsap.to(image, {
             scrollTrigger: {
               trigger: card,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
+              containerAnimation: scrollTween,
+              start: "left 65%",
+              toggleActions: "play none none reverse",
             },
-            y: -30,
-            ease: "none",
           });
         }
       });
 
-      // CTA section
+      // CTA
       gsap.from("[data-cta]", {
         scrollTrigger: {
           trigger: "[data-cta]",
@@ -137,21 +138,8 @@ export default function Portfolio() {
     return () => ctx.revert();
   }, []);
 
-  // Row-based layout: each row has 2 items with matching heights
-  const rows: [number, number][] = [];
-  for (let i = 0; i < projects.length; i += 2) {
-    rows.push([i, i + 1]);
-  }
-
-  // Alternating patterns per row — fixed proportions
-  const getRowLayout = (rowIndex: number): [string, string] => {
-    return rowIndex % 2 === 0
-      ? ["md:flex-[7]", "md:flex-[5]"]
-      : ["md:flex-[5]", "md:flex-[7]"];
-  };
-
   return (
-    <div className="relative min-h-[100dvh] bg-white text-black overflow-hidden">
+    <div className="relative min-h-[100dvh] bg-white text-black overflow-x-hidden">
       {/* ═══ HEADER ═══ */}
       <header className="relative z-20 flex items-center justify-between px-5 sm:px-8 py-4 sm:py-6">
         <Link href="/">
@@ -208,100 +196,126 @@ export default function Portfolio() {
             projets<br />livrés
           </span>
         </div>
+
+        {/* Scroll hint */}
+        <div className="mt-10 flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-black/20">Scroll</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-black/20">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+        </div>
       </section>
 
-      {/* ═══ PROJECTS — Full-image cards with glass overlay ═══ */}
-      <section ref={projectsRef} className="px-5 sm:px-8 md:px-12 lg:px-16 pb-24 max-w-[1500px] mx-auto">
-        <div className="flex flex-col gap-6 md:gap-8">
-          {rows.map(([leftIdx, rightIdx], rowIndex) => {
-            const [leftSize, rightSize] = getRowLayout(rowIndex);
-            const leftProject = projects[leftIdx];
-            const rightProject = projects[rightIdx];
+      {/* ═══ HORIZONTAL SCROLL PROJECTS ═══ */}
+      <section ref={scrollSectionRef} className="relative overflow-hidden">
+        {/* Progress indicator */}
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+          {projects.map((_, i) => (
+            <div
+              key={i}
+              className="h-[3px] rounded-full transition-all duration-500"
+              style={{
+                width: activeIndex === i ? "24px" : "8px",
+                backgroundColor: activeIndex === i ? "rgba(0,0,0,0.6)" : "rgba(0,0,0,0.1)",
+              }}
+            />
+          ))}
+        </div>
 
-            const renderCard = (project: typeof projects[0], idx: number, size: string) => (
-              <Link
-                href={`/portfolio/${project.slug}`}
-                data-project-card
-                className={`group block ${size} flex-shrink-0`}
-              >
-                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-2xl overflow-hidden">
-                  {/* Full background image */}
-                  <div data-project-image className="absolute inset-[-20px]">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                      loading={idx < 2 ? "eager" : "lazy"}
-                    />
-                  </div>
+        {/* Counter */}
+        <div className="absolute top-6 right-8 z-30 text-[12px] text-black/30 font-medium tracking-wide">
+          {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+        </div>
 
-                  {/* Gradient for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent z-10" />
+        {/* Scrolling container */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-6 sm:gap-8 pl-6 sm:pl-8 md:pl-16 pt-16 pb-8"
+          style={{ width: "fit-content" }}
+        >
+          {projects.map((project, i) => (
+            <Link
+              key={project.slug}
+              href={`/portfolio/${project.slug}`}
+              data-project-card
+              className="group block flex-shrink-0"
+              style={{ width: "clamp(320px, 75vw, 700px)" }}
+            >
+              <div className="relative w-full h-[65vh] min-h-[400px] max-h-[600px] rounded-2xl overflow-hidden">
+                {/* Full image */}
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  loading={i < 2 ? "eager" : "lazy"}
+                />
 
-                  {/* Hover darken */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 z-10" />
+                {/* Subtle gradient left side for glass readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-transparent z-10" />
 
-                  {/* Number watermark */}
-                  <span className="absolute top-4 right-5 text-white/15 text-[clamp(3rem,5vw,5rem)] font-bold leading-none z-10 select-none pointer-events-none">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 z-10" />
 
-                  {/* Year badge top-left */}
-                  <div className="absolute top-4 left-4 z-20">
-                    <span className="bg-white/15 backdrop-blur-xl border border-white/20 text-white/80 px-3 py-1.5 text-[10px] uppercase tracking-[0.1em] rounded-full">
+                {/* Number watermark top-right */}
+                <span className="absolute top-5 right-6 text-white/10 text-[5rem] font-bold leading-none z-10 select-none pointer-events-none">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* ── Glass info — bottom-left only, compact ── */}
+                <div data-glass className="absolute bottom-5 left-5 z-20 flex flex-col gap-2 max-w-[55%]">
+                  {/* Year + Type pill */}
+                  <div className="flex items-center gap-1.5">
+                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/75 px-2.5 py-1 text-[9px] uppercase tracking-[0.1em] rounded-full">
                       {project.year}
+                    </span>
+                    <span className="bg-white/15 backdrop-blur-2xl border border-white/20 text-white/75 px-2.5 py-1 text-[9px] uppercase tracking-[0.1em] rounded-full">
+                      {project.type}
                     </span>
                   </div>
 
-                  {/* ── Glass overlay bottom-left ── */}
-                  <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col gap-2">
-                    {/* Info glass card */}
-                    <div className="bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-5 py-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-white/50 text-[11px] uppercase tracking-[0.1em]">
-                          {project.type}
-                        </span>
-                      </div>
-                      <h2 className="text-white text-[18px] sm:text-[22px] font-semibold tracking-[-0.02em] leading-tight">
-                        {project.name}
-                      </h2>
-                      <p className="text-white/65 text-[12px] sm:text-[13px] mt-2 leading-relaxed line-clamp-2">
-                        {project.longDescription}
-                      </p>
-                    </div>
+                  {/* Main glass card — compact */}
+                  <div className="bg-white/12 backdrop-blur-2xl border border-white/20 rounded-xl px-4 py-3">
+                    <h2 className="text-white text-[18px] sm:text-[22px] font-semibold tracking-[-0.02em] leading-tight">
+                      {project.name}
+                    </h2>
+                    <p className="text-white/60 text-[11px] sm:text-[12px] mt-1.5 leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
 
-                    {/* Tags as glass pills */}
-                    <div data-project-tags className="flex flex-wrap gap-1.5">
-                      {project.services.map((service) => (
-                        <span
-                          key={service}
-                          className="bg-white/12 backdrop-blur-2xl border border-white/20 text-white/85 px-3 py-1.5 text-[10px] uppercase tracking-[0.06em] rounded-full"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                      <span className="bg-white/25 backdrop-blur-2xl border border-white/30 text-white font-medium px-3.5 py-1.5 text-[10px] uppercase tracking-[0.06em] rounded-full group-hover:bg-white/35 transition-colors duration-300">
-                        Voir →
+                  {/* Tags */}
+                  <div data-project-tags className="flex flex-wrap gap-1">
+                    {project.services.slice(0, 3).map((service) => (
+                      <span
+                        key={service}
+                        className="bg-white/10 backdrop-blur-2xl border border-white/15 text-white/80 px-2.5 py-1 text-[9px] uppercase tracking-[0.05em] rounded-full"
+                      >
+                        {service}
                       </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              </Link>
-            );
 
-            return (
-              <div key={rowIndex} className="flex flex-col md:flex-row gap-5 md:gap-6">
-                {leftProject && renderCard(leftProject, leftIdx, leftSize)}
-                {rightProject && renderCard(rightProject, rightIdx, rightSize)}
+                {/* Arrow CTA — bottom-right */}
+                <div className="absolute bottom-5 right-5 z-20 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400">
+                  <div className="bg-white/20 backdrop-blur-2xl border border-white/25 rounded-full w-10 h-10 flex items-center justify-center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-            );
-          })}
+            </Link>
+          ))}
+
+          {/* End spacer */}
+          <div className="flex-shrink-0 w-[10vw]" />
         </div>
       </section>
 
       {/* ═══ CTA ═══ */}
-      <footer data-cta className="flex flex-col items-center gap-4 sm:gap-6 pb-8 sm:pb-12 px-5 sm:px-6">
+      <footer data-cta className="flex flex-col items-center gap-4 sm:gap-6 py-16 sm:py-20 px-5 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
           <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
             <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
