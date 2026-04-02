@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/app/lib/projects";
 import type { Metadata } from "next";
+import GlassHeader from "@/app/components/glass-header";
 import "../portfolio.css";
 
 export function generateStaticParams() {
@@ -37,42 +38,7 @@ export default async function CaseStudyPage({
   return (
     <div className="bg-white text-black min-h-screen">
       {/* ═══ HEADER ═══ */}
-      <header className="flex items-center justify-between px-6 md:px-12 py-5">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo-pulsa.jpg"
-            alt="Pulsa"
-            width={36}
-            height={36}
-            className="rounded-full"
-          />
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-[13px] text-gray-500">
-          <Link href="/" className="hover:text-black transition-colors">
-            Services
-          </Link>
-          <Link
-            href="/portfolio"
-            className="text-black font-medium"
-          >
-            Réalisations
-          </Link>
-          <Link href="/" className="hover:text-black transition-colors">
-            Blog
-          </Link>
-          <Link href="/" className="hover:text-black transition-colors">
-            Contact
-          </Link>
-        </nav>
-        <a
-          href="https://wa.me/32473236759"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-black text-white text-[12px] font-medium px-5 py-2.5 rounded-full hover:bg-black/80 transition-colors"
-        >
-          Réserver ↗
-        </a>
-      </header>
+      <GlassHeader />
 
       {/* ═══ HERO ═══ */}
       <section className="px-6 md:px-12 lg:px-24 pt-12 pb-12 max-w-[1400px] mx-auto">

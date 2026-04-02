@@ -1,37 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/app/lib/projects";
+import GlassHeader from "@/app/components/glass-header";
 import "./portfolio.css";
 
 export default function Portfolio() {
   return (
     <div className="bg-white text-black min-h-screen">
       {/* ═══ HEADER ═══ */}
-      <header className="flex items-center justify-between px-6 md:px-12 py-5">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo-pulsa.jpg"
-            alt="Pulsa"
-            width={36}
-            height={36}
-            className="rounded-full"
-          />
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-[13px] text-gray-500">
-          <Link href="/" className="hover:text-black transition-colors">Services</Link>
-          <Link href="/portfolio" className="text-black font-medium">Réalisations</Link>
-          <Link href="/" className="hover:text-black transition-colors">Blog</Link>
-          <Link href="/" className="hover:text-black transition-colors">Contact</Link>
-        </nav>
-        <a
-          href="https://wa.me/32473236759"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-black text-white text-[12px] font-medium px-5 py-2.5 rounded-full hover:bg-black/80 transition-colors"
-        >
-          Réserver ↗
-        </a>
-      </header>
+      <GlassHeader />
 
       {/* ═══ HERO ═══ */}
       <section className="px-6 md:px-12 lg:px-24 pt-12 pb-16 md:pt-20 md:pb-24 max-w-[1400px] mx-auto">
@@ -47,7 +26,7 @@ export default function Portfolio() {
 
         {/* Title */}
         <h1
-          className="font-serif leading-[1.05] tracking-tight"
+          className="font-sans leading-[1.05] tracking-tight"
           style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
         >
           <span className="font-black text-black">Nos dernières</span>
@@ -63,7 +42,7 @@ export default function Portfolio() {
           </p>
           <div className="flex items-end gap-3">
             <span
-              className="font-serif font-light leading-none"
+              className="font-sans font-light leading-none"
               style={{
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "transparent",
@@ -123,7 +102,7 @@ export default function Portfolio() {
 
                   {/* Project name */}
                   <Link href={`/portfolio/${project.slug}`}>
-                    <h2 className="font-serif font-black text-[36px] md:text-[48px] text-black leading-[1.05] tracking-tight hover:opacity-70 transition-opacity">
+                    <h2 className="font-sans font-black text-[36px] md:text-[48px] text-black leading-[1.05] tracking-tight hover:opacity-70 transition-opacity">
                       {project.name}
                     </h2>
                   </Link>
@@ -170,7 +149,7 @@ export default function Portfolio() {
             Et bien d&apos;autres
           </p>
           <h2
-            className="font-serif leading-tight tracking-tight"
+            className="font-sans leading-tight tracking-tight"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
             <span className="font-bold text-black">Chaque client a</span>
@@ -200,7 +179,7 @@ export default function Portfolio() {
               Votre projet
             </p>
             <h2
-              className="font-serif leading-tight tracking-tight"
+              className="font-sans leading-tight tracking-tight"
               style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
             >
               <span className="font-bold text-white">Votre site,</span>
