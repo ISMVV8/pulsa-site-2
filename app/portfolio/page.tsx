@@ -383,45 +383,88 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ═══ CTA — Sakura background like landing ═══ */}
-      <section className="relative py-24 sm:py-32 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image src="/bg-sakura.jpg" alt="" fill className="object-cover" />
-        </div>
-        <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 mb-4">Prêt à transformer votre présence digitale ?</span>
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
-            Votre projet, le prochain<span className="text-black/15">.</span>
+      {/* ═══ CREATIVE FOOTER ═══ */}
+      <section className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        {/* Subtle gradient glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-white/[0.04] via-transparent to-transparent rounded-full blur-3xl" />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/20 mb-8">
+            Et si c&apos;était votre tour ?
+          </span>
+
+          <h2 className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-[1.05] mb-6">
+            Créons ensemble<span className="text-white/15">.</span>
           </h2>
-          <p className="mt-4 text-black/35 text-[13px] sm:text-[14px] max-w-md leading-relaxed">
-            Discutons de votre vision et créons quelque chose d&apos;exceptionnel ensemble.
+
+          <p className="text-white/35 text-[14px] sm:text-[15px] leading-relaxed max-w-md mb-10">
+            Chaque grand projet commence par une conversation. Parlez-nous du vôtre.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-3 mt-8">
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-3">
             <a
               href="https://wa.me/32473236759"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-black text-white text-[13px] font-medium px-8 py-4 rounded-full hover:bg-black/85 transition-colors"
+              className="bg-white text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
             >
               Démarrer un projet →
             </a>
-            <Link
-              href="/"
-              className="bg-white/60 backdrop-blur-xl border border-black/10 text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/80 transition-colors"
+            <a
+              href="https://calendar.app.google/fMRz2onsyr5DkovW7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/[0.06] border border-white/10 text-white/70 text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/10 hover:text-white/90 transition-all duration-200"
             >
-              Retour à l&apos;accueil
+              Réserver un appel visio
+            </a>
+          </div>
+
+          {/* Stats row */}
+          <div className="flex items-center gap-8 sm:gap-12 mt-16">
+            <div className="text-center">
+              <p className="text-white/80 text-[clamp(1.2rem,3vw,1.6rem)] font-semibold tracking-[-0.02em]">20+</p>
+              <p className="text-white/20 text-[9px] uppercase tracking-[0.15em] mt-1">Projets</p>
+            </div>
+            <div className="w-[1px] h-8 bg-white/[0.06]" />
+            <div className="text-center">
+              <p className="text-white/80 text-[clamp(1.2rem,3vw,1.6rem)] font-semibold tracking-[-0.02em]">100%</p>
+              <p className="text-white/20 text-[9px] uppercase tracking-[0.15em] mt-1">Satisfaits</p>
+            </div>
+            <div className="w-[1px] h-8 bg-white/[0.06]" />
+            <div className="text-center">
+              <p className="text-white/80 text-[clamp(1.2rem,3vw,1.6rem)] font-semibold tracking-[-0.02em]">3 sem</p>
+              <p className="text-white/20 text-[9px] uppercase tracking-[0.15em] mt-1">Délai moyen</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-6 sm:px-10 py-5 border-t border-white/[0.04]">
+          <Link href="/" className="text-white/20 text-[11px] hover:text-white/40 transition-colors">
+            Pulsa Creatives
+          </Link>
+          <div className="flex items-center gap-5">
+            <a href="https://instagram.com/pulsacreatives" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-white/50 transition-colors" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="https://tiktok.com/@pulsacreatives" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-white/50 transition-colors" aria-label="TikTok">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.72a8.19 8.19 0 0 0 4.76 1.52V6.79a4.83 4.83 0 0 1-1-.1z" />
+              </svg>
+            </a>
+            <Link href="/legal" className="text-white/20 text-[11px] hover:text-white/40 transition-colors">
+              Legal
             </Link>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="flex flex-col items-center gap-2 py-6 px-5">
-        <p className="text-[10px] sm:text-[11px] text-black/40 tracking-wide text-center">
-          © Pulsa Creatives ·{" "}
-          <Link href="/legal" className="hover:text-black/40 transition-colors duration-300">Legal</Link>
-        </p>
-      </footer>
 
       {/* ═══ FIXED — Messages ═══ */}
       <a href="https://wa.me/32473236759" target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50" aria-label="Nous contacter">
