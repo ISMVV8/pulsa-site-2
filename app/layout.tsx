@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import MaintenanceGate from "./components/maintenance-gate";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const satoshi = localFont({
+  src: [
+    {
+      path: "./fonts/Satoshi-Variable.woff2",
+      style: "normal",
+      weight: "300 900",
+    },
+    {
+      path: "./fonts/Satoshi-VariableItalic.woff2",
+      style: "italic",
+      weight: "300 900",
+    },
+  ],
+  variable: "--font-satoshi",
   display: "swap",
 });
 
@@ -84,7 +95,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${satoshi.variable} antialiased`}>
         <a href="#main-content" className="skip-link">
           Aller au contenu principal
         </a>
