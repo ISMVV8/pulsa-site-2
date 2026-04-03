@@ -97,13 +97,15 @@ export default function Vision() {
         </div>
       </section>
 
-      {/* ═══ MANIFESTO — Full width text ═══ */}
-      <section className="relative py-24 sm:py-32 px-6 sm:px-10 overflow-hidden">
+      {/* ═══ MANIFESTO — Word by word reveal ═══ */}
+      <section className="relative py-28 sm:py-40 px-6 sm:px-10 overflow-hidden">
         <div className="max-w-4xl mx-auto">
-          <p data-v-manifesto className="text-[clamp(1.4rem,3.5vw,2.4rem)] font-medium leading-[1.5] tracking-[-0.02em]">
-            <span className="text-black">On ne crée pas juste des sites.</span>{" "}
-            <span className="text-black/40">On construit des expériences qui donnent envie de rester, de cliquer, d&apos;acheter.</span>{" "}
-            <span className="text-black/25">Le genre de détail qui transforme un visiteur curieux en client convaincu.</span>
+          <p data-v-manifesto className="text-[clamp(1.4rem,3.5vw,2.6rem)] font-medium leading-[1.55] tracking-[-0.02em] text-black">
+            {"On ne crée pas juste des sites. On construit des expériences qui donnent envie de rester, de cliquer, d\u2019acheter. Le genre de détail qui transforme un visiteur curieux en client convaincu.".split(" ").map((word, i) => (
+              <span key={i} data-v-word className="inline-block mr-[0.3em] opacity-[0.08]">
+                {word}
+              </span>
+            ))}
           </p>
         </div>
       </section>
@@ -141,43 +143,41 @@ export default function Vision() {
         </div>
       </section>
 
-      {/* ═══ STATS — Immersive dark section ═══ */}
-      <section data-v-stats className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden">
-        {/* Glow orbs */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-white/[0.015] rounded-full blur-[100px]" />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/25 block text-center mb-16">
-            En chiffres
-          </span>
-
-          <div className="grid grid-cols-3 gap-4 sm:gap-8">
-            {/* Stat 1 */}
-            <div data-v-stat className="text-center group">
-              <p className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-none">
-                20<span className="text-white/30">+</span>
-              </p>
-              <div className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-white/25 transition-all duration-700 mx-auto mt-4 mb-3" />
-              <p className="text-white/35 text-[11px] sm:text-[12px] tracking-wide">Projets livrés</p>
+      {/* ═══ STATS — Bento grid ═══ */}
+      <section data-v-stats className="relative py-20 sm:py-28 px-6 sm:px-10 overflow-hidden">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            {/* Big stat — spans 2 cols */}
+            <div data-v-stat className="col-span-2 bg-black rounded-2xl sm:rounded-3xl p-8 sm:p-10 flex flex-col justify-between min-h-[200px] group">
+              <span className="text-white/30 text-[10px] uppercase tracking-[0.2em]">Projets livrés</span>
+              <div>
+                <p className="text-white text-[4rem] sm:text-[5rem] font-semibold tracking-[-0.04em] leading-none">
+                  20+
+                </p>
+                <p className="text-white/30 text-[13px] mt-2">Et chacun raconte une histoire</p>
+              </div>
             </div>
 
             {/* Stat 2 */}
-            <div data-v-stat className="text-center group">
-              <p className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-none">
-                100<span className="text-white/30">%</span>
-              </p>
-              <div className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-white/25 transition-all duration-700 mx-auto mt-4 mb-3" />
-              <p className="text-white/35 text-[11px] sm:text-[12px] tracking-wide">Clients satisfaits</p>
+            <div data-v-stat className="bg-white/60 backdrop-blur-sm border border-black/[0.06] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between min-h-[200px]">
+              <span className="text-black/30 text-[10px] uppercase tracking-[0.2em]">Satisfaction</span>
+              <div>
+                <p className="text-black text-[3rem] sm:text-[3.5rem] font-semibold tracking-[-0.04em] leading-none">
+                  100%
+                </p>
+                <p className="text-black/35 text-[12px] mt-1">Zéro compromis</p>
+              </div>
             </div>
 
             {/* Stat 3 */}
-            <div data-v-stat className="text-center group">
-              <p className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-none">
-                3<span className="text-white/30"> sem</span>
-              </p>
-              <div className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-white/25 transition-all duration-700 mx-auto mt-4 mb-3" />
-              <p className="text-white/35 text-[11px] sm:text-[12px] tracking-wide">Délai moyen</p>
+            <div data-v-stat className="bg-white/60 backdrop-blur-sm border border-black/[0.06] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between min-h-[200px]">
+              <span className="text-black/30 text-[10px] uppercase tracking-[0.2em]">Délai moyen</span>
+              <div>
+                <p className="text-black text-[3rem] sm:text-[3.5rem] font-semibold tracking-[-0.04em] leading-none">
+                  3 sem
+                </p>
+                <p className="text-black/35 text-[12px] mt-1">Du brief au live</p>
+              </div>
             </div>
           </div>
         </div>

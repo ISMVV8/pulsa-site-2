@@ -34,22 +34,20 @@ export default function VisionAnimations() {
         ease: "power2.out",
       }, "-=0.3");
 
-      // ── Manifesto — words fade in on scroll ──
-      const spans = document.querySelectorAll("[data-v-manifesto] span");
-      spans.forEach((span, i) => {
-        gsap.fromTo(span,
-          { opacity: 0.1 },
-          {
-            opacity: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "[data-v-manifesto]",
-              start: `top+=${i * 80} 70%`,
-              end: `top+=${i * 80 + 150} 40%`,
-              scrub: true,
-            },
-          }
-        );
+      // ── Manifesto — word by word reveal on scroll ──
+      const words = document.querySelectorAll("[data-v-word]");
+      const totalWords = words.length;
+      words.forEach((word, i) => {
+        gsap.to(word, {
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "[data-v-manifesto]",
+            start: () => `top+=${(i / totalWords) * 300} 75%`,
+            end: () => `top+=${(i / totalWords) * 300 + 80} 55%`,
+            scrub: true,
+          },
+        });
       });
 
       // ── Value cards — staggered rise ──
