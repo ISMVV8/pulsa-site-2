@@ -141,25 +141,44 @@ export default function Vision() {
         </div>
       </section>
 
-      {/* ═══ STATS BANNER ═══ */}
-      <section data-v-stats className="relative py-16 sm:py-20 bg-black overflow-hidden">
-        {/* Subtle glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-white/[0.03] to-transparent rounded-full blur-3xl" />
+      {/* ═══ STATS — Immersive dark section ═══ */}
+      <section data-v-stats className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden">
+        {/* Glow orbs */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-white/[0.02] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-white/[0.015] rounded-full blur-[100px]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16">
-          <div className="text-center">
-            <p className="text-white text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-[-0.03em]">20+</p>
-            <p className="text-white/40 text-[10px] uppercase tracking-[0.2em] mt-1">Projets livrés</p>
-          </div>
-          <div className="hidden sm:block w-[1px] h-12 bg-white/10" />
-          <div className="text-center">
-            <p className="text-white text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-[-0.03em]">100%</p>
-            <p className="text-white/40 text-[10px] uppercase tracking-[0.2em] mt-1">Clients satisfaits</p>
-          </div>
-          <div className="hidden sm:block w-[1px] h-12 bg-white/10" />
-          <div className="text-center">
-            <p className="text-white text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-[-0.03em]">3 sem</p>
-            <p className="text-white/40 text-[10px] uppercase tracking-[0.2em] mt-1">Délai moyen</p>
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/25 block text-center mb-16">
+            En chiffres
+          </span>
+
+          <div className="grid grid-cols-3 gap-4 sm:gap-8">
+            {/* Stat 1 */}
+            <div data-v-stat className="text-center group">
+              <p className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-none">
+                20<span className="text-white/30">+</span>
+              </p>
+              <div className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-white/25 transition-all duration-700 mx-auto mt-4 mb-3" />
+              <p className="text-white/35 text-[11px] sm:text-[12px] tracking-wide">Projets livrés</p>
+            </div>
+
+            {/* Stat 2 */}
+            <div data-v-stat className="text-center group">
+              <p className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-none">
+                100<span className="text-white/30">%</span>
+              </p>
+              <div className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-white/25 transition-all duration-700 mx-auto mt-4 mb-3" />
+              <p className="text-white/35 text-[11px] sm:text-[12px] tracking-wide">Clients satisfaits</p>
+            </div>
+
+            {/* Stat 3 */}
+            <div data-v-stat className="text-center group">
+              <p className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-none">
+                3<span className="text-white/30"> sem</span>
+              </p>
+              <div className="w-8 h-[1px] bg-white/10 group-hover:w-16 group-hover:bg-white/25 transition-all duration-700 mx-auto mt-4 mb-3" />
+              <p className="text-white/35 text-[11px] sm:text-[12px] tracking-wide">Délai moyen</p>
+            </div>
           </div>
         </div>
       </section>

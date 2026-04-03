@@ -35,18 +35,21 @@ export default function VisionAnimations() {
       }, "-=0.3");
 
       // ── Manifesto — words fade in on scroll ──
-      gsap.from("[data-v-manifesto] span", {
-        opacity: 0.15,
-        y: 30,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "[data-v-manifesto]",
-          start: "top 75%",
-          end: "bottom 50%",
-          scrub: 1,
-        },
+      const spans = document.querySelectorAll("[data-v-manifesto] span");
+      spans.forEach((span, i) => {
+        gsap.fromTo(span,
+          { opacity: 0.1 },
+          {
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "[data-v-manifesto]",
+              start: `top+=${i * 80} 70%`,
+              end: `top+=${i * 80 + 150} 40%`,
+              scrub: true,
+            },
+          }
+        );
       });
 
       // ── Value cards — staggered rise ──
@@ -63,14 +66,17 @@ export default function VisionAnimations() {
         },
       });
 
-      // ── Stats — count up effect ──
-      gsap.from("[data-v-stats]", {
+      // ── Stats — staggered rise with scale ──
+      gsap.from("[data-v-stat]", {
+        y: 50,
         opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
+        scale: 0.9,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: "[data-v-stats]",
-          start: "top 80%",
+          start: "top 75%",
           toggleActions: "play none none none",
         },
       });
