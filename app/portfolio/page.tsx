@@ -213,7 +213,7 @@ export default function Portfolio() {
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-4 sm:py-5">
         <Link href="/">
           <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10 p-0.5">
-            <Image src="/logo-pulsa.jpg" alt="Pulsa" width={32} height={32} className="object-contain mix-blend-multiply" />
+            <Image src="/logo-pulsa.png" alt="Pulsa" width={32} height={32} className="object-cover rounded-full" />
           </GlassCircle>
         </Link>
         <div className="flex items-center gap-2 sm:gap-3">

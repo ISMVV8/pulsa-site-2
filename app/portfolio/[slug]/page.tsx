@@ -91,7 +91,7 @@ export default async function CaseStudyPage({
           <header className="flex items-center justify-between px-5 sm:px-8 py-4 sm:py-5">
             <Link href="/">
               <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-full flex items-center justify-center">
-                <Image src="/logo-pulsa.jpg" alt="Pulsa" width={28} height={28} className="object-contain rounded-full" />
+                <Image src="/logo-pulsa.png" alt="Pulsa" width={28} height={28} className="object-cover rounded-full" />
               </div>
             </Link>
             <Link href="/portfolio" className="bg-white/12 backdrop-blur-2xl border border-white/20 text-white/80 px-4 py-2 text-[11px] uppercase tracking-[0.1em] rounded-full hover:bg-white/25 transition-colors">

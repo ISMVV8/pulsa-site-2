@@ -11,11 +11,11 @@ export default function GlassHeader() {
       <Link href="/">
         <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10 p-0.5">
           <Image
-            src="/logo-pulsa.jpg"
+            src="/logo-pulsa.png"
             alt="Pulsa"
             width={32}
             height={32}
-            className="object-contain mix-blend-multiply"
+            className="object-cover rounded-full"
           />
         </GlassCircle>
       </Link>

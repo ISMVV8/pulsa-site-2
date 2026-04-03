@@ -7,7 +7,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Pulsa Creatives",
   url: "https://pulsacreatives.com",
-  logo: "https://pulsacreatives.com/logo-pulsa.jpg",
+  logo: "https://pulsacreatives.com/logo-pulsa.png",
   description:
     "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO et publicité en ligne.",
   address: {
@@ -76,11 +76,11 @@ export default function Home() {
         <Link href="/">
           <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10 p-0.5">
             <Image
-              src="/logo-pulsa.jpg"
+              src="/logo-pulsa.png"
               alt="Pulsa"
               width={32}
               height={32}
-              className="object-contain mix-blend-multiply"
+              className="object-cover rounded-full"
             />
           </GlassCircle>
         </Link>

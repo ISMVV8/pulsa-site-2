@@ -64,7 +64,7 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
         {/* Logo */}
         <div className="w-14 h-14 rounded-full overflow-hidden ring-1 ring-white/10 mb-12">
           <Image
-            src="/logo-pulsa.jpg"
+            src="/logo-pulsa.png"
             alt="Pulsa"
             width={56}
             height={56}

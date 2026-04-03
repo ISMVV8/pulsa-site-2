@@ -51,7 +51,7 @@ export default function Vision() {
       <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-10 py-5">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-white/25 transition-all">
-            <Image src="/logo-pulsa.jpg" alt="Pulsa" width={36} height={36} className="object-cover" />
+            <Image src="/logo-pulsa.png" alt="Pulsa" width={36} height={36} className="object-cover" />
           </div>
         </Link>
         <Link
