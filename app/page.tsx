@@ -136,60 +136,45 @@ export default function Home() {
 
       </main>
 
-      {/* Visio Button — Bottom Left */}
-      <a
-        href="https://calendar.app.google/fMRz2onsyr5DkovW7"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-50"
-        aria-label="Réserver un appel visio"
-      >
-        <GlassCircle className="w-11 h-11 sm:w-12 sm:h-12">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="black"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="23 7 16 12 23 17 23 7" />
-            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-          </svg>
-        </GlassCircle>
-      </a>
+      {/* Footer */}
+      <footer className="relative z-10 flex flex-col items-center gap-3 sm:gap-4 pb-5 sm:pb-8 px-4 sm:px-6">
+        {/* Primary CTA */}
+        <a
+          href="https://wa.me/32473236759"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-black text-white text-[12px] sm:text-[13px] font-medium px-7 py-3 sm:px-8 sm:py-3.5 rounded-full text-center hover:bg-black/85 transition-colors"
+        >
+          Créer votre projet
+        </a>
 
-      {/* Footer — compact on mobile */}
-      <footer className="relative z-10 flex flex-col items-center gap-3 sm:gap-5 pb-4 sm:pb-8 px-4 sm:px-6">
-        {/* Buttons — row on mobile */}
-        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
-          <a
-            href="https://wa.me/32473236759"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 sm:flex-none bg-black text-white text-[11px] sm:text-[13px] font-medium px-4 py-2.5 sm:px-8 sm:py-3.5 rounded-full text-center hover:bg-black/85 transition-colors"
-          >
-            Créer votre projet
-          </a>
-          <Link href="/portfolio" className="flex-1 sm:flex-none">
-            <GlassButton className="w-full sm:w-auto !px-4 !py-2.5 sm:!px-8 sm:!py-3.5 !text-[11px] sm:!text-[13px]">
+        {/* Secondary row — glass pills */}
+        <div className="flex items-center gap-2">
+          <Link href="/portfolio">
+            <GlassButton className="!px-5 !py-2 sm:!px-6 sm:!py-2.5 !text-[11px] sm:!text-[12px]">
               Portfolio
             </GlassButton>
           </Link>
-          <Link href="/vision" className="flex-1 sm:flex-none">
-            <GlassButton className="w-full sm:w-auto !px-4 !py-2.5 sm:!px-8 sm:!py-3.5 !text-[11px] sm:!text-[13px]">
+          <a
+            href="https://calendar.app.google/fMRz2onsyr5DkovW7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GlassButton className="!px-5 !py-2 sm:!px-6 sm:!py-2.5 !text-[11px] sm:!text-[12px]">
+              📹 Visio
+            </GlassButton>
+          </a>
+          <Link href="/vision">
+            <GlassButton className="!px-5 !py-2 sm:!px-6 sm:!py-2.5 !text-[11px] sm:!text-[12px]">
               Vision
             </GlassButton>
           </Link>
         </div>
-        <p className="text-[9px] sm:text-[11px] text-black/30 tracking-wide text-center">
-          contact@pulsacreatives.com · © Pulsa ·{" "}
-          <Link
-            href="/legal"
-            className="hover:text-black/50 transition-colors duration-300"
-          >
+
+        {/* Legal line */}
+        <p className="text-[9px] sm:text-[10px] text-black/25 tracking-wide text-center mt-1">
+          © Pulsa Creatives ·{" "}
+          <Link href="/legal" className="hover:text-black/50 transition-colors">
             Legal
           </Link>
         </p>
