@@ -16,7 +16,7 @@ export default function Portfolio() {
   const trackRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorTextRef = useRef<HTMLSpanElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -25,8 +25,7 @@ export default function Portfolio() {
     const track = trackRef.current;
     const cursor = cursorRef.current;
     const cursorText = cursorTextRef.current;
-    const titleEl = titleRef.current;
-    if (!section || !track || !cursor || !cursorText || !titleEl) return;
+    if (!section || !track || !cursor || !cursorText) return;
 
     // ── Custom cursor ──
     const moveCursor = (e: MouseEvent) => {
@@ -107,7 +106,6 @@ export default function Portfolio() {
         const glass = card.querySelector("[data-glass]");
         const pills = card.querySelectorAll("[data-pill]");
         const tags = card.querySelectorAll("[data-tag]");
-        const number = card.querySelector("[data-number]");
         const imgEl = card.querySelector("[data-img]");
 
         // Image subtle parallax via translate (no scale)
@@ -123,24 +121,6 @@ export default function Portfolio() {
               scrub: true,
             },
           });
-        }
-
-        // Number slides in from right
-        if (number) {
-          gsap.fromTo(number,
-            { x: 80, opacity: 0 },
-            {
-              x: 0, opacity: 1,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: tween,
-                start: "left 80%",
-                end: "left 50%",
-                scrub: 0.5,
-              },
-            }
-          );
         }
 
         // Glass overlay — staggered reveal
@@ -207,22 +187,7 @@ export default function Portfolio() {
     };
   }, []);
 
-  // Update floating title
-  useEffect(() => {
-    const titleEl = titleRef.current;
-    if (!titleEl) return;
-    gsap.to(titleEl, {
-      opacity: 0,
-      duration: 0.15,
-      onComplete: () => {
-        if (titleRef.current) {
-          titleRef.current.textContent = projects[activeIndex]?.name || "";
-        }
-        gsap.to(titleEl, { opacity: 1, duration: 0.3, y: 0 });
-      },
-      y: -10,
-    });
-  }, [activeIndex]);
+
 
   return (
     <div className="bg-white text-black">
@@ -304,16 +269,6 @@ export default function Portfolio() {
           />
         </div>
 
-        {/* Floating project title — top center */}
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 hidden md:block">
-          <div
-            ref={titleRef}
-            className="text-white/50 text-[13px] font-medium tracking-[0.15em] uppercase"
-          >
-            {projects[0]?.name}
-          </div>
-        </div>
-
         {/* Counter — top right */}
         <div className="absolute top-6 right-8 z-30">
           <div className="flex items-center gap-3">
@@ -381,13 +336,7 @@ export default function Portfolio() {
               {/* Gradient — bottom-left corner */}
               <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/5 to-transparent z-10" />
 
-              {/* Number watermark */}
-              <span
-                data-number
-                className="absolute top-[15%] right-[5%] text-white/[0.04] text-[12rem] sm:text-[16rem] md:text-[20rem] font-black leading-none z-10 select-none pointer-events-none"
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
+
 
               {/* ── Glass — bottom-left ── */}
               <div data-glass className="absolute bottom-8 sm:bottom-12 left-6 sm:left-12 z-20 max-w-[85%] sm:max-w-[42%] md:max-w-[32%] flex flex-col gap-3">
