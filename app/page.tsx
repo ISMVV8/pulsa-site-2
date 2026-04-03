@@ -130,7 +130,7 @@ export default function Home() {
         <h1 className="text-[clamp(2rem,7vw,4.5rem)] font-semibold tracking-[-0.03em] text-center leading-[1.1]">
           Créer avec émotion.
         </h1>
-        <p className="mt-3 sm:mt-4 text-black/70 text-[12px] sm:text-[13px] tracking-[0.04em]">
+        <p className="mt-3 sm:mt-4 text-black text-[13px] sm:text-[14px] font-medium tracking-[0.02em]">
           Agence digitale premium — Bruxelles
         </p>
 
