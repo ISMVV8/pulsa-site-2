@@ -78,6 +78,7 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "theme-color": "#f5ede3",
   },
 };
 
@@ -94,8 +95,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={`${satoshi.variable} antialiased`}>
+    <html lang="fr" style={{ backgroundColor: "#f5ede3" }}>
+      <body className={`${satoshi.variable} antialiased`} style={{ backgroundColor: "#f5ede3" }}>
         <a href="#main-content" className="skip-link">
           Aller au contenu principal
         </a>

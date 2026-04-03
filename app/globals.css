@@ -8,6 +8,8 @@ html {
   height: 100%;
   height: -webkit-fill-available;
   background-color: #f5ede3;
+  /* Safari overscroll color */
+  overscroll-behavior: none;
 }
 
 /* Full-screen mobile */
