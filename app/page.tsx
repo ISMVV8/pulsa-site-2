@@ -49,7 +49,7 @@ const serviceSchema = {
 
 export default function Home() {
   return (
-    <div className="relative min-h-[100dvh] min-h-[-webkit-fill-available] flex flex-col text-black bg-[#f5ede3]">
+    <div className="relative h-[100dvh] flex flex-col text-black bg-[#f5ede3] overflow-hidden">
       {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -59,8 +59,8 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      {/* Background Image — extended to cover Safari overscroll */}
-      <div className="fixed inset-0 z-0">
+      {/* Background Image — oversized to cover Safari bottom gap */}
+      <div className="fixed -inset-4 z-0">
         <Image
           src="/bg-sakura.jpg"
           alt=""
