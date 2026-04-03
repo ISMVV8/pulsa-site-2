@@ -43,12 +43,12 @@ export default function Portfolio() {
     const cards = document.querySelectorAll("[data-card]");
     cards.forEach((card) => {
       card.addEventListener("mouseenter", () => {
-        gsap.to(cursor, { width: 80, height: 80, duration: 0.3, ease: "power2.out" });
-        gsap.to(cursorText, { opacity: 1, duration: 0.3 });
+        gsap.to(cursor, { width: 60, height: 60, duration: 0.4, ease: "power3.out" });
+        gsap.to(cursorText, { opacity: 1, scale: 1, duration: 0.3, delay: 0.1 });
       });
       card.addEventListener("mouseleave", () => {
-        gsap.to(cursor, { width: 16, height: 16, duration: 0.3, ease: "power2.out" });
-        gsap.to(cursorText, { opacity: 0, duration: 0.2 });
+        gsap.to(cursor, { width: 12, height: 12, duration: 0.3, ease: "power2.out" });
+        gsap.to(cursorText, { opacity: 0, scale: 0.8, duration: 0.2 });
       });
     });
 
@@ -229,10 +229,18 @@ export default function Portfolio() {
       {/* ── Custom cursor (hidden on mobile) ── */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:flex items-center justify-center"
+        className="fixed top-0 left-0 w-3 h-3 pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center"
       >
-        <span ref={cursorTextRef} className="text-[9px] uppercase tracking-[0.1em] text-black font-medium opacity-0">
-          View
+        {/* Outer ring */}
+        <div className="absolute inset-0 rounded-full border border-black/30 transition-all duration-300" />
+        {/* Inner dot */}
+        <div className="w-1 h-1 rounded-full bg-black/60" />
+        {/* "View" label — shown on card hover */}
+        <span
+          ref={cursorTextRef}
+          className="absolute whitespace-nowrap text-[9px] uppercase tracking-[0.12em] font-medium text-white bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 transition-opacity duration-200"
+        >
+          Voir ↗
         </span>
       </div>
 
