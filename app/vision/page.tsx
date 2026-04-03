@@ -98,7 +98,7 @@ export default function Vision() {
       </section>
 
       {/* ═══ MANIFESTO — Word by word reveal ═══ */}
-      <section className="relative py-28 sm:py-40 px-6 sm:px-10 overflow-hidden">
+      <section className="relative py-16 sm:py-24 px-6 sm:px-10 overflow-hidden">
         <div className="max-w-4xl mx-auto">
           <p data-v-manifesto className="text-[clamp(2rem,5.5vw,4rem)] font-semibold leading-[1.4] tracking-[-0.03em] text-black">
             {"On ne crée pas juste des sites. On construit des expériences qui donnent envie de rester, de cliquer, d\u2019acheter. Le genre de détail qui transforme un visiteur curieux en client convaincu.".split(" ").map((word, i) => (
@@ -111,7 +111,7 @@ export default function Vision() {
       </section>
 
       {/* ═══ VALUES — Three cards ═══ */}
-      <section className="relative px-6 sm:px-10 pb-24 sm:pb-32">
+      <section className="relative px-6 sm:px-10 pb-12 sm:pb-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
             {values.map((value) => (
@@ -144,7 +144,7 @@ export default function Vision() {
       </section>
 
       {/* ═══ STATS — Bento grid ═══ */}
-      <section data-v-stats className="relative py-20 sm:py-28 px-6 sm:px-10 overflow-hidden">
+      <section data-v-stats className="relative py-14 sm:py-20 px-6 sm:px-10 overflow-hidden">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
             {/* Big stat — spans 2 cols */}
