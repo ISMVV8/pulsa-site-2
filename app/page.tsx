@@ -161,7 +161,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <GlassButton className="!px-5 !py-2 sm:!px-6 sm:!py-2.5 !text-[11px] sm:!text-[12px]">
-              📹 Visio
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-1.5 -mt-0.5"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg>Visio
             </GlassButton>
           </a>
           <Link href="/vision">

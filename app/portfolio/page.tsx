@@ -418,7 +418,7 @@ export default function Portfolio() {
               rel="noopener noreferrer"
               className="bg-white/[0.06] border border-white/10 text-white/70 text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/10 hover:text-white/90 transition-all duration-200"
             >
-              Ou en appel visio 📹
+              <span className="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" ry="2" /></svg>Ou en appel visio</span>
             </a>
           </div>
 
