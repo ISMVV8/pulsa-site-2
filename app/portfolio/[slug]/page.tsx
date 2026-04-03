@@ -165,11 +165,11 @@ export default async function CaseStudyPage({
             </p>
             <div className="grid grid-cols-2 gap-8 mt-8 pt-8 border-t border-black/5">
               <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-black/25 block mb-1">Secteur</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-black/45 block mb-1">Secteur</span>
                 <span className="text-[14px] font-medium">{project.secteur}</span>
               </div>
               <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-black/25 block mb-1">Durée</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-black/45 block mb-1">Durée</span>
                 <span className="text-[14px] font-medium">{project.duree}</span>
               </div>
             </div>

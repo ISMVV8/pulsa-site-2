@@ -94,12 +94,18 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
         {/* Form */}
         <form onSubmit={handleSubmit} className="w-full max-w-[280px] flex flex-col gap-3">
           <div className="relative">
+            <label htmlFor="maintenance-password" className="sr-only">
+              Mot de passe
+            </label>
             <input
               ref={inputRef}
+              id="maintenance-password"
               type="password"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Mot de passe"
+              aria-label="Mot de passe pour accéder au site"
+              aria-invalid={error}
               className={`w-full bg-white/[0.06] border ${
                 error ? "border-red-500/50" : "border-white/[0.08]"
               } rounded-full px-5 py-3.5 text-[14px] text-white placeholder:text-white/20 outline-none focus:border-white/20 focus:bg-white/[0.08] transition-all duration-300`}

@@ -174,7 +174,7 @@ export default function LegalPage() {
 
       {/* Footer */}
       <footer className="flex flex-col items-center gap-2 py-8 px-5 border-t border-black/5">
-        <p className="text-[11px] text-black/20 tracking-wide text-center">
+        <p className="text-[11px] text-black/40 tracking-wide text-center">
           © Pulsa Creatives · Bruxelles, Belgique
         </p>
       </footer>

@@ -282,12 +282,12 @@ export default function Portfolio() {
 
         <div data-hero-scroll className="relative z-10 mt-12 flex flex-col items-center gap-2">
           <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-black/20 to-black/40 animate-pulse" />
-          <span className="text-[9px] uppercase tracking-[0.25em] text-black/25">Scroll</span>
+          <span className="text-[9px] uppercase tracking-[0.25em] text-black/50">Scroll</span>
         </div>
       </section>
 
       {/* ═══ HORIZONTAL SCROLL SECTION ═══ */}
-      <section ref={sectionRef} className="relative h-screen overflow-hidden">
+      <section ref={sectionRef} className="relative h-screen overflow-hidden" role="region" aria-label="Galerie de projets" aria-roledescription="carousel">
         {/* Progress bar */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/10 z-30">
           <div
@@ -309,7 +309,7 @@ export default function Portfolio() {
         {/* Counter — top right */}
         <div className="absolute top-6 right-8 z-30">
           <div className="flex items-center gap-3">
-            <span className="text-white/30 text-[11px] tracking-[0.15em] uppercase">
+            <span className="text-white/60 text-[11px] tracking-[0.15em] uppercase">
               {String(activeIndex + 1).padStart(2, "0")}
             </span>
             <div className="w-12 h-[1px] bg-white/15 relative">
@@ -321,7 +321,7 @@ export default function Portfolio() {
                 }}
               />
             </div>
-            <span className="text-white/20 text-[11px] tracking-[0.15em] uppercase">
+            <span className="text-white/45 text-[11px] tracking-[0.15em] uppercase">
               {String(projects.length).padStart(2, "0")}
             </span>
           </div>
@@ -353,6 +353,9 @@ export default function Portfolio() {
               key={project.slug}
               href={`/portfolio/${project.slug}`}
               data-card
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Projet ${i + 1} sur ${projects.length}: ${project.name}`}
               className="group flex-shrink-0 block h-screen w-screen relative"
             >
               {/* Image */}
@@ -457,7 +460,7 @@ export default function Portfolio() {
 
       {/* Footer */}
       <footer className="flex flex-col items-center gap-2 py-6 px-5">
-        <p className="text-[10px] sm:text-[11px] text-black/20 tracking-wide text-center">
+        <p className="text-[10px] sm:text-[11px] text-black/40 tracking-wide text-center">
           © Pulsa Creatives ·{" "}
           <Link href="/legal" className="hover:text-black/40 transition-colors duration-300">Legal</Link>
         </p>

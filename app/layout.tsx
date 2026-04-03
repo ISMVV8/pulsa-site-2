@@ -85,8 +85,13 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.variable} antialiased`}>
+        <a href="#main-content" className="skip-link">
+          Aller au contenu principal
+        </a>
         <MaintenanceGate>
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
         </MaintenanceGate>
         <Script
           src="https://taap.it/scripts/tracker.js"
