@@ -81,12 +81,12 @@ export default function Vision() {
             Ce qui nous anime
           </span>
 
-          <h1 data-v-title className="text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] max-w-4xl">
-            <span className="text-black">Précision.</span>
+          <h1 data-v-title className="text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] max-w-4xl text-black">
+            <span data-v-word-hero style={{ opacity: 1 }}>Précision.</span>
             <br />
-            <span className="text-black/50">Émotion.</span>
+            <span data-v-word-hero style={{ opacity: 0.15 }}>Émotion.</span>
             <br />
-            <span className="text-black/20">Performance.</span>
+            <span data-v-word-hero style={{ opacity: 0.08 }}>Performance.</span>
           </h1>
 
           {/* Scroll indicator */}
