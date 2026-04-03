@@ -56,7 +56,7 @@ export default function Vision() {
         </Link>
         <Link
           href="/"
-          className="text-white/40 text-[11px] uppercase tracking-[0.15em] hover:text-white/70 transition-colors"
+          className="text-white/60 text-[11px] uppercase tracking-[0.15em] hover:text-white/70 transition-colors"
         >
           ← Retour
         </Link>
@@ -65,7 +65,7 @@ export default function Vision() {
       {/* Main content — centered */}
       <main className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
         {/* Small label */}
-        <span data-v-label className="text-[10px] uppercase tracking-[0.3em] text-white/20 mb-6">
+        <span data-v-label className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">
           Notre philosophie
         </span>
 
@@ -73,7 +73,7 @@ export default function Vision() {
         <h1 data-v-title className="text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] max-w-4xl">
           <span className="text-white">Précision.</span>
           <br />
-          <span className="text-white/40">Émotion.</span>
+          <span className="text-white/60">Émotion.</span>
           <br />
           <span className="text-white/15">Performance.</span>
         </h1>
@@ -89,15 +89,15 @@ export default function Vision() {
         <div data-v-pillars className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 mt-12">
           <div className="flex items-center gap-3">
             <div className="w-8 h-[1px] bg-white/10" />
-            <span className="text-white/50 text-[12px] tracking-[0.1em]">Design obsessionnel</span>
+            <span className="text-white/70 text-[12px] tracking-[0.1em]">Design obsessionnel</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-8 h-[1px] bg-white/10" />
-            <span className="text-white/50 text-[12px] tracking-[0.1em]">Code performant</span>
+            <span className="text-white/70 text-[12px] tracking-[0.1em]">Code performant</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-8 h-[1px] bg-white/10" />
-            <span className="text-white/50 text-[12px] tracking-[0.1em]">Résultats mesurables</span>
+            <span className="text-white/70 text-[12px] tracking-[0.1em]">Résultats mesurables</span>
           </div>
         </div>
 

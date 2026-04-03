@@ -249,13 +249,13 @@ export default function Portfolio() {
             </span>
           ))}
         </h1>
-        <p data-hero-sub className="relative z-10 mt-4 text-black/40 text-[12px] sm:text-[13px] tracking-[0.04em] max-w-md">
+        <p data-hero-sub className="relative z-10 mt-4 text-black text-[14px] sm:text-[15px] font-medium tracking-[0.02em] max-w-md">
           Scrollez pour explorer nos projets
         </p>
 
         <div data-hero-scroll className="relative z-10 mt-12 flex flex-col items-center gap-2">
           <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-black/20 to-black/40 animate-pulse" />
-          <span className="text-[9px] uppercase tracking-[0.25em] text-black/50">Scroll</span>
+          <span className="text-[9px] uppercase tracking-[0.25em] text-black/80">Scroll</span>
         </div>
       </section>
 
@@ -355,7 +355,7 @@ export default function Portfolio() {
                   <h2 className="text-white text-[24px] sm:text-[30px] md:text-[36px] font-semibold tracking-[-0.03em] leading-[1.1]">
                     {project.name}
                   </h2>
-                  <p className="text-white/50 text-[13px] sm:text-[14px] mt-3 leading-relaxed line-clamp-2">
+                  <p className="text-white/75 text-[13px] sm:text-[14px] mt-3 leading-relaxed line-clamp-2">
                     {project.longDescription}
                   </p>
                 </div>
@@ -390,7 +390,7 @@ export default function Portfolio() {
 
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/20 mb-8">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-8">
             Et si c&apos;était votre tour ?
           </span>
 
@@ -426,40 +426,40 @@ export default function Portfolio() {
           <div className="flex items-center gap-8 sm:gap-12 mt-16">
             <div className="text-center">
               <p className="text-white/80 text-[clamp(1.2rem,3vw,1.6rem)] font-semibold tracking-[-0.02em]">20+</p>
-              <p className="text-white/20 text-[9px] uppercase tracking-[0.15em] mt-1">Projets</p>
+              <p className="text-white/40 text-[9px] uppercase tracking-[0.15em] mt-1">Projets</p>
             </div>
             <div className="w-[1px] h-8 bg-white/[0.06]" />
             <div className="text-center">
               <p className="text-white/80 text-[clamp(1.2rem,3vw,1.6rem)] font-semibold tracking-[-0.02em]">100%</p>
-              <p className="text-white/20 text-[9px] uppercase tracking-[0.15em] mt-1">Satisfaits</p>
+              <p className="text-white/40 text-[9px] uppercase tracking-[0.15em] mt-1">Satisfaits</p>
             </div>
             <div className="w-[1px] h-8 bg-white/[0.06]" />
             <div className="text-center">
               <p className="text-white/80 text-[clamp(1.2rem,3vw,1.6rem)] font-semibold tracking-[-0.02em]">3 sem</p>
-              <p className="text-white/20 text-[9px] uppercase tracking-[0.15em] mt-1">Délai moyen</p>
+              <p className="text-white/40 text-[9px] uppercase tracking-[0.15em] mt-1">Délai moyen</p>
             </div>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-6 sm:px-10 py-5 border-t border-white/[0.04]">
-          <Link href="/" className="text-white/20 text-[11px] hover:text-white/40 transition-colors">
+          <Link href="/" className="text-white/40 text-[11px] hover:text-white/60 transition-colors">
             Pulsa Creatives
           </Link>
           <div className="flex items-center gap-5">
-            <a href="https://instagram.com/pulsacreatives" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-white/50 transition-colors" aria-label="Instagram">
+            <a href="https://instagram.com/pulsacreatives" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white/60 transition-colors" aria-label="Instagram">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
             </a>
-            <a href="https://tiktok.com/@pulsacreatives" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-white/50 transition-colors" aria-label="TikTok">
+            <a href="https://tiktok.com/@pulsacreatives" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white/60 transition-colors" aria-label="TikTok">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.72a8.19 8.19 0 0 0 4.76 1.52V6.79a4.83 4.83 0 0 1-1-.1z" />
               </svg>
             </a>
-            <Link href="/legal" className="text-white/20 text-[11px] hover:text-white/40 transition-colors">
+            <Link href="/legal" className="text-white/40 text-[11px] hover:text-white/60 transition-colors">
               Legal
             </Link>
           </div>

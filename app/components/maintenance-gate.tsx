@@ -76,7 +76,7 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
         {/* Status */}
         <div className="flex items-center gap-2.5 mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-          <span className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-medium">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-white/60 font-medium">
             Site en maintenance
           </span>
         </div>
@@ -85,7 +85,7 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
         <h1 className="text-white text-[clamp(2rem,6vw,3.2rem)] font-semibold tracking-[-0.04em] leading-[1.1] mb-4">
           Bientôt disponible
         </h1>
-        <p className="text-white/30 text-[14px] leading-relaxed mb-12">
+        <p className="text-white/55 text-[14px] leading-relaxed mb-12">
           Nous travaillons sur quelque chose de nouveau.
           <br />
           Entrez le mot de passe pour accéder à la preview.
@@ -134,7 +134,7 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
           <div className="w-8 h-[1px] bg-white/[0.06]" />
           <a
             href="mailto:contact@pulsacreatives.com"
-            className="text-[11px] tracking-[0.1em] text-white/15 hover:text-white/30 transition-colors duration-300"
+            className="text-[11px] tracking-[0.1em] text-white/35 hover:text-white/55 transition-colors duration-300"
           >
             contact@pulsacreatives.com
           </a>

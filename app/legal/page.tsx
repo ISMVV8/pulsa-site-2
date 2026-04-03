@@ -166,7 +166,7 @@ export default function LegalPage() {
           <p>
             Les présentes mentions légales peuvent être modifiées à tout moment. La date de dernière mise à jour est indiquée ci-dessous.
           </p>
-          <p className="mt-4 text-black/30 text-[13px]">
+          <p className="mt-4 text-black/60 text-[13px]">
             Dernière mise à jour : 3 avril 2026
           </p>
         </Section>
@@ -174,7 +174,7 @@ export default function LegalPage() {
 
       {/* Footer */}
       <footer className="flex flex-col items-center gap-2 py-8 px-5 border-t border-black/5">
-        <p className="text-[11px] text-black/40 tracking-wide text-center">
+        <p className="text-[11px] text-black/60 tracking-wide text-center">
           © Pulsa Creatives · Bruxelles, Belgique
         </p>
       </footer>
