@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { GlassButton, GlassCircle } from "../components/glass-button";
+import VisionAnimations from "./animations";
 
 export const metadata: Metadata = {
   title: "Notre Vision",
@@ -23,125 +23,112 @@ export const metadata: Metadata = {
   },
 };
 
-const values = [
-  {
-    icon: "🎯",
-    title: "Précision",
-    text: "Chaque pixel compte. Nous créons des expériences digitales avec une attention obsessionnelle au détail.",
-  },
-  {
-    icon: "✨",
-    title: "Émotion",
-    text: "Un site web doit faire ressentir quelque chose. Nous concevons des interfaces qui marquent les esprits.",
-  },
-  {
-    icon: "🚀",
-    title: "Performance",
-    text: "Beauté et vitesse ne sont pas incompatibles. Nos sites sont optimisés pour convertir et performer.",
-  },
-];
-
 export default function Vision() {
   return (
-    <div className="min-h-[100dvh] flex flex-col bg-white text-black">
-      {/* Banner — Sakura */}
-      <div className="relative h-[22vh] sm:h-[28vh] min-h-[150px] sm:min-h-[190px] w-full overflow-hidden">
+    <div className="relative h-[100dvh] overflow-hidden bg-[#060606] text-white">
+      <VisionAnimations />
+
+      {/* Background — sakura with dark overlay */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/bg-sakura.jpg"
-          alt="Sakura"
+          alt=""
           fill
-          className="object-cover"
+          className="object-cover opacity-15"
           priority
         />
-        <div className="absolute inset-0 bg-black/10" />
-
-        {/* Header */}
-        <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 sm:px-8 py-4 sm:py-5">
-          <Link href="/">
-            <GlassCircle className="w-9 h-9 sm:w-10 sm:h-10 p-0.5">
-              <Image
-                src="/logo-pulsa.jpg"
-                alt="Pulsa"
-                width={32}
-                height={32}
-                className="object-contain mix-blend-multiply"
-              />
-            </GlassCircle>
-          </Link>
-          <Link href="/">
-            <GlassButton className="!text-[11px] sm:!text-[13px] !px-5 sm:!px-8 !py-2.5 sm:!py-3.5">
-              Retour
-            </GlassButton>
-          </Link>
-        </header>
-
-        {/* Title */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
-          <h1 className="text-[clamp(1.8rem,5vw,3.5rem)] font-semibold tracking-[-0.03em] text-white drop-shadow-lg">
-            Notre vision
-          </h1>
-          <p className="mt-1.5 text-white/70 text-[12px] sm:text-sm tracking-wide">
-            Ce en quoi nous croyons
-          </p>
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-16 bg-gradient-to-t from-white to-transparent" />
       </div>
 
-      {/* Content */}
-      <main className="flex-1 px-4 sm:px-6 pt-3 sm:pt-4 pb-3 sm:pb-4 max-w-4xl mx-auto w-full">
-        {/* Intro */}
-        <p className="text-center text-[12px] sm:text-[14px] text-black/50 leading-relaxed max-w-xl mx-auto mb-4 sm:mb-6">
-          Chez Pulsa, nous croyons que le digital doit provoquer une émotion.
+      {/* Grain texture */}
+      <div
+        className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Header */}
+      <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-10 py-5">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-white/25 transition-all">
+            <Image src="/logo-pulsa.jpg" alt="Pulsa" width={36} height={36} className="object-cover" />
+          </div>
+        </Link>
+        <Link
+          href="/"
+          className="text-white/40 text-[11px] uppercase tracking-[0.15em] hover:text-white/70 transition-colors"
+        >
+          ← Retour
+        </Link>
+      </header>
+
+      {/* Main content — centered */}
+      <main className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+        {/* Small label */}
+        <span data-v-label className="text-[10px] uppercase tracking-[0.3em] text-white/20 mb-6">
+          Notre philosophie
+        </span>
+
+        {/* Big statement */}
+        <h1 data-v-title className="text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] max-w-4xl">
+          <span className="text-white">Précision.</span>
+          <br />
+          <span className="text-white/40">Émotion.</span>
+          <br />
+          <span className="text-white/15">Performance.</span>
+        </h1>
+
+        {/* Manifesto text */}
+        <p data-v-text className="mt-8 text-white/35 text-[14px] sm:text-[15px] leading-[1.8] max-w-lg">
+          Nous croyons que le digital doit provoquer une émotion.
           Pas juste informer — mais inspirer, captiver et convertir.
-          Chaque projet est une opportunité de créer quelque chose d&apos;exceptionnel.
+          Chaque pixel, chaque interaction, chaque détail compte.
         </p>
 
-        {/* Values */}
-        <div className="grid grid-cols-3 gap-2.5 sm:gap-4">
-          {values.map((value) => (
-            <div
-              key={value.title}
-              className="group rounded-xl sm:rounded-2xl border border-black/[0.06] bg-white p-3 sm:p-5 text-center hover:shadow-lg hover:border-black/[0.1] transition-all duration-300 hover:-translate-y-1"
-            >
-              <span className="text-xl sm:text-2xl">{value.icon}</span>
-              <h2 className="text-[12px] sm:text-[14px] font-semibold tracking-tight mt-1.5 sm:mt-2">
-                {value.title}
-              </h2>
-              <p className="mt-1 sm:mt-1.5 text-[9px] sm:text-[11px] text-black/40 leading-relaxed">
-                {value.text}
-              </p>
-              <div className="mt-2 sm:mt-3 h-[2px] w-6 rounded-full bg-black/10 group-hover:w-10 group-hover:bg-black/25 transition-all duration-300 mx-auto" />
-            </div>
-          ))}
+        {/* Three pillars */}
+        <div data-v-pillars className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 mt-12">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-[1px] bg-white/10" />
+            <span className="text-white/50 text-[12px] tracking-[0.1em]">Design obsessionnel</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-[1px] bg-white/10" />
+            <span className="text-white/50 text-[12px] tracking-[0.1em]">Code performant</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-[1px] bg-white/10" />
+            <span className="text-white/50 text-[12px] tracking-[0.1em]">Résultats mesurables</span>
+          </div>
         </div>
 
-        {/* Bottom quote */}
-        <div className="mt-4 sm:mt-6 text-center">
-          <p className="text-[16px] sm:text-[20px] font-semibold tracking-tight text-black/80 italic">
-            &ldquo;Build with emotion.&rdquo;
-          </p>
-          <p className="mt-1 text-[10px] sm:text-[11px] text-black/30 tracking-wide uppercase">
-            Pulsa Creatives
-          </p>
+        {/* CTA */}
+        <div data-v-cta className="mt-14 flex flex-col sm:flex-row items-center gap-3">
+          <a
+            href="https://wa.me/32473236759"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
+          >
+            Démarrer un projet →
+          </a>
+          <Link
+            href="/portfolio"
+            className="bg-white/[0.06] border border-white/10 text-white/60 text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/10 hover:text-white/80 transition-all duration-200"
+          >
+            Voir nos réalisations
+          </Link>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 py-4 sm:py-5 px-4 sm:px-6">
-        <a
-          href="https://wa.me/32473236759"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <GlassButton className="!bg-black/[0.04] !text-[11px] sm:!text-[13px] !px-5 sm:!px-8 !py-2.5 sm:!py-3.5">
-            Discutons de votre projet
-          </GlassButton>
-        </a>
-        <p className="text-[10px] sm:text-[11px] text-black/30 tracking-wide">
-          contact@pulsacreatives.com · © Pulsa
-        </p>
-      </footer>
+      {/* Bottom bar */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-10 py-5">
+        <span className="text-white/15 text-[10px] tracking-[0.15em] uppercase">
+          Créer avec émotion
+        </span>
+        <span className="text-white/15 text-[10px] tracking-wide">
+          © Pulsa Creatives
+        </span>
+      </div>
     </div>
   );
 }
