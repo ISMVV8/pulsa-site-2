@@ -27,20 +27,6 @@ export default function VisionAnimations() {
         ease: "power4.out",
       }, "-=0.3");
 
-      // ── Hero title words reveal to full opacity on scroll ──
-      const heroWords = document.querySelectorAll("[data-v-word-hero]");
-      heroWords.forEach((word) => {
-        gsap.to(word, {
-          opacity: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "[data-v-title]",
-            start: "bottom 90%",
-            end: "bottom 20%",
-            scrub: true,
-          },
-        });
-      });
 
       tl.from("[data-v-scroll]", {
         y: 15,

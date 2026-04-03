@@ -82,11 +82,11 @@ export default function Vision() {
           </span>
 
           <h1 data-v-title className="text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] max-w-4xl text-black">
-            <span data-v-word-hero style={{ opacity: 1 }}>Précision.</span>
+            <span>Précision.</span>
             <br />
-            <span data-v-word-hero style={{ opacity: 0.15 }}>Émotion.</span>
+            <span className="text-black/50">Émotion.</span>
             <br />
-            <span data-v-word-hero style={{ opacity: 0.08 }}>Performance.</span>
+            <span className="text-black/20">Performance.</span>
           </h1>
 
           {/* Scroll indicator */}
