@@ -32,7 +32,7 @@ export const projects: Project[] = [
     description: "Cabinet dentaire haut de gamme",
     longDescription:
       "Refonte complète du site vitrine pour un cabinet dentaire premium à Bruxelles. Design épuré, prise de rendez-vous en ligne, et optimisation SEO locale pour maximiser la visibilité.",
-    image: "/projects/city-smile.png",
+    image: "/projects/city-smile.webp",
     color: "#4A90D9",
     tags: ["Next.js", "SEO", "Design UI/UX", "Responsive"],
     services: ["Site vitrine", "SEO", "Design UI/UX"],
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     description: "Mise en relation talents & entreprises",
     longDescription:
       "Plateforme de recrutement connectant les meilleurs talents aux entreprises. Dashboard candidat, système de matching intelligent, et interface administration complète.",
-    image: "/projects/success-talent.png",
+    image: "/projects/success-talent.webp",
     color: "#6C5CE7",
     tags: ["React", "Node.js", "Base de données", "Dashboard"],
     services: ["Plateforme web", "Dashboard", "Base de données"],
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     description: "Agence immobilière premium",
     longDescription:
       "Site immobilier haut de gamme avec recherche avancée de biens, visites virtuelles 360°, estimation en ligne et espace propriétaire dédié.",
-    image: "/projects/terra-sky.png",
+    image: "/projects/terra-sky.webp",
     color: "#2D3436",
     tags: ["Next.js", "API Maps", "Filtres avancés", "CMS"],
     services: ["Site vitrine", "SEO", "Immobilier"],
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     description: "Pâtisserie artisanale en ligne",
     longDescription:
       "Boutique en ligne pour une pâtisserie artisanale. Catalogue produits avec photos HD, commandes personnalisées, click & collect et livraison à domicile.",
-    image: "/projects/sweety-delice.png",
+    image: "/projects/sweety-delice.webp",
     color: "#E17055",
     tags: ["Shopify", "E-commerce", "Paiement", "Design"],
     services: ["E-commerce", "Paiement en ligne", "Design"],
@@ -204,7 +204,7 @@ export const projects: Project[] = [
     description: "Écosystème e-commerce & formation",
     longDescription:
       "Écosystème complet pour entrepreneurs e-commerce : formation, coaching, networking, sourcing et outils. +2 400 membres actifs sur la plateforme.",
-    image: "/projects/8lab.png",
+    image: "/projects/8lab.webp",
     color: "#0A0A0A",
     tags: ["Next.js", "Supabase", "Stripe", "Dashboard"],
     services: ["Plateforme SaaS", "Stripe", "Dashboard"],
@@ -247,7 +247,7 @@ export const projects: Project[] = [
     description: "Thème Shopify sur-mesure",
     longDescription:
       "Thème Shopify premium entièrement custom avec des performances optimisées, animations fluides, et un design conversion-oriented pour maximiser les ventes.",
-    image: "/projects/podium.png",
+    image: "/projects/podium.webp",
     color: "#636E72",
     tags: ["Shopify", "Liquid", "Performance", "Conversion"],
     services: ["E-commerce", "Shopify", "Performance"],

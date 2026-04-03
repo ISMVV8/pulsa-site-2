@@ -364,7 +364,6 @@ export default function Portfolio() {
                   className="object-cover object-top"
                   loading={i < 3 ? "eager" : "lazy"}
                   sizes="100vw"
-                  unoptimized
                 />
               </div>
 

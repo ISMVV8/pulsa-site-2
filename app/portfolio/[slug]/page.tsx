@@ -107,7 +107,6 @@ export default async function CaseStudyPage({
           fill
           className="object-cover object-top"
           priority
-          unoptimized
           sizes="100vw"
         />
 
@@ -252,7 +251,6 @@ export default async function CaseStudyPage({
               alt={next.name}
               fill
               className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-              unoptimized
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500 z-10" />
