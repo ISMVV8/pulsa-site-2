@@ -1,17 +1,13 @@
 "use client";
 
-import {
-  LiquidGlassProvider,
-  LiquidGlassFilters,
-} from "@gracefullight/liquid-glass";
 import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 
-const glassConfig = {
-  tintColor: "#ffffff",
-  tintOpacity: 0.55,
-  frostBlur: "28",
-  shadow: "0px 4px 24px rgba(0,0,0,0.15)",
-};
+/**
+ * Glassmorphism components — CSS-only, no SVG filters.
+ * Visible, performant, accessible.
+ *
+ * Uses: backdrop-blur + semi-transparent bg + border + shadow
+ */
 
 export function GlassButton({
   children,
@@ -19,19 +15,23 @@ export function GlassButton({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }) {
   return (
-    <LiquidGlassProvider value={{ ...glassConfig, radius: "9999px" }}>
-      <button
-        className={`relative overflow-hidden px-8 py-3.5 text-[13px] font-medium text-black cursor-pointer transition-transform duration-300 hover:scale-[1.03] ${className}`}
-        style={{ borderRadius: "9999px" }}
-        {...props}
-      >
-        <LiquidGlassFilters
-          innerShadowZIndex={0}
-          backdropFilterZIndex={-1}
-        />
-        <span className="relative z-10">{children}</span>
-      </button>
-    </LiquidGlassProvider>
+    <button
+      className={`
+        relative px-8 py-3.5 text-[13px] font-medium text-black cursor-pointer
+        bg-white/40 backdrop-blur-xl
+        border border-white/50
+        shadow-[0_2px_16px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]
+        rounded-full
+        transition-all duration-300
+        hover:bg-white/55 hover:shadow-[0_4px_24px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.7)]
+        hover:scale-[1.02]
+        active:scale-[0.98]
+        ${className}
+      `}
+      {...props}
+    >
+      {children}
+    </button>
   );
 }
 
@@ -41,18 +41,20 @@ export function GlassCircle({
   ...props
 }: HTMLAttributes<HTMLDivElement> & { children: ReactNode }) {
   return (
-    <LiquidGlassProvider value={{ ...glassConfig, radius: "9999px" }}>
-      <div
-        className={`relative overflow-hidden rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-105 ${className}`}
-        {...props}
-      >
-        <LiquidGlassFilters
-          innerShadowZIndex={0}
-          backdropFilterZIndex={-1}
-        />
-        <span className="relative z-10">{children}</span>
-      </div>
-    </LiquidGlassProvider>
+    <div
+      className={`
+        rounded-full flex items-center justify-center
+        bg-white/35 backdrop-blur-xl
+        border border-white/40
+        shadow-[0_2px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.5)]
+        transition-all duration-300
+        hover:bg-white/50 hover:scale-105
+        ${className}
+      `}
+      {...props}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -62,18 +64,18 @@ export function GlassCard({
   ...props
 }: HTMLAttributes<HTMLDivElement> & { children: ReactNode }) {
   return (
-    <LiquidGlassProvider value={{ ...glassConfig, radius: "16px" }}>
-      <div
-        className={`relative overflow-hidden rounded-2xl transition-all duration-300 ${className}`}
-        style={{ borderRadius: "16px" }}
-        {...props}
-      >
-        <LiquidGlassFilters
-          innerShadowZIndex={0}
-          backdropFilterZIndex={-1}
-        />
-        <div className="relative z-10">{children}</div>
-      </div>
-    </LiquidGlassProvider>
+    <div
+      className={`
+        rounded-2xl
+        bg-white/30 backdrop-blur-xl
+        border border-white/40
+        shadow-[0_4px_24px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.5)]
+        transition-all duration-300
+        ${className}
+      `}
+      {...props}
+    >
+      {children}
+    </div>
   );
 }
