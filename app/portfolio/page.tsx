@@ -289,7 +289,7 @@ export default function Portfolio() {
       {/* ═══ HORIZONTAL SCROLL SECTION ═══ */}
       <section ref={sectionRef} className="relative h-screen overflow-hidden" role="region" aria-label="Galerie de projets" aria-roledescription="carousel">
         {/* Progress bar */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/10 z-30">
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/8 z-30">
           <div
             className="h-full bg-white/70 ease-linear"
             style={{ width: `${progress * 100}%`, transition: "width 0.1s linear" }}
@@ -312,7 +312,7 @@ export default function Portfolio() {
             <span className="text-white/60 text-[11px] tracking-[0.15em] uppercase">
               {String(activeIndex + 1).padStart(2, "0")}
             </span>
-            <div className="w-12 h-[1px] bg-white/15 relative">
+            <div className="w-12 h-[1px] bg-white/12 relative">
               <div
                 className="absolute top-0 left-0 h-full bg-white/60"
                 style={{

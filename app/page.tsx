@@ -133,6 +133,18 @@ export default function Home() {
         <p className="mt-3 sm:mt-4 text-black/40 text-[12px] sm:text-[13px] tracking-[0.04em]">
           Agence digitale premium — Bruxelles
         </p>
+
+        {/* Services hint */}
+        <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-2">
+          {["Sites web", "E-commerce", "Landing pages", "SEO", "Ads"].map((s) => (
+            <span
+              key={s}
+              className="bg-black/[0.04] backdrop-blur-sm text-black/50 px-3.5 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.08em] rounded-full"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
       </main>
 
       {/* Visio Button — Bottom Left */}
@@ -159,6 +171,24 @@ export default function Home() {
           </svg>
         </GlassCircle>
       </a>
+
+      {/* Social proof */}
+      <div className="relative z-10 flex items-center justify-center gap-6 sm:gap-10 mb-6 sm:mb-8 px-5">
+        <div className="text-center">
+          <p className="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold tracking-[-0.02em] text-black">20+</p>
+          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-black/30">Projets livrés</p>
+        </div>
+        <div className="w-[1px] h-8 bg-black/10" />
+        <div className="text-center">
+          <p className="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold tracking-[-0.02em] text-black">100%</p>
+          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-black/30">Clients satisfaits</p>
+        </div>
+        <div className="w-[1px] h-8 bg-black/10" />
+        <div className="text-center">
+          <p className="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold tracking-[-0.02em] text-black">3 sem</p>
+          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-black/30">Délai moyen</p>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 pb-6 sm:pb-10 px-5 sm:px-6">
