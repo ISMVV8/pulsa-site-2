@@ -161,47 +161,30 @@ export default function Home() {
         </GlassCircle>
       </a>
 
-      {/* Social proof */}
-      <div className="relative z-10 flex items-center justify-center gap-6 sm:gap-10 mb-6 sm:mb-8 px-5">
-        <div className="text-center">
-          <p className="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold tracking-[-0.02em] text-black">20+</p>
-          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-black/30">Projets livrés</p>
-        </div>
-        <div className="w-[1px] h-8 bg-black/10" />
-        <div className="text-center">
-          <p className="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold tracking-[-0.02em] text-black">100%</p>
-          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-black/30">Clients satisfaits</p>
-        </div>
-        <div className="w-[1px] h-8 bg-black/10" />
-        <div className="text-center">
-          <p className="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold tracking-[-0.02em] text-black">3 sem</p>
-          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-black/30">Délai moyen</p>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 pb-6 sm:pb-10 px-5 sm:px-6">
-        <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+      {/* Footer — compact on mobile */}
+      <footer className="relative z-10 flex flex-col items-center gap-3 sm:gap-5 pb-4 sm:pb-8 px-4 sm:px-6">
+        {/* Buttons — row on mobile */}
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
           <a
             href="https://wa.me/32473236759"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto bg-black text-white text-[12px] sm:text-[13px] font-medium px-5 py-3 sm:px-8 sm:py-3.5 rounded-full text-center hover:bg-black/85 transition-colors"
+            className="flex-1 sm:flex-none bg-black text-white text-[11px] sm:text-[13px] font-medium px-4 py-2.5 sm:px-8 sm:py-3.5 rounded-full text-center hover:bg-black/85 transition-colors"
           >
             Créer votre projet
           </a>
-          <Link href="/portfolio" className="w-full sm:w-auto">
-            <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
-              Voir notre portfolio
+          <Link href="/portfolio" className="flex-1 sm:flex-none">
+            <GlassButton className="w-full sm:w-auto !px-4 !py-2.5 sm:!px-8 sm:!py-3.5 !text-[11px] sm:!text-[13px]">
+              Portfolio
             </GlassButton>
           </Link>
-          <Link href="/vision" className="w-full sm:w-auto">
-            <GlassButton className="w-full sm:w-auto !px-5 !py-3 sm:!px-8 sm:!py-3.5 !text-[12px] sm:!text-[13px]">
-              Notre vision
+          <Link href="/vision" className="flex-1 sm:flex-none">
+            <GlassButton className="w-full sm:w-auto !px-4 !py-2.5 sm:!px-8 sm:!py-3.5 !text-[11px] sm:!text-[13px]">
+              Vision
             </GlassButton>
           </Link>
         </div>
-        <p className="text-[10px] sm:text-[11px] text-black/30 tracking-wide text-center">
+        <p className="text-[9px] sm:text-[11px] text-black/30 tracking-wide text-center">
           contact@pulsacreatives.com · © Pulsa ·{" "}
           <Link
             href="/legal"
