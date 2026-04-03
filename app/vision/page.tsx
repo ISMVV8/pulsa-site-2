@@ -157,81 +157,75 @@ export default function Vision() {
             </p>
           </div>
 
-          {/* 3 Cards */}
+          {/* 3 Cards — Full image with text overlay */}
           <div className="grid md:grid-cols-3 gap-4 sm:gap-5">
             {/* Card 1 — Satisfaction */}
-            <div data-v-stat className="bg-[#f8f5f0] rounded-2xl sm:rounded-3xl overflow-hidden">
-              <div className="aspect-[4/3] relative bg-[#ede8e0] flex items-center justify-center">
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-sm">
-                    ✨ Satisfaction
-                  </span>
-                </div>
-                {/* Placeholder for generated image */}
-                <Image
-                  src="/vision/satisfaction.png"
-                  alt="100% clients satisfaits"
-                  fill
-                  className="object-cover"
-                />
+            <div data-v-stat className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden group">
+              <Image
+                src="/vision/satisfaction.jpg"
+                alt="100% clients satisfaits"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute top-4 left-4 z-10">
+                <span className="bg-white/15 backdrop-blur-md text-white text-[11px] font-medium px-3.5 py-1.5 rounded-full border border-white/20">
+                  ✨ Satisfaction
+                </span>
               </div>
-              <div className="p-5 sm:p-6">
-                <p className="text-black font-semibold text-[15px]">
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+                <p className="text-white font-semibold text-[16px] sm:text-[17px] leading-tight">
                   100% de clients satisfaits.
                 </p>
-                <p className="text-black/40 text-[13px] mt-1 leading-relaxed">
+                <p className="text-white/60 text-[13px] mt-1.5 leading-relaxed">
                   Zéro compromis sur la qualité. On ne livre que ce qui nous rend fiers.
                 </p>
               </div>
             </div>
 
             {/* Card 2 — Rapidité */}
-            <div data-v-stat className="bg-[#f8f5f0] rounded-2xl sm:rounded-3xl overflow-hidden">
-              <div className="aspect-[4/3] relative bg-[#ede8e0] flex items-center justify-center">
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-sm">
-                    ⚡ Rapidité
-                  </span>
-                </div>
-                {/* Placeholder for generated image */}
-                <Image
-                  src="/vision/rapidite.png"
-                  alt="3 semaines de délai moyen"
-                  fill
-                  className="object-cover"
-                />
+            <div data-v-stat className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden group">
+              <Image
+                src="/vision/rapidite.png"
+                alt="3 semaines de délai moyen"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute top-4 left-4 z-10">
+                <span className="bg-white/15 backdrop-blur-md text-white text-[11px] font-medium px-3.5 py-1.5 rounded-full border border-white/20">
+                  ⚡ Rapidité
+                </span>
               </div>
-              <div className="p-5 sm:p-6">
-                <p className="text-black font-semibold text-[15px]">
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+                <p className="text-white font-semibold text-[16px] sm:text-[17px] leading-tight">
                   3 semaines, du brief au live.
                 </p>
-                <p className="text-black/40 text-[13px] mt-1 leading-relaxed">
+                <p className="text-white/60 text-[13px] mt-1.5 leading-relaxed">
                   Rapide ne veut pas dire bâclé. On optimise chaque étape pour livrer vite et bien.
                 </p>
               </div>
             </div>
 
             {/* Card 3 — Sur-mesure */}
-            <div data-v-stat className="bg-[#f8f5f0] rounded-2xl sm:rounded-3xl overflow-hidden">
-              <div className="aspect-[4/3] relative bg-[#ede8e0] flex items-center justify-center">
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-sm">
-                    ⭐ Sur-mesure
-                  </span>
-                </div>
-                {/* Placeholder for generated image */}
-                <Image
-                  src="/vision/surmesure.png"
-                  alt="Solutions sur-mesure"
-                  fill
-                  className="object-cover"
-                />
+            <div data-v-stat className="relative aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden group">
+              <Image
+                src="/vision/surmesure.png"
+                alt="Solutions sur-mesure"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute top-4 left-4 z-10">
+                <span className="bg-white/15 backdrop-blur-md text-white text-[11px] font-medium px-3.5 py-1.5 rounded-full border border-white/20">
+                  ⭐ Sur-mesure
+                </span>
               </div>
-              <div className="p-5 sm:p-6">
-                <p className="text-black font-semibold text-[15px]">
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
+                <p className="text-white font-semibold text-[16px] sm:text-[17px] leading-tight">
                   Chaque projet est unique.
                 </p>
-                <p className="text-black/40 text-[13px] mt-1 leading-relaxed">
+                <p className="text-white/60 text-[13px] mt-1.5 leading-relaxed">
                   Pas de templates. On construit from scratch, adapté à votre business et vos objectifs.
                 </p>
               </div>
