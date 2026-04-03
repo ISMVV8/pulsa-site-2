@@ -19,8 +19,31 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
   return {
-    title: `${project.name} — Étude de cas | Pulsa Creatives`,
+    title: `${project.name} — Étude de cas`,
     description: project.longDescription,
+    openGraph: {
+      title: `${project.name} — Étude de cas | Pulsa Creatives`,
+      description: project.longDescription,
+      url: `https://pulsacreatives.com/portfolio/${slug}`,
+      images: [
+        {
+          url: project.image,
+          width: 1920,
+          height: 1080,
+          alt: project.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} — Pulsa Creatives`,
+      description: project.longDescription,
+      images: [project.image],
+    },
+    alternates: {
+      canonical: `https://pulsacreatives.com/portfolio/${slug}`,
+    },
   };
 }
 
@@ -36,8 +59,29 @@ export default async function CaseStudyPage({
   const next = projects.find((p) => p.slug === project.nextSlug);
   const projectIndex = projects.findIndex((p) => p.slug === slug);
 
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: `${project.name} — Étude de cas`,
+    description: project.longDescription,
+    url: `https://pulsacreatives.com/portfolio/${slug}`,
+    image: `https://pulsacreatives.com${project.image}`,
+    author: {
+      "@type": "Organization",
+      name: "Pulsa Creatives",
+      url: "https://pulsacreatives.com",
+    },
+    datePublished: `${project.year}-01-01`,
+    genre: project.type,
+    keywords: project.services.join(", "),
+  };
+
   return (
     <div className="bg-white text-black min-h-screen overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
       <CaseStudyAnimations />
 
       {/* ═══ HERO — Fullscreen with project image ═══ */}

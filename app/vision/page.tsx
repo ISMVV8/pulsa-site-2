@@ -1,6 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { GlassButton, GlassCircle } from "../components/glass-button";
+
+export const metadata: Metadata = {
+  title: "Notre Vision",
+  description:
+    "Précision, émotion, performance. Découvrez la philosophie de Pulsa Creatives — agence digitale premium à Bruxelles.",
+  openGraph: {
+    title: "Notre Vision — Pulsa Creatives",
+    description: "Précision, émotion, performance. La philosophie Pulsa Creatives.",
+    url: "https://pulsacreatives.com/vision",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notre Vision — Pulsa Creatives",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://pulsacreatives.com/vision",
+  },
+};
 
 const values = [
   {

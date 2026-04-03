@@ -2,9 +2,63 @@ import Image from "next/image";
 import Link from "next/link";
 import { GlassButton, GlassCircle } from "./components/glass-button";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Pulsa Creatives",
+  url: "https://pulsacreatives.com",
+  logo: "https://pulsacreatives.com/logo-pulsa.jpg",
+  description:
+    "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO et publicité en ligne.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bruxelles",
+    addressCountry: "BE",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    url: "https://wa.me/32473236759",
+    availableLanguage: ["French", "English"],
+  },
+  sameAs: [
+    "https://instagram.com/pulsacreatives",
+    "https://tiktok.com/@pulsacreatives",
+  ],
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Web Design & Development",
+  provider: {
+    "@type": "Organization",
+    name: "Pulsa Creatives",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Belgium",
+  },
+  description:
+    "Création de sites web premium, landing pages, e-commerce, SEO et publicité en ligne.",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+  },
+};
+
 export default function Home() {
   return (
     <div className="relative min-h-[100dvh] flex flex-col text-black">
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -74,10 +128,10 @@ export default function Home() {
       {/* Main Content */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6">
         <h1 className="text-[clamp(2rem,7vw,4.5rem)] font-semibold tracking-[-0.03em] text-center leading-[1.1]">
-          Build with emotion.
+          Créer avec émotion.
         </h1>
         <p className="mt-3 sm:mt-4 text-black/40 text-[12px] sm:text-[13px] tracking-[0.04em]">
-          Apple-inspired design patterns
+          Agence digitale premium — Bruxelles
         </p>
       </main>
 

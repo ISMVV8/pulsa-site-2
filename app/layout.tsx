@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import MaintenanceGate from "./components/maintenance-gate";
 import "./globals.css";
@@ -10,19 +10,58 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
-  title: "Pulsa Creatives — Agence Digitale",
+  metadataBase: new URL("https://pulsacreatives.com"),
+  title: {
+    default: "Pulsa Creatives — Agence Digitale Premium à Bruxelles",
+    template: "%s | Pulsa Creatives",
+  },
   description:
-    "Agence digitale premium. Sites web, landing pages, e-commerce, SEO et Ads.",
+    "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO et publicité en ligne. Design Apple-inspired, résultats mesurables.",
+  keywords: [
+    "agence digitale",
+    "agence web bruxelles",
+    "création site web",
+    "landing page",
+    "e-commerce",
+    "SEO",
+    "design premium",
+    "Pulsa Creatives",
+  ],
+  authors: [{ name: "Pulsa Creatives", url: "https://pulsacreatives.com" }],
+  creator: "Pulsa Creatives",
+  publisher: "Pulsa Creatives",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_BE",
+    url: "https://pulsacreatives.com",
+    siteName: "Pulsa Creatives",
+    title: "Pulsa Creatives — Agence Digitale Premium à Bruxelles",
+    description:
+      "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO et Ads. Design inspiré, résultats mesurables.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Pulsa Creatives — Agence Digitale Premium",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pulsa Creatives — Agence Digitale Premium",
+    description:
+      "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://pulsacreatives.com",
   },
   other: {
     "mobile-web-app-capable": "yes",
@@ -45,7 +84,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         <MaintenanceGate>
           {children}
         </MaintenanceGate>
