@@ -134,17 +134,6 @@ export default function Home() {
           Agence digitale premium — Bruxelles
         </p>
 
-        {/* Services hint */}
-        <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-2">
-          {["Sites web", "E-commerce", "Landing pages", "SEO", "Ads"].map((s) => (
-            <span
-              key={s}
-              className="bg-black/[0.04] backdrop-blur-sm text-black/50 px-3.5 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.08em] rounded-full"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
       </main>
 
       {/* Visio Button — Bottom Left */}
