@@ -52,18 +52,18 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
         />
 
         {/* Status badge */}
-        <div className="flex items-center gap-2 mb-6">
+        <div className="flex items-center gap-2 mb-6 bg-black/60 backdrop-blur-xl px-4 py-2 rounded-full">
           <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-          <span className="text-[11px] uppercase tracking-[0.2em] text-black/40 font-medium">
+          <span className="text-[11px] uppercase tracking-[0.2em] text-white/90 font-medium">
             En maintenance
           </span>
         </div>
 
         {/* Title */}
-        <h1 className="text-[clamp(1.8rem,5vw,2.8rem)] font-semibold tracking-[-0.03em] leading-[1.1] mb-3">
-          On prépare quelque chose<span className="text-black/15">.</span>
+        <h1 className="text-[clamp(1.8rem,5vw,2.8rem)] font-semibold tracking-[-0.03em] leading-[1.1] mb-3 text-black">
+          On prépare quelque chose<span className="text-black/30">.</span>
         </h1>
-        <p className="text-black/35 text-[13px] leading-relaxed mb-10">
+        <p className="text-black/80 text-[13px] leading-relaxed mb-10 bg-white/50 backdrop-blur-sm rounded-xl px-4 py-2">
           Notre site est en cours de mise à jour. Entrez le mot de passe pour accéder à la preview.
         </p>
 
@@ -93,9 +93,9 @@ export default function MaintenanceGate({ children }: { children: React.ReactNod
         </form>
 
         {/* Contact */}
-        <p className="mt-10 text-[11px] text-black/20 tracking-wide">
+        <p className="mt-10 text-[11px] tracking-wide bg-black/60 backdrop-blur-xl text-white/80 px-4 py-2 rounded-full">
           Contact :{" "}
-          <a href="mailto:contact@pulsacreatives.com" className="hover:text-black/40 transition-colors">
+          <a href="mailto:contact@pulsacreatives.com" className="text-white hover:text-white/60 transition-colors">
             contact@pulsacreatives.com
           </a>
         </p>
