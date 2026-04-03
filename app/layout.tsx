@@ -74,11 +74,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://pulsacreatives.com",
   },
+  themeColor: "#f5ede3",
   other: {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "theme-color": "#f5ede3",
+    "apple-mobile-web-app-status-bar-style": "default",
   },
 };
 
