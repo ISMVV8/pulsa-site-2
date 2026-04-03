@@ -100,7 +100,7 @@ export default function Vision() {
       {/* ═══ MANIFESTO — Word by word reveal ═══ */}
       <section className="relative py-28 sm:py-40 px-6 sm:px-10 overflow-hidden">
         <div className="max-w-4xl mx-auto">
-          <p data-v-manifesto className="text-[clamp(1.4rem,3.5vw,2.6rem)] font-medium leading-[1.55] tracking-[-0.02em] text-black">
+          <p data-v-manifesto className="text-[clamp(2rem,5.5vw,4rem)] font-semibold leading-[1.4] tracking-[-0.03em] text-black">
             {"On ne crée pas juste des sites. On construit des expériences qui donnent envie de rester, de cliquer, d\u2019acheter. Le genre de détail qui transforme un visiteur curieux en client convaincu.".split(" ").map((word, i) => (
               <span key={i} data-v-word className="inline-block mr-[0.3em] opacity-[0.08]">
                 {word}
