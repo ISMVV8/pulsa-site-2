@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Pulsa Creatives",
   },
   description:
-    "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO et publicité en ligne. Design Apple-inspired, résultats mesurables.",
+    "Votre agence digitale à Bruxelles. On crée des sites web, e-commerce et landing pages qui convertissent — avec un design soigné et des résultats concrets.",
   keywords: [
     "agence digitale",
     "agence web bruxelles",

@@ -156,7 +156,7 @@ export default async function CaseStudyPage({
           <div>
             <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 block mb-3">Brief client</span>
             <h2 className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
-              Le contexte<span className="text-black/15">.</span>
+              Le point de départ<span className="text-black/15">.</span>
             </h2>
           </div>
           <div>
@@ -180,7 +180,7 @@ export default async function CaseStudyPage({
       {/* ═══ DÉFI ═══ */}
       <section data-section className="px-6 sm:px-12 lg:px-20 py-20 sm:py-28 max-w-[1200px] mx-auto border-t border-black/5">
         <div className="max-w-3xl">
-          <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 block mb-3">Le défi</span>
+          <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 block mb-3">Le challenge</span>
           <h2 className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-semibold tracking-[-0.03em] leading-[1.1] mb-8">
             Problématique<span className="text-black/15">.</span>
           </h2>
@@ -194,7 +194,7 @@ export default async function CaseStudyPage({
       <section data-section className="px-6 sm:px-12 lg:px-20 py-20 sm:py-28 max-w-[1200px] mx-auto border-t border-black/5">
         <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 block mb-3">Notre approche</span>
         <h2 className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-semibold tracking-[-0.03em] leading-[1.1] mb-16">
-          Méthodologie<span className="text-black/15">.</span>
+          Comment on s&apos;y est pris<span className="text-black/15">.</span>
         </h2>
 
         <div className="grid md:grid-cols-3 gap-10 md:gap-14">
@@ -221,7 +221,7 @@ export default async function CaseStudyPage({
       <section data-section className="px-6 sm:px-12 lg:px-20 py-20 sm:py-28 max-w-[1200px] mx-auto border-t border-black/5">
         <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 block mb-3">Les résultats</span>
         <h2 className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-semibold tracking-[-0.03em] leading-[1.1] mb-16">
-          Impact mesurable<span className="text-black/15">.</span>
+          Les résultats concrets<span className="text-black/15">.</span>
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
@@ -274,9 +274,9 @@ export default async function CaseStudyPage({
           <Image src="/bg-sakura.jpg" alt="" fill className="object-cover" />
         </div>
         <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 mb-4">Votre projet</span>
+          <span className="text-[11px] uppercase tracking-[0.2em] text-black/30 mb-4">À votre tour</span>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-[-0.03em] leading-[1.1]">
-            Votre site, le prochain<span className="text-black/15">.</span>
+            On construit le vôtre<span className="text-black/15"> ?</span>
           </h2>
           <a
             href="https://wa.me/32473236759"
@@ -284,7 +284,7 @@ export default async function CaseStudyPage({
             rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 bg-black text-white text-[13px] font-medium px-8 py-4 rounded-full hover:bg-black/85 transition-colors"
           >
-            Démarrer un projet
+            Parlons de votre projet
             <span>→</span>
           </a>
         </div>

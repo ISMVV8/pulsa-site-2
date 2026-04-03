@@ -66,7 +66,7 @@ export default function Vision() {
       <main className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
         {/* Small label */}
         <span data-v-label className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">
-          Notre philosophie
+          Ce qui nous anime
         </span>
 
         {/* Big statement */}
@@ -79,25 +79,25 @@ export default function Vision() {
         </h1>
 
         {/* Manifesto text */}
-        <p data-v-text className="mt-8 text-white/35 text-[14px] sm:text-[15px] leading-[1.8] max-w-lg">
-          Nous croyons que le digital doit provoquer une émotion.
-          Pas juste informer — mais inspirer, captiver et convertir.
-          Chaque pixel, chaque interaction, chaque détail compte.
+        <p data-v-text className="mt-8 text-white/45 text-[14px] sm:text-[15px] leading-[1.8] max-w-lg">
+          On ne crée pas juste des sites. On construit des expériences
+          qui font ressentir quelque chose. Le genre de détail
+          qui fait qu&apos;un visiteur devient un client.
         </p>
 
         {/* Three pillars */}
         <div data-v-pillars className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 mt-12">
           <div className="flex items-center gap-3">
             <div className="w-8 h-[1px] bg-white/10" />
-            <span className="text-white/70 text-[12px] tracking-[0.1em]">Design obsessionnel</span>
+            <span className="text-white/70 text-[12px] tracking-[0.1em]">Chaque détail compte</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-8 h-[1px] bg-white/10" />
-            <span className="text-white/70 text-[12px] tracking-[0.1em]">Code performant</span>
+            <span className="text-white/70 text-[12px] tracking-[0.1em]">Rapide et fiable</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-8 h-[1px] bg-white/10" />
-            <span className="text-white/70 text-[12px] tracking-[0.1em]">Résultats mesurables</span>
+            <span className="text-white/70 text-[12px] tracking-[0.1em]">Des vrais résultats</span>
           </div>
         </div>
 
@@ -109,13 +109,13 @@ export default function Vision() {
             rel="noopener noreferrer"
             className="bg-white text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
           >
-            Démarrer un projet →
+            Discutons de votre projet →
           </a>
           <Link
             href="/portfolio"
             className="bg-white/[0.06] border border-white/10 text-white/60 text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/10 hover:text-white/80 transition-all duration-200"
           >
-            Voir nos réalisations
+            Découvrir nos projets
           </Link>
         </div>
       </main>
@@ -123,7 +123,7 @@ export default function Vision() {
       {/* Bottom bar */}
       <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-10 py-5">
         <span className="text-white/15 text-[10px] tracking-[0.15em] uppercase">
-          Créer avec émotion
+          Votre vision, notre métier
         </span>
         <span className="text-white/15 text-[10px] tracking-wide">
           © Pulsa Creatives

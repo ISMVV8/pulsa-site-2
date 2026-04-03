@@ -243,14 +243,14 @@ export default function Portfolio() {
         </div>
 
         <h1 data-hero-title className="relative z-10 text-[clamp(2.5rem,8vw,5.5rem)] font-semibold tracking-[-0.04em] leading-[1.05] overflow-hidden">
-          {"Nos réalisations.".split("").map((char, i) => (
+          {"Ils nous ont fait confiance.".split("").map((char, i) => (
             <span key={i} className="inline-block" style={{ perspective: "600px" }}>
               {char === " " ? "\u00A0" : char}
             </span>
           ))}
         </h1>
         <p data-hero-sub className="relative z-10 mt-4 text-black text-[14px] sm:text-[15px] font-medium tracking-[0.02em] max-w-md">
-          Scrollez pour explorer nos projets
+          Découvrez les projets qu&apos;on a construits ensemble
         </p>
 
         <div data-hero-scroll className="relative z-10 mt-12 flex flex-col items-center gap-2">
@@ -391,15 +391,15 @@ export default function Portfolio() {
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-2xl">
           <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-8">
-            Et si c&apos;était votre tour ?
+            Votre tour ?
           </span>
 
           <h2 className="text-white text-[clamp(2.5rem,7vw,5rem)] font-semibold tracking-[-0.04em] leading-[1.05] mb-6">
-            Créons ensemble<span className="text-white/15">.</span>
+            Le prochain, c&apos;est vous<span className="text-white/15">.</span>
           </h2>
 
-          <p className="text-white/35 text-[14px] sm:text-[15px] leading-relaxed max-w-md mb-10">
-            Chaque grand projet commence par une conversation. Parlez-nous du vôtre.
+          <p className="text-white/45 text-[14px] sm:text-[15px] leading-relaxed max-w-md mb-10">
+            Vous avez une idée, un projet, une envie ? On adore transformer ça en quelque chose de concret. Un simple message et c&apos;est parti.
           </p>
 
           {/* CTA buttons */}
@@ -410,7 +410,7 @@ export default function Portfolio() {
               rel="noopener noreferrer"
               className="bg-white text-black text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
             >
-              Démarrer un projet →
+              Parlons-en sur WhatsApp →
             </a>
             <a
               href="https://calendar.app.google/fMRz2onsyr5DkovW7"
@@ -418,7 +418,7 @@ export default function Portfolio() {
               rel="noopener noreferrer"
               className="bg-white/[0.06] border border-white/10 text-white/70 text-[13px] font-medium px-8 py-4 rounded-full hover:bg-white/10 hover:text-white/90 transition-all duration-200"
             >
-              Réserver un appel visio
+              Ou en appel visio 📹
             </a>
           </div>
 

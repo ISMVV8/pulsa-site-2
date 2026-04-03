@@ -9,7 +9,7 @@ const jsonLd = {
   url: "https://pulsacreatives.com",
   logo: "https://pulsacreatives.com/logo-pulsa.png",
   description:
-    "Agence digitale premium à Bruxelles. Sites web, landing pages, e-commerce, SEO et publicité en ligne.",
+    "Votre agence digitale à Bruxelles. Sites web, e-commerce et landing pages qui convertissent.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bruxelles",
@@ -40,7 +40,7 @@ const serviceSchema = {
     name: "Belgium",
   },
   description:
-    "Création de sites web premium, landing pages, e-commerce, SEO et publicité en ligne.",
+    "On crée des sites web, e-commerce et landing pages pensés pour convertir vos visiteurs en clients.",
   offers: {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
@@ -128,10 +128,10 @@ export default function Home() {
       {/* Main Content */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6">
         <h1 className="text-[clamp(2rem,7vw,4.5rem)] font-semibold tracking-[-0.03em] text-center leading-[1.1]">
-          Créer avec émotion.
+          On donne vie à vos idées.
         </h1>
         <p className="mt-3 sm:mt-4 text-black text-[15px] sm:text-[17px] font-semibold tracking-[-0.01em]">
-          Agence digitale premium — Bruxelles
+          Votre agence digitale à Bruxelles
         </p>
 
       </main>
@@ -145,7 +145,7 @@ export default function Home() {
           rel="noopener noreferrer"
           className="bg-black text-white text-[12px] sm:text-[13px] font-medium px-7 py-3 sm:px-8 sm:py-3.5 rounded-full text-center hover:bg-black/85 transition-colors"
         >
-          Créer votre projet
+          Parlons de votre projet
         </a>
 
         {/* Secondary row — glass pills */}

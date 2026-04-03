@@ -31,7 +31,7 @@ export const projects: Project[] = [
     year: "2024",
     description: "Pâtisserie artisanale en ligne",
     longDescription:
-      "Boutique en ligne pour une pâtisserie artisanale. Catalogue produits avec photos HD, commandes personnalisées, click & collect et livraison à domicile.",
+      "Une boutique aussi belle que leurs gâteaux. Commande en ligne, click & collect, livraison — tout pour que chaque client craque dès la première visite.",
     image: "/projects/sweety-delice.webp",
     color: "#E17055",
     tags: ["Shopify", "E-commerce", "Paiement", "Design"],
@@ -74,7 +74,7 @@ export const projects: Project[] = [
     year: "2024",
     description: "Agence immobilière premium",
     longDescription:
-      "Site immobilier haut de gamme avec recherche avancée de biens, visites virtuelles 360°, estimation en ligne et espace propriétaire dédié.",
+      "Un site à la hauteur de leurs biens. Recherche intuitive, visites virtuelles 360° et un parcours qui transforme les curieux en acheteurs.",
     image: "/projects/terra-sky.webp",
     color: "#2D3436",
     tags: ["Next.js", "API Maps", "Filtres avancés", "CMS"],
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     year: "2025",
     description: "Thème Shopify sur-mesure",
     longDescription:
-      "Thème Shopify premium entièrement custom avec des performances optimisées, animations fluides, et un design conversion-oriented pour maximiser les ventes.",
+      "Un thème Shopify taillé pour vendre. Ultra-rapide, beau sur tous les écrans, et pensé pour que chaque visiteur passe à l’action.",
     image: "/projects/podium.webp",
     color: "#636E72",
     tags: ["Shopify", "Liquid", "Performance", "Conversion"],
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     year: "2025",
     description: "Mise en relation talents & entreprises",
     longDescription:
-      "Plateforme de recrutement connectant les meilleurs talents aux entreprises. Dashboard candidat, système de matching intelligent, et interface administration complète.",
+      "La plateforme qui connecte les bons profils aux bonnes entreprises. Matching intelligent, dashboards clairs, et une expérience fluide pour tout le monde.",
     image: "/projects/success-talent.webp",
     color: "#6C5CE7",
     tags: ["React", "Node.js", "Base de données", "Dashboard"],
