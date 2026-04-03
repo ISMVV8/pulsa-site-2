@@ -143,40 +143,97 @@ export default function Vision() {
         </div>
       </section>
 
-      {/* ═══ STATS — Bento grid ═══ */}
+      {/* ═══ STATS — Title + 3 cards with image placeholders ═══ */}
       <section data-v-stats className="relative py-14 sm:py-20 px-6 sm:px-10 overflow-hidden">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {/* Big stat — spans 2 cols */}
-            <div data-v-stat className="col-span-2 bg-black rounded-2xl sm:rounded-3xl p-8 sm:p-10 flex flex-col justify-between min-h-[200px] group">
-              <span className="text-white/30 text-[10px] uppercase tracking-[0.2em]">Projets livrés</span>
-              <div>
-                <p className="text-white text-[4rem] sm:text-[5rem] font-semibold tracking-[-0.04em] leading-none">
-                  20+
+          {/* Heading */}
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-[clamp(1.8rem,4.5vw,3rem)] font-semibold tracking-[-0.03em] leading-[1.15]">
+              <span className="text-black">20+ projets</span>{" "}
+              <span className="text-black/40">livrés avec la même exigence.</span>
+            </h2>
+            <p className="text-black/40 text-[13px] sm:text-[14px] mt-3 max-w-md mx-auto">
+              Chaque projet est traité comme s&apos;il était le nôtre. Voici ce qui nous définit.
+            </p>
+          </div>
+
+          {/* 3 Cards */}
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-5">
+            {/* Card 1 — Satisfaction */}
+            <div data-v-stat className="bg-[#f8f5f0] rounded-2xl sm:rounded-3xl overflow-hidden">
+              <div className="aspect-[4/3] relative bg-[#ede8e0] flex items-center justify-center">
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-sm">
+                    ✨ Satisfaction
+                  </span>
+                </div>
+                {/* Placeholder for generated image */}
+                <Image
+                  src="/vision/satisfaction.png"
+                  alt="100% clients satisfaits"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6">
+                <p className="text-black font-semibold text-[15px]">
+                  100% de clients satisfaits.
                 </p>
-                <p className="text-white/30 text-[13px] mt-2">Et chacun raconte une histoire</p>
+                <p className="text-black/40 text-[13px] mt-1 leading-relaxed">
+                  Zéro compromis sur la qualité. On ne livre que ce qui nous rend fiers.
+                </p>
               </div>
             </div>
 
-            {/* Stat 2 */}
-            <div data-v-stat className="bg-white/60 backdrop-blur-sm border border-black/[0.06] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between min-h-[200px]">
-              <span className="text-black/30 text-[10px] uppercase tracking-[0.2em]">Satisfaction</span>
-              <div>
-                <p className="text-black text-[3rem] sm:text-[3.5rem] font-semibold tracking-[-0.04em] leading-none">
-                  100%
+            {/* Card 2 — Rapidité */}
+            <div data-v-stat className="bg-[#f8f5f0] rounded-2xl sm:rounded-3xl overflow-hidden">
+              <div className="aspect-[4/3] relative bg-[#ede8e0] flex items-center justify-center">
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-sm">
+                    ⚡ Rapidité
+                  </span>
+                </div>
+                {/* Placeholder for generated image */}
+                <Image
+                  src="/vision/rapidite.png"
+                  alt="3 semaines de délai moyen"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6">
+                <p className="text-black font-semibold text-[15px]">
+                  3 semaines, du brief au live.
                 </p>
-                <p className="text-black/35 text-[12px] mt-1">Zéro compromis</p>
+                <p className="text-black/40 text-[13px] mt-1 leading-relaxed">
+                  Rapide ne veut pas dire bâclé. On optimise chaque étape pour livrer vite et bien.
+                </p>
               </div>
             </div>
 
-            {/* Stat 3 */}
-            <div data-v-stat className="bg-white/60 backdrop-blur-sm border border-black/[0.06] rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between min-h-[200px]">
-              <span className="text-black/30 text-[10px] uppercase tracking-[0.2em]">Délai moyen</span>
-              <div>
-                <p className="text-black text-[3rem] sm:text-[3.5rem] font-semibold tracking-[-0.04em] leading-none">
-                  3 sem
+            {/* Card 3 — Sur-mesure */}
+            <div data-v-stat className="bg-[#f8f5f0] rounded-2xl sm:rounded-3xl overflow-hidden">
+              <div className="aspect-[4/3] relative bg-[#ede8e0] flex items-center justify-center">
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white text-black text-[11px] font-medium px-3.5 py-1.5 rounded-full shadow-sm">
+                    ⭐ Sur-mesure
+                  </span>
+                </div>
+                {/* Placeholder for generated image */}
+                <Image
+                  src="/vision/surmesure.png"
+                  alt="Solutions sur-mesure"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6">
+                <p className="text-black font-semibold text-[15px]">
+                  Chaque projet est unique.
                 </p>
-                <p className="text-black/35 text-[12px] mt-1">Du brief au live</p>
+                <p className="text-black/40 text-[13px] mt-1 leading-relaxed">
+                  Pas de templates. On construit from scratch, adapté à votre business et vos objectifs.
+                </p>
               </div>
             </div>
           </div>
