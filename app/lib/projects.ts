@@ -29,34 +29,34 @@ export const projects: Project[] = [
     name: "Sweety Délice",
     type: "E-commerce",
     year: "2024",
-    description: "Pâtisserie artisanale en ligne",
+    description: "Des tiramisus qui se vendent tout seuls",
     longDescription:
-      "Une boutique aussi belle que leurs gâteaux. Commande en ligne, click & collect, livraison — tout pour que chaque client craque dès la première visite.",
+      "Sweety Délice, c'est du tiramisu artisanal dans des emballages à tomber. On leur a créé une boutique en ligne où chaque produit donne envie de commander sur-le-champ.",
     image: "/projects/sweety-delice.webp",
     color: "#E17055",
-    tags: ["Shopify", "E-commerce", "Paiement", "Design"],
-    services: ["E-commerce", "Paiement en ligne", "Design"],
-    secteur: "Pâtisserie",
+    tags: ["Shopify", "E-commerce", "Branding", "Design"],
+    services: ["E-commerce", "Branding", "Design"],
+    secteur: "Food & Pâtisserie",
     duree: "4 semaines",
     brief:
-      "Sweety Délice souhaitait digitaliser ses ventes avec une boutique en ligne reflétant l'élégance de ses créations artisanales. L'objectif : proposer la commande en ligne avec click & collect et livraison à domicile.",
+      "Sweety Délice cartonnait déjà en local avec ses tiramisus artisanaux. Le produit était là, le packaging aussi — mais pas de boutique en ligne. Leur clientèle grandissait, les demandes de livraison se multipliaient, et tout se faisait encore par message. Il fallait structurer tout ça avec une vraie présence e-commerce, à la hauteur de leurs produits.",
     defi:
-      "Vendre de la pâtisserie en ligne pose des défis uniques : gestion des créneaux de retrait, personnalisation des commandes, et surtout rendre justice visuellement à des produits artisanaux haut de gamme.",
+      "Le tiramisu, ça ne se vend pas comme un t-shirt. Il fallait retranscrire le côté artisanal et gourmand dans une expérience digitale. Donner envie rien qu'en scrollant. Et derrière, mettre en place un système de commande simple et efficace — click & collect, livraison, créneaux — sans que ça devienne une usine à gaz pour l'équipe.",
     approche: [
       {
-        title: "Direction artistique",
+        title: "L'univers visuel",
         description:
-          "Shooting photo professionnel, création d'une identité visuelle gourmande et élégante, et conception d'un parcours d'achat fluide centré sur le visuel.",
+          "On a construit une identité e-commerce qui respire la gourmandise. Chaque photo, chaque couleur, chaque détail du site est pensé pour déclencher l'envie. Le packaging Sweety Délice est tellement beau qu'on l'a mis au centre de tout.",
       },
       {
-        title: "E-commerce & Paiement",
+        title: "La boutique",
         description:
-          "Mise en place de la boutique avec gestion des stocks, options de personnalisation, système click & collect avec créneaux horaires et paiement sécurisé.",
+          "Mise en place Shopify avec un parcours d'achat ultra-fluide. Choix des parfums, personnalisation, click & collect avec créneaux horaires, livraison, paiement sécurisé. Simple pour le client, simple pour l'équipe.",
       },
       {
-        title: "Lancement & Marketing",
+        title: "Le lancement",
         description:
-          "Stratégie de lancement avec campagne sur les réseaux sociaux, programme de fidélité et intégration d'avis clients pour booster la confiance.",
+          "Stratégie de lancement sur les réseaux sociaux en parallèle de la mise en ligne. Les premiers jours, les commandes ont afflué. Le bouche-à-oreille a fait le reste.",
       },
     ],
     resultats: [
@@ -70,41 +70,41 @@ export const projects: Project[] = [
   {
     slug: "terra-sky",
     name: "Terra Sky",
-    type: "Immobilier",
+    type: "Site premium",
     year: "2024",
-    description: "Agence immobilière premium",
+    description: "L'immobilier de luxe à Dubai",
     longDescription:
-      "Un site à la hauteur de leurs biens. Recherche intuitive, visites virtuelles 360° et un parcours qui transforme les curieux en acheteurs.",
+      "Terra Sky, c'est l'immobilier haut de gamme à Dubai. On leur a refait un site à la hauteur de leurs biens — élégant, rapide, et qui inspire confiance dès la première seconde.",
     image: "/projects/terra-sky.webp",
     color: "#2D3436",
-    tags: ["Next.js", "API Maps", "Filtres avancés", "CMS"],
-    services: ["Site vitrine", "SEO", "Immobilier"],
-    secteur: "Immobilier",
+    tags: ["Next.js", "Design premium", "SEO", "Performance"],
+    services: ["Refonte site web", "Design", "SEO"],
+    secteur: "Immobilier de luxe",
     duree: "4 semaines",
     brief:
-      "Terra Sky cherchait à se différencier sur un marché immobilier saturé grâce à une présence digitale premium. L'objectif : générer des leads qualifiés et proposer des visites virtuelles pour réduire les déplacements inutiles.",
+      "Terra Sky opère sur le marché immobilier premium de Dubai. Des biens d'exception, une clientèle exigeante — mais un site qui ne suivait plus. L'image en ligne ne reflétait pas la qualité de leur service. Il fallait une refonte complète : un site aussi premium que les propriétés qu'ils vendent.",
     defi:
-      "Le marché immobilier en ligne est ultra-compétitif. Il fallait créer une expérience utilisateur qui se démarque tout en intégrant des fonctionnalités avancées de recherche et de visite virtuelle sans compromettre les performances.",
+      "Dans l'immobilier de luxe à Dubai, la concurrence en ligne est féroce. Un site moyen, c'est un client perdu. Il fallait créer une expérience qui transpire le haut de gamme dès le premier scroll — tout en restant rapide, fluide, et irréprochable sur mobile. Pas de compromis.",
     approche: [
       {
-        title: "UX Research & Design",
+        title: "Le design",
         description:
-          "Étude des parcours utilisateurs dans l'immobilier, conception d'un système de filtres intuitif et intégration de visites virtuelles 360° immersives.",
+          "On a repensé chaque page avec une direction artistique premium. Grandes images, espaces généreux, typographie soignée. Le site devait donner la même sensation qu'une visite dans l'un de leurs biens : du standing, de l'espace, du calme.",
       },
       {
-        title: "Développement & Intégrations",
+        title: "Le développement",
         description:
-          "Développement Next.js avec intégration API Google Maps, système de favoris, alertes email personnalisées et espace propriétaire sécurisé.",
+          "Développement Next.js pour des performances optimales. Chaque page charge en moins de 2 secondes. Navigation fluide, responsive impeccable, et une structure pensée pour évoluer avec leur catalogue.",
       },
       {
-        title: "SEO & Acquisition",
+        title: "La visibilité",
         description:
-          "Stratégie SEO locale ciblant les requêtes immobilières par quartier, optimisation des fiches Google Business et mise en place de landing pages ciblées.",
+          "Optimisation SEO complète pour positionner Terra Sky sur les requêtes immobilières clés à Dubai. Structure technique propre, contenu optimisé, et des fondations solides pour leur acquisition future.",
       },
     ],
     resultats: [
       { value: "+120%", label: "Leads qualifiés" },
-      { value: "60%", label: "Visites en ligne" },
+      { value: "x3", label: "Temps sur le site" },
       { value: "<2s", label: "Temps de chargement" },
       { value: "Top 3", label: "SEO local" },
     ],
@@ -115,84 +115,84 @@ export const projects: Project[] = [
     name: "Podium",
     type: "E-commerce",
     year: "2025",
-    description: "Thème Shopify sur-mesure",
+    description: "Le magasin iconique passe au digital",
     longDescription:
-      "Un thème Shopify taillé pour vendre. Ultra-rapide, beau sur tous les écrans, et pensé pour que chaque visiteur passe à l’action.",
+      "Podium, c'est une institution sur la Chaussée de Gand. On les accompagne dans leur passage au e-commerce — pour que leur énergie en boutique se retrouve aussi en ligne.",
     image: "/projects/podium.webp",
     color: "#636E72",
-    tags: ["Shopify", "Liquid", "Performance", "Conversion"],
-    services: ["E-commerce", "Shopify", "Performance"],
-    secteur: "Shopify / E-commerce",
+    tags: ["Shopify", "E-commerce", "Transition digitale", "Design"],
+    services: ["E-commerce", "Shopify", "Transition digitale"],
+    secteur: "Retail / Mode",
     duree: "5 semaines",
     brief:
-      "Podium avait besoin d'un thème Shopify entièrement sur-mesure, conçu pour la conversion. L'objectif : dépasser les limites des thèmes standards avec des performances de pointe et un design premium.",
+      "Podium, tout le monde connaît. C'est le magasin de référence sur la Chaussée de Gand — des sneakers, du style, une vraie communauté. Mais tout se passait en boutique. Pas de site, pas de vente en ligne. Avec la demande qui explose, il était temps de lancer le e-commerce sans perdre l'ADN de la marque.",
     defi:
-      "Les thèmes Shopify standards limitent les possibilités de personnalisation et de performance. Il fallait développer un thème from scratch en Liquid qui soit rapide, accessible, et optimisé pour la conversion sur tous les navigateurs.",
+      "Podium a une identité forte en physique. Le défi, c'était de traduire cette énergie de boutique dans un site e-commerce. Garder l'âme du magasin, le côté authentique, tout en construisant une machine de vente en ligne performante. Et surtout : que l'équipe puisse gérer ça facilement au quotidien.",
     approche: [
       {
-        title: "Audit & Benchmark",
+        title: "L'identité digitale",
         description:
-          "Analyse des thèmes concurrents, benchmark des performances et définition d'objectifs PageSpeed stricts. Étude des parcours de conversion e-commerce les plus performants.",
+          "On a capturé l'énergie de Podium — leur univers, leur clientèle, leur vibe — et on l'a traduit dans un design e-commerce qui leur ressemble. Pas un thème générique, mais quelque chose de taillé pour eux.",
       },
       {
-        title: "Développement Liquid",
+        title: "La boutique Shopify",
         description:
-          "Développement du thème en Liquid pur avec lazy loading natif, CSS critique inline, JavaScript minimal et sections dynamiques Shopify 2.0.",
+          "Développement d'une boutique Shopify sur-mesure. Catalogue structuré, fiches produits pensées pour la conversion, paiement fluide, gestion des stocks connectée à la boutique physique.",
       },
       {
-        title: "Tests & Optimisation",
+        title: "L'accompagnement",
         description:
-          "Tests cross-browser exhaustifs, optimisation des Core Web Vitals, A/B testing des pages produits et documentation complète pour le client.",
+          "On ne livre pas juste un site et on disparaît. Formation de l'équipe, documentation claire, et un suivi pour s'assurer que la transition se passe en douceur. Podium est autonome sur son e-commerce.",
       },
     ],
     resultats: [
       { value: "+200%", label: "Taux de conversion" },
       { value: "<1.8s", label: "Temps de chargement" },
       { value: "98/100", label: "PageSpeed Score" },
-      { value: "Cross", label: "Browser compatible" },
+      { value: "100%", label: "Équipe formée" },
     ],
     nextSlug: "success-talent",
   },
   {
     slug: "success-talent",
     name: "Success Talent",
-    type: "Plateforme RH",
+    type: "Site vitrine",
     year: "2025",
-    description: "Mise en relation talents & entreprises",
+    description: "Recruter les bons profils, plus vite",
     longDescription:
-      "La plateforme qui connecte les bons profils aux bonnes entreprises. Matching intelligent, dashboards clairs, et une expérience fluide pour tout le monde.",
+      "Success Talent avait besoin d'attirer les meilleurs candidats. On leur a construit un site qui donne envie de postuler — clair, pro, et qui reflète la culture de leur entreprise.",
     image: "/projects/success-talent.webp",
     color: "#6C5CE7",
-    tags: ["React", "Node.js", "Base de données", "Dashboard"],
-    services: ["Plateforme web", "Dashboard", "Base de données"],
-    secteur: "Ressources Humaines",
-    duree: "6 semaines",
+    tags: ["Next.js", "Design", "Recrutement", "SEO"],
+    services: ["Site vitrine", "Design", "SEO"],
+    secteur: "Recrutement",
+    duree: "3 semaines",
     brief:
-      "Success Talent avait besoin d'une plateforme digitale pour connecter efficacement les talents aux entreprises. L'objectif : automatiser le processus de matching et offrir un dashboard intuitif aux recruteurs comme aux candidats.",
+      "Success Talent cherchait à étoffer son équipe. Le problème : pas de présence en ligne digne de ce nom. Les candidats n'avaient nulle part où découvrir l'entreprise, sa culture, ses valeurs. Résultat : des candidatures qui n'arrivaient pas, ou pas les bonnes. Il fallait un site qui donne envie aux bons profils de postuler.",
     defi:
-      "Le matching manuel entre candidats et offres prenait un temps considérable et manquait de précision. Il fallait créer un algorithme intelligent tout en gardant une interface simple et agréable pour tous les utilisateurs.",
+      "Recruter en 2025, ça passe d'abord par le digital. Un candidat qui ne trouve rien en ligne, c'est un candidat qui passe son chemin. Il fallait créer une vitrine qui raconte qui est Success Talent, ce qu'ils proposent, et pourquoi c'est l'endroit où tu veux bosser. Le tout en un temps record.",
     approche: [
       {
-        title: "Architecture & Base de données",
+        title: "Le positionnement",
         description:
-          "Conception d'une architecture scalable avec une base de données relationnelle optimisée pour les requêtes de matching multi-critères.",
+          "On a travaillé avec Success Talent pour définir leur message clé. Qu'est-ce qui les rend uniques ? Pourquoi rejoindre leur équipe ? On a traduit ça en un storytelling clair et authentique sur chaque page du site.",
       },
       {
-        title: "Algorithme de matching",
+        title: "Le site",
         description:
-          "Développement d'un système de scoring intelligent croisant compétences, expérience, localisation et préférences pour proposer les meilleurs profils.",
+          "Développement Next.js avec un design moderne et professionnel. Pages métiers, présentation de l'équipe, culture d'entreprise, formulaire de candidature simplifié. Chaque élément pousse à l'action.",
       },
       {
-        title: "Dashboards & Interface",
+        title: "Le référencement",
         description:
-          "Création de tableaux de bord distincts pour candidats, recruteurs et administrateurs avec des métriques clés et des actions rapides.",
+          "SEO optimisé sur les requêtes de recrutement ciblées. Quand quelqu'un cherche à rejoindre une boîte dans leur secteur, Success Talent apparaît. C'est aussi simple que ça.",
       },
     ],
     resultats: [
-      { value: "+2000", label: "Inscrits actifs" },
-      { value: "85%", label: "Satisfaction utilisateurs" },
-      { value: "45%", label: "Taux de matching" },
-      { value: "Dashboard", label: "Temps réel" },
+      { value: "x4", label: "Candidatures reçues" },
+      { value: "85%", label: "Profils qualifiés" },
+      { value: "3 sem", label: "Livraison" },
+      { value: "+60%", label: "Trafic organique" },
     ],
     nextSlug: "sweety-delice",
   },
